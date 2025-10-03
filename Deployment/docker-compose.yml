@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  mongo:
+    image: mongo:6.0
+    container_name: soccer_mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  api:
+    build:
+      context: ..                  # <- le contexte inclut toute la racine du projet
+      dockerfile: Deployment/Dockerfile
+    container_name: SoccerGame_api
+    restart: unless-stopped
+    ports:
+      - "5001:5001"
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/Soccer_Game_DB
+
+volumes:
+  mongo_data:
