@@ -16,6 +16,7 @@ class PlayerStats(BaseModel):
 
 class Player(BaseModel):
     username : str
+    password : str
     avatar : Optional[str] = None
     account_creation_date : date 
     matches_won : int = 0 

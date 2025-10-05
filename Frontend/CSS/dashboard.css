@@ -1,0 +1,104 @@
+/* ======== Reset de base ======== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* ======== Body ======== */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0D1B2A, #1B263B, #415A77);
+    color: #778DA9;
+}
+
+/* ======== Bannière ======== */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    background-color: #1B263B;
+    color: #fff;
+}
+
+.header .left, .header .center, .header .right {
+    display: flex;
+    align-items: center;
+}
+
+.header .center {
+    flex: 1;
+    justify-content: center;
+}
+
+.header h1 {
+    font-size: 24px;
+}
+
+.hamburger {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Dropdown profil */
+.dropdown {
+    position: relative;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 40px;
+    background-color: #415A77;
+    min-width: 150px;
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 10;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 10px 15px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.dropdown-content a:hover {
+    background-color: #64778f;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* ======== Contenu principal ======== */
+main {
+    display: flex;
+    gap: 20px;
+    padding: 20px 50px;
+    flex: 1;
+}
+
+/* Cartes */
+.card {
+    flex: 1;
+    background-color: #1B263B;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    color: #fff;
+}
+
+.card h2 {
+    margin-bottom: 15px;
+}
+
+.card p {
+    margin-bottom: 10px;
+}

@@ -1,6 +1,8 @@
 from flask import Blueprint, jsonify, request
 from db.connection import db
-from Models import Player  # ton modèle Pydantic
+from Models.Player import Player  # ton modèle Pydantic
+import bcrypt 
+from datetime import date 
 
 # Création du Blueprint pour regrouper toutes les routes Player
 # Le blueprint permet de découper l'application en plusieurs fichiers.
@@ -8,18 +10,62 @@ from Models import Player  # ton modèle Pydantic
 player_bp = Blueprint("player_bp", __name__)
 
 # Collection MongoDB
-players_collection = db["Player"]
+players_collection = db["players"]
 
 
 ### CREATE (POST) ###
 @player_bp.route("/", methods=["POST"])
 def add_player():
     try:
-        player = Player(**request.get_json())  # Validation Pydantic
-        players_collection.insert_one(player.model_dump())
+        data = request.get_json()
+        password = data.get("password")
+
+        if not password:
+            return jsonify({"error":"Le mot de passe est requis"}), 400
+        
+        # Hash du mot de passe avant insertion dans la DB
+        hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+        data["password"] = hashed_password.decode('utf-8') # On stocke le hash converti en str
+
+        # On complète les champs obligatoires manquants
+        if "account_creation_date" not in data:
+            data["account_creation_date"] = date.today().isoformat()
+        
+        data["best_player_stats"] = {"goals": 0, "assists": 0, "saves": 0}
+
+        player = Player(**data)  # Validation Pydantic
+
+        player_dict = player.model_dump()
+        # s'assurer que la date est bien string
+        player_dict["account_creation_date"] = player_dict["account_creation_date"].isoformat() if isinstance(player_dict["account_creation_date"], date) else player_dict["account_creation_date"]
+        players_collection.insert_one(player_dict)
+        #players_collection.insert_one(player.model_dump())
         return jsonify({"message": "Utilisateur ajouté avec succès"}), 201
     except Exception as e:
         return jsonify({"error": str(e)}), 400
+
+
+# Connexion du joueur
+@player_bp.route("/login", methods=["POST"])
+def login_player():
+    try:
+        data = request.get_json()
+        username = data.get("username")
+        password = data.get("password")
+
+        player = players_collection.find_one({"username": username})
+        if not player:
+            return jsonify({"error": "Utilisateur introuvable"}), 404
+
+        stored_hash = player.get("password").encode('utf-8')
+
+        if bcrypt.checkpw(password.encode('utf-8'), stored_hash):
+            return jsonify({"message": "Connexion réussie"}), 200
+        else:
+            return jsonify({"error": "Mot de passe incorrect"}), 401
+    except Exception as e:
+        return jsonify({"error": str(e)}), 400
+
 
 
 ### READ (GET one) ###
