@@ -38,4 +38,5 @@ document.addEventListener("DOMContentLoaded", async () => {
   } catch (err) {
     document.getElementById("game-detail").innerHTML = `<p style="color:red;">${err.message}</p>`;
   }
+  
 });
