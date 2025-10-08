@@ -73,9 +73,9 @@ body {
     background-color: #64778f;
 }
 
-.dropdown:hover .dropdown-content {
+/* .dropdown:hover .dropdown-content {
     display: block;
-}
+} */
 
 /* ======== Contenu principal ======== */
 main {
@@ -102,3 +102,44 @@ main {
 .card p {
     margin-bottom: 10px;
 }
+
+
+.hamburger {
+    font-size: 24px;
+    cursor: pointer;
+    color: #fff;
+}
+
+/* Le menu déroulant du hamburger */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 40px;
+    background-color: #415A77;
+    min-width: 180px;
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 10px 15px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.dropdown-content a:hover {
+    background-color: #64778f;
+}
+
+/* Affiche le menu au survol
+.dropdown:hover .dropdown-content {
+    display: block;
+} */

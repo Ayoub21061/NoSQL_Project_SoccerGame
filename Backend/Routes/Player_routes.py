@@ -14,38 +14,30 @@ players_collection = db["players"]
 
 
 ### CREATE (POST) ###
+# CREATE
 @player_bp.route("/", methods=["POST"])
 def add_player():
     try:
         data = request.get_json()
         password = data.get("password")
-
         if not password:
             return jsonify({"error":"Le mot de passe est requis"}), 400
         
-        # Hash du mot de passe avant insertion dans la DB
         hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
-        data["password"] = hashed_password.decode('utf-8') # On stocke le hash converti en str
+        data["password"] = hashed_password.decode('utf-8')  # <-- important
 
-        # On complète les champs obligatoires manquants
         if "account_creation_date" not in data:
             data["account_creation_date"] = date.today().isoformat()
-        
-        data["best_player_stats"] = {"goals": 0, "assists": 0, "saves": 0}
+        data["best_player_stats"] = {"goals":0,"assists":0,"saves":0}
 
-        player = Player(**data)  # Validation Pydantic
-
+        player = Player(**data)
         player_dict = player.model_dump()
-        # s'assurer que la date est bien string
-        player_dict["account_creation_date"] = player_dict["account_creation_date"].isoformat() if isinstance(player_dict["account_creation_date"], date) else player_dict["account_creation_date"]
         players_collection.insert_one(player_dict)
-        #players_collection.insert_one(player.model_dump())
         return jsonify({"message": "Utilisateur ajouté avec succès"}), 201
     except Exception as e:
         return jsonify({"error": str(e)}), 400
 
-
-# Connexion du joueur
+# LOGIN
 @player_bp.route("/login", methods=["POST"])
 def login_player():
     try:
@@ -57,14 +49,14 @@ def login_player():
         if not player:
             return jsonify({"error": "Utilisateur introuvable"}), 404
 
-        stored_hash = player.get("password").encode('utf-8')
-
+        stored_hash = player.get("password").encode('utf-8')  # str → bytes
         if bcrypt.checkpw(password.encode('utf-8'), stored_hash):
             return jsonify({"message": "Connexion réussie"}), 200
         else:
             return jsonify({"error": "Mot de passe incorrect"}), 401
     except Exception as e:
         return jsonify({"error": str(e)}), 400
+
 
 
 

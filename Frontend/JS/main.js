@@ -36,6 +36,13 @@ async function login() {
     //On récupère la réponse JSON du backend et on la stocke dans data
     const data = await response.json();
     // afficher la réponse dans une alerte (test pour vérifier si ça marche)
+
+    if (response.ok) {
+        // Redirection vers le dashboard si connexion réussie
+        window.location.href = "dashboard.html"; // mets le chemin de ta page principale
+    } else {
+        alert(data.error); // Affiche l'erreur sinon
+    }
     alert(JSON.stringify(data));
 }
 
