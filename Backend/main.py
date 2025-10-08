@@ -4,8 +4,10 @@ from Routes.Gamesmode_routes import games_bp
 from Routes.Achievements_routes import achievements_bp
 from Routes.Skills_routes import skills_bp
 import os
+from flask_cors import CORS  
 
 app = Flask(__name__)
+CORS(app)
 
 # -------------------------------
 # Blueprints pour ton API MongoDB
