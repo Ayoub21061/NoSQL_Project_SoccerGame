@@ -6,7 +6,8 @@ services:
     container_name: soccer_mongo
     restart: unless-stopped
     ports:
-      - "27017:27017"
+      - "27017:27017"         # Expose le port Mongo sur la machine hôte
+    command: ["mongod", "--bind_ip_all"]  # Permet les connexions depuis n'importe quelle IP
     volumes:
       - mongo_data:/data/db
 
@@ -21,10 +22,11 @@ services:
     depends_on:
       - mongo
     environment:
+      # Connexion MongoDB via le conteneur Mongo sur le réseau Docker
       - MONGO_URI=mongodb://mongo:27017/Soccer_Game_DB
     volumes:
-      - ../Backend:/app/Backend      # monte le backend pour Flask
-      - ../Frontend:/app/Frontend    # monte le frontend pour servir HTML/CSS/JS
+      - ../Backend:/app/Backend      # Monte le backend pour Flask
+      - ../Frontend:/app/Frontend    # Monte le frontend pour servir HTML/CSS/JS
 
 volumes:
   mongo_data:
