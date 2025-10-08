@@ -1,12 +1,7 @@
 from flask import Blueprint, jsonify, request
-from db.connection import db  # connexion à MongoDB
-#from Models import GameMode  # si on veut utiliser un modèle Pydantic plus tard
+from db.connection import db
 
-# Création du Blueprint pour regrouper toutes les routes Gamesmode
-games_bp = Blueprint("games_bp", __name__) #-> Permet de regrouper les routes liées aux modes de jeu. car si on ne met pas ça, seul les routes players sont connu par le main.py et les autres routes obtiennent un URL NOT FOUND
-
-
-# Collection MongoDB
+games_bp = Blueprint("games_bp", __name__)
 games_collection = db["gamesmode"]
 
 
@@ -14,8 +9,10 @@ games_collection = db["gamesmode"]
 @games_bp.route("/", methods=["POST"])
 def add_game():
     try:
-        # game = GameMode(**request.get_json())  # si on veut valider avec Pydantic
-        game = request.get_json()  # pour l'instant simple dictionnaire
+        game = request.get_json()
+        # Assurez-vous que _id est une string unique
+        if "_id" not in game:
+            return jsonify({"error": "_id field is required"}), 400
         games_collection.insert_one(game)
         return jsonify({"message": "Mode de jeu ajouté avec succès"}), 201
     except Exception as e:
@@ -26,7 +23,8 @@ def add_game():
 @games_bp.route("/<game_id>", methods=["GET"])
 def get_game(game_id):
     try:
-        game = games_collection.find_one({"id": int(game_id)})
+        # Utiliser _id (string) et non id (int)
+        game = games_collection.find_one({"_id": game_id})
         if game:
             game["_id"] = str(game["_id"])
             return jsonify(game)
@@ -52,7 +50,7 @@ def get_all_games():
 def update_game(game_id):
     try:
         update_game = request.get_json()
-        result = games_collection.update_one({"id": int(game_id)}, {"$set": update_game})
+        result = games_collection.update_one({"_id": game_id}, {"$set": update_game})
         if result.matched_count:
             return jsonify({"message": "Game mode updated successfully"}), 200
         return jsonify({"message": "Game mode not found"}), 404
@@ -64,7 +62,7 @@ def update_game(game_id):
 @games_bp.route("/<game_id>", methods=["DELETE"])
 def delete_game(game_id):
     try:
-        result = games_collection.delete_one({"id": int(game_id)})
+        result = games_collection.delete_one({"_id": game_id})
         if result.deleted_count:
             return jsonify({"message": "Game mode deleted successfully"}), 200
         return jsonify({"message": "Game mode not found"}), 404

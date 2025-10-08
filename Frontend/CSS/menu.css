@@ -1,0 +1,68 @@
+/* ===== Header ===== */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+  background-color: #222;
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+.header .center {
+  flex: 1;
+  text-align: center;
+}
+
+.header h1 {
+  font-size: 24px;
+}
+
+/* Hamburger */
+.hamburger {
+  font-size: 28px;
+  cursor: pointer;
+  color: #fff;
+  margin-left: 10px;
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+  height: 100%;
+  width: 0; /* cachée par défaut */
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+  background-color: #222;
+  overflow-x: hidden;
+  transition: 0.3s; /* animation glissement */
+  padding-top: 60px;
+}
+
+.sidebar a {
+  display: block;
+  padding: 15px 25px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.sidebar a:hover {
+  background-color: #555;
+}
+
+/* Bouton fermer */
+.sidebar .closebtn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 30px;
+  cursor: pointer;
+  color: #fff;
+}
+
+/* ===== Contenu principal ===== */
+main {
+  padding: 20px;
+}

@@ -5,68 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Soccer Game - Dashboard</title>
     <link rel="stylesheet" href="../css/dashboard.css">
-    <script src="../js/dashboard.js"></script>
 </head>
 <body>
 
-    <!-- Bannière -->
+    <!-- Sidebar menu sandwich -->
+    <div class="sidebar">
+        <a href="#">Accueil</a>
+        <a href="achievements.html">Achievements</a>
+        <a href="games.html">Games</a>
+        <a href="#">Règles du jeu</a>
+    </div>
+
+    <!-- Header -->
     <header class="header">
-    <div class="left">
-        <div class="dropdown">
+        <div class="left">
             <div class="hamburger">&#9776;</div>
-            <div class="dropdown-content">
-                <a href="#">Accueil</a>
-                <a href="achievements.html">Achievements</a>
-                <a href="#">Classement</a>
-                <a href="#">Règles du jeu</a>
+        </div>
+        <div class="center">
+            <h1>⚽ Soccer Game Management</h1>
+        </div>
+        <div class="right">
+            <div class="dropdown">
+                <div class="profil">Mon Profil
+                    <div class="dropdown-content">
+                        <a href="#">Paramètres</a>
+                        <a href="index.html">Déconnexion</a>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-
-    <div class="center">
-        <h1>⚽ Soccer Game Management</h1>
-    </div>
-
-    <div class="right">
-        <div class="dropdown">
-            <div class = "profil">
-            Mon Profil
-            <div class="dropdown-content">
-                <a href="#">Paramètres</a>
-                <a href="index.html">Déconnexion</a>
-            </div>
-            </div>
-        </div>
-    </div>
-</header>
-
+    </header>
 
     <!-- Contenu principal -->
     <main>
         <h2>
             Bienvenue dans ce nouveau jeu dans lequel vous allez pouvoir expérimenter vos compétences footballistiques au travers de divers modes de jeu. Jouez avec les joueurs les plus emblématiques de ce jeu et empocher la victoire coûte que coûte !
         </h2>
-        <div class="card">
-            <h2>Statistiques</h2>
-            <p>Matchs gagnés: 0</p>
-            <p>Matchs perdus: 0</p>
-            <p>Matchs nuls: 0</p>
-            <p>Temps total de jeu: 0h</p>
-        </div>
 
-        <div class="card">
-            <h2>Classement</h2>
-            <p>Votre rang: 1000</p>
-            <p>Joueur au-dessus: …</p>
-            <p>Joueur en dessous: …</p>
-        </div>
+        <div class="cards-container">
+            <div class="card">
+                <h2>Statistiques</h2>
+                <p>Matchs gagnés: 0</p>
+                <p>Matchs perdus: 0</p>
+                <p>Matchs nuls: 0</p>
+                <p>Temps total de jeu: 0h</p>
+            </div>
 
-        <div class="card">
-            <h2>Palmarès</h2>
-            <p>Trophée: …</p>
-            <p>Historique: …</p>
+            <div class="card">
+                <h2>Classement</h2>
+                <p>Votre rang: 1000</p>
+                <p>Joueur au-dessus: …</p>
+                <p>Joueur en dessous: …</p>
+            </div>
+
+            <div class="card">
+                <h2>Palmarès</h2>
+                <p>Trophée: …</p>
+                <p>Historique: …</p>
+            </div>
         </div>
     </main>
 
+    <script src="../js/dashboard.js"></script>
 </body>
 </html>

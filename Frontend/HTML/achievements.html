@@ -2,25 +2,40 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Achievements - Soccer Game</title>
+  <link rel="stylesheet" href="../css/menu.css">
   <link rel="stylesheet" href="../css/style.css" />
 </head>
 <body>
-  <header>
-    <h1>🏆 Achievements</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Accueil</a></li>
-      </ul>
-    </nav>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="left">
+      <span class="hamburger">&#9776;</span>
+    </div>
+    <div class="center">
+      <h1>🏆 Achievements</h1>
+    </div>
   </header>
 
+  <!-- Sidebar -->
+  <div id="mySidebar" class="sidebar">
+    <span class="closebtn">&times;</span>
+    <a href="index.html">Accueil</a>
+    <a href="achievements.html">Achievements</a>
+    <a href="games.html">Games</a>
+    <a href="#">Règles du jeu</a>
+  </div>
+
+  <!-- Contenu principal -->
   <main>
     <section id="achievements-container">
       <!-- Les achievements seront insérés ici dynamiquement -->
     </section>
   </main>
 
+  <script src="../js/menu.js"></script>
   <script src="../js/achievements.js"></script>
 </body>
 </html>
