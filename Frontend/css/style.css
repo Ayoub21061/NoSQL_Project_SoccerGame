@@ -89,3 +89,47 @@ nav a:hover {
   margin-bottom: 8px;
 }
 
+#game-detail-section {
+  display: flex;
+  justify-content: center; /* centre horizontalement */
+  align-items: center;     /* centre verticalement si nécessaire */
+  width: 100%;             /* prend toute la largeur */
+  padding: 20px 0;
+}
+
+#game-image {
+  width: 200px;           /* adapte selon game.html */
+  height: 200px;
+  object-fit: cover;      /* crop si nécessaire */
+  border: 3px solid #333;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Section principale du détail */
+#game-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  gap: 10px;
+  max-width: 600px;       /* largeur raisonnable */
+  margin: 40px auto;      /* centrage horizontal + espace avec le header */
+  
+  background-color: white;    /* fond blanc pour contraster */
+  border: 2px solid #ccc;     /* cadre gris léger */
+  border-radius: 10px;        /* coins arrondis */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);  /* petite ombre élégante */
+}
+
+#game-detail p,
+#game-detail div {
+  text-align: center;
+  max-width: 500px;
+}
+
+
+
+
+
