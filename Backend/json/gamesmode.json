@@ -1,0 +1,106 @@
+[
+  {
+    "_id": "game_001",
+    "name": "1v1",
+    "description": "Un contre un classique. Chaque joueur contrôle une équipe complète contre un seul adversaire pour obtenir la victoire.",
+    "mode_type": "Standard",
+    "max_players_per_team": 1,
+    "special_rules": []
+  },
+  {
+    "_id": "game_002",
+    "name": "2v2",
+    "description": "Deux joueurs dans chaque équipe collaborent pour affronter une autre équipe de deux. Un mode où la coopération est la clef du succès.",
+    "mode_type": "Standard",
+    "max_players_per_team": 2,
+    "special_rules": []
+  },
+  {
+    "_id": "game_003",
+    "name": "3v3",
+    "description": "Trois joueurs dans chaque équipe. Mode dynamique et stratégique.",
+    "mode_type": "Standard",
+    "max_players_per_team": 3,
+    "special_rules": []
+  },
+  {
+    "_id": "game_004",
+    "name": "4v4",
+    "description": "Quatre contre quatre avec plus d'espaces et de mouvements collectifs.",
+    "mode_type": "Standard",
+    "max_players_per_team": 4,
+    "special_rules": []
+  },
+  {
+    "_id": "game_005",
+    "name": "5v5",
+    "description": "Format compétitif très populaire. Requiert une bonne coordination d'équipe.",
+    "mode_type": "Standard",
+    "max_players_per_team": 5,
+    "special_rules": []
+  },
+  {
+    "_id": "game_006",
+    "name": "VOLTA Futsal",
+    "description": "Mode Futsal sur terrain réduit dans lequel vous faites place au talent et à votre imagination.",
+    "mode_type": "Futsal",
+    "max_players_per_team": 1,
+    "special_rules": ["Terrain réduit", "Pas de touche", "Jeu technique valorisé"]
+  },
+  {
+    "_id": "game_007",
+    "name": "Sans-règle",
+    "description": "Mode libre où aucune règle n'a sa place dans le jeu. Idéal pour s'amuser sans pression. Faites recourt à votre imagination et établissez vos propres règles !",
+    "mode_type": "Spéciale",
+    "max_players_per_team": 1,
+    "special_rules": ["Aucune faute sifflée", "Tacles illimités", "Pas de hors-jeu"]
+  },
+  {
+    "_id": "game_008",
+    "name": "Battle Royale",
+    "description": "À chaque but encaissé, un joueur de l'équipe concernée est éliminé.",
+    "mode_type": "Spéciale",
+    "max_players_per_team": 1,
+    "special_rules": ["Élimination d'un joueur après chaque but"]
+  },
+  {
+    "_id": "game_009",
+    "name": "Club Pro",
+    "description": "Chaque utilisateur contrôle son propre avatar sur le terrain dans une équipe de 11 joueurs. Créez votre propre personnage et élévez-le au rang de star mondiale.",
+    "mode_type": "Club Pro",
+    "max_players_per_team": 11,
+    "special_rules": ["Un joueur = un poste", "Progression du joueur personnalisée"]
+  },
+  {
+    "_id": "game_010",
+    "name": "Carrière Entraîneur",
+    "description": "Mode gestion : le joueur devient entraîneur et gère une équipe sur plusieurs saisons. Créez la meilleure équipe possible.",
+    "mode_type": "Carrière",
+    "max_players_per_team": 1,
+    "special_rules": ["Gestion des tactiques", "Recrutement", "Entraînements"]
+  },
+  {
+    "_id": "game_011",
+    "name": "Coupe Européenne - Champions League",
+    "description": "Participation à la Ligue des Champions avec format à élimination directe et phases de groupes. Remportez le trophée le plus prestigieux d'Europe.",
+    "mode_type": "Tournoi",
+    "max_players_per_team": 1,
+    "special_rules": ["Format UCL officiel", "Phases de groupe + élimination directe", "Règle identique à l'UCL"]
+  },
+  {
+    "_id": "game_012",
+    "name": "Coupe Européenne - Europa League",
+    "description": "Participation à l'Europa League avec un format identique à la réalité.",
+    "mode_type": "Tournoi",
+    "max_players_per_team": 1,
+    "special_rules": ["Format Europa League officiel", "Phases de groupe + élimination directe", "Règle identique à l'UEL"]
+  },
+  {
+    "_id": "game_013",
+    "name": "Coupe Européenne - Conference League",
+    "description": "Participation à la Conference League, une compétition européenne de niveau inférieur.",
+    "mode_type": "Tournoi",
+    "max_players_per_team": 1,
+    "special_rules": ["Format Conference League officiel", "Phases de groupe + élimination directe", "Règle identique à l'UECL"]
+  }
+]

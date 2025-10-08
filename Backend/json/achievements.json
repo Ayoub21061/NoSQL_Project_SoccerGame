@@ -1,0 +1,227 @@
+[
+  {
+    "id": 1,
+    "name": "Débutant",
+    "description": "Terminer ton premier match",
+    "type": "Reward",
+    "xp_required": 0,
+    "reward": { "coins": 50 },
+    "is_unlocked": false
+  },
+  { 
+    "id": 2,
+    "name": "Amateur",
+    "description": "Remporter 5 matchs",
+    "type": "Reward",
+    "xp_required": 50,
+    "reward": { "coins": 100, "player_card": "Bronze" },
+    "is_unlocked": false
+  },
+  {
+    "id": 3,
+    "name": "Semi-Pro",
+    "description": "Remporter 10 matchs",
+    "type": "Reward",
+    "xp_required": 100,
+    "reward": { "coins": 200, "player_card": "Silver" },
+    "is_unlocked": false
+  },
+  {
+    "id": 4,
+    "name": "Pro",
+    "description": "Remporter 20 matchs",
+    "type": "Reward",
+    "xp_required": 200,
+    "reward": { "coins": 500, "player_card": "Gold", "exclusive_kit": true },
+    "is_unlocked": false
+  },
+  {
+    "id": 5,
+    "name": "Champions",
+    "description": "Remporter 50 matchs",
+    "type": "Reward",
+    "xp_required": 500,
+    "reward": { "coins": 1000, "player_card": "Gold 82+", "exclusive_kit": true, "trophy": true },
+    "is_unlocked": false
+  },
+  {
+    "id": 6,
+    "name": "Légende",
+    "description": "Remporter 100 matchs",
+    "type": "Reward",
+    "xp_required": 1000,
+    "reward": { "coins": 1000, "player_card": "Gold 85+", "exclusive_kit": true, "trophy": true},
+    "is_unlocked": false
+  },
+  {
+    "id": 7,
+    "name": "Battle Pass Niveau 1",
+    "description": "Atteindre 100 XP dans le Battle Pass",
+    "type": "Battle Pass",
+    "xp_required": 100,
+    "reward": { "coins": 100, "pack": "Pack de démarrage"},
+    "is_unlocked": false
+  },
+  {
+    "id": 8,
+    "name": "Battle Pass Niveau 2",
+    "description": "Atteindre 300 XP dans le Battle Pass",
+    "type": "Battle Pass",
+    "xp_required": 300,
+    "reward": { "coins": 300, "pack": "Pack Bronze"},
+    "is_unlocked": false
+  },
+  {
+    "id": 9,
+    "name": "Battle Pass Niveau 3",
+    "description": "Atteindre 600 XP dans le Battle Pass",
+    "type": "Battle Pass",
+    "xp_required": 600,
+    "reward": { "coins": 600, "pack": "Pack Silver"},
+    "is_unlocked": false
+  },
+  {
+    "id": 10,
+    "name": "Battle Pass Niveau 4",
+    "description": "Atteindre 1000 XP dans le Battle Pass",
+    "type": "Battle Pass",
+    "xp_required": 1000,
+    "reward": { "coins": 1000, "pack": "Pack Gold", "exclusive_kit": true },
+    "is_unlocked": false
+  },
+  {
+    "id": 11,
+    "name": "Battle Pass Niveau 5",
+    "description": "Atteindre 1500 XP dans le Battle Pass",
+    "type": "Battle Pass",
+    "xp_required": 1500,
+    "reward": { "coins": 1500, "pack": "Pack Platinum", "exclusive_kit": true, "trophy": true },
+    "is_unlocked": false
+  },
+  {
+    "id": 12,
+    "name": "Battle Pass Niveau 6",
+    "description": "Atteindre 2000 XP dans le Battle Pass",
+    "type": "Battle Pass",
+    "xp_required": 2000,
+    "reward": { "coins": 2000, "pack": "Pack Diamond", "exclusive_kit": true, "trophy": true },
+    "is_unlocked": false
+  },
+  {
+    "id": 13,
+    "name" : "Battle Pass Niveau 7",
+    "description": "Atteindre 3000 XP dans le Battle Pass",
+    "type": "Battle Pass",
+    "xp_required": 3000,
+    "reward": { "coins": 3000, "pack": "Pack Elite", "exclusive_kit": true, "trophy": true },
+    "is_unlocked": false
+  },
+  {
+    "id": 14,
+    "name" : "Battle Pass Niveau 8",
+    "description": "Atteindre 4000 XP dans le Battle Pass",
+    "type": "Battle Pass",
+    "xp_required": 4000,
+    "reward": { "coins": 4000, "pack": "Pack Mythique", "exclusive_kit": true, "trophy": true },
+    "is_unlocked": false
+  },
+  {
+    "id": 15,
+    "name" : "Battle Pass Niveau 9",
+    "description": "Atteindre 5000 XP dans le Battle Pass",
+    "type": "Battle Pass",
+    "xp_required": 5000,
+    "reward": { "coins": 5000, "pack": "Pack Légendaire", "exclusive_kit": true, "trophy": true },
+    "is_unlocked": false
+  },
+  {
+    "id": 16,
+    "name" : "Battle Pass Niveau 10",
+    "description": "Atteindre 6000 XP dans le Battle Pass",
+    "type": "Battle Pass",
+    "xp_required": 6000,
+    "reward": { "coins": 6000, "pack": "Pack Ultime", "exclusive_kit": true, "trophy": true },
+    "is_unlocked": false
+  },
+  {
+    "id": 17,
+    "name": "Globetrotter",
+    "description": "Jouer des matchs dans 10 stades différents",
+    "type": "Live Events",
+    "xp_required": 100,
+    "reward": { "coins": 500, "pack": "Pack Découverte" },
+    "is_unlocked": false
+  },
+  {
+    "id": 18,
+    "name": "Soif de découverte",
+    "description": "Remporter 10 matchs dans tous les modes de jeux",
+    "type": "Live Events",
+    "xp_required": 300,
+    "reward": { "coins": 1000, "pack": "Pack Élite" },
+    "is_unlocked": false
+  },
+  {
+    "id": 19,
+    "name": "Selecção das quinas",
+    "description": "Jouer et Remportez 10 matchs avec une équipe 100% portugaise sans encaisser un seul but",
+    "type": "Live Events",
+    "xp_required": 200,
+    "reward": { "coins": 2000, "pack": "Pack Avancé" },
+    "is_unlocked": false
+  },
+  { 
+    "id": 20,
+    "name": "La Pulga",
+    "description": "Jouer 50 matchs avec Lionel Messi parmis vos titulaires",
+    "type": "Live Events",
+    "xp_required": 200,
+    "reward": { "coins": 2000, "pack": "Pack Argentine" },
+    "is_unlocked": false
+  },
+  {
+    "id": 21,
+    "name": "El Bicho",
+    "description": "Jouer 50 matchs avec Cristiano Ronaldo parmis vos titulaires",
+    "type": "Live Events",
+    "xp_required": 200,
+    "reward": { "coins": 2000, "pack": "Pack Portugal" },
+    "is_unlocked": false
+  },
+  {
+    "id": 22,
+    "name": "El Pistolero",
+    "description": "Marquer 100 buts dans n'importe quelle mode avec Luis Suárez parmis vos titulaires",
+    "type": "Live Events",
+    "xp_required": 200,
+    "reward": { "coins": 2000, "pack": "Pack Uruguay" },
+    "is_unlocked": false
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+]
