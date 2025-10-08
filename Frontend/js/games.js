@@ -15,11 +15,18 @@ document.addEventListener("DOMContentLoaded", async () => {
     games.forEach(game => {
       const card = document.createElement("div");
       card.className = "game-card";
+
       card.innerHTML = `
         <img src="${game.image}" alt="${game.name}" class="game-image" />
         <h3>${game.name}</h3>
         <p>${game.description || "Aucune description"}</p>
       `;
+
+      // 🧭 Redirection au clic
+      card.addEventListener("click", () => {
+        window.location.href = `game_detail.html?id=${game._id}`;
+      });
+
       container.appendChild(card);
     });
 
