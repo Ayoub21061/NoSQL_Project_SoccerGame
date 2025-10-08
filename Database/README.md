@@ -1,1 +1,3 @@
 Je sais pas si on aura besoin de ce dossier mais il pourrait contenir les schémas NoSQL, les cripts liés à la DB, ... 
+
+on peut ajouter des json avec une série de données pour remplir nos DB. 
