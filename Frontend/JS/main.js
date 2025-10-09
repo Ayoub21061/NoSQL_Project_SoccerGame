@@ -1,5 +1,4 @@
-// Afficher les formulaires selon si on a un compte ou pas 
-// ça permet de basculer entre les deux vues sans devoir recharger la page
+// --- Changement d'affichage entre login et inscription ---
 
 function showRegister() {
     document.getElementById('login-form').style.display = 'none';
@@ -11,56 +10,92 @@ function showLogin() {
     document.getElementById('login-form').style.display = 'block';
 }
 
-// async = fonction asynchrone, elle peut attendre que le serveur réponde grâce au await
+// --- Connexion ---
+// async function login() {
+//     const username = document.getElementById('login-username').value.trim();
+//     const password = document.getElementById('login-password').value.trim();
+
+//     if (!username || !password) {
+//         alert("Veuillez remplir tous les champs.");
+//         return;
+//     }
+
+//     const response = await fetch('http://localhost:5001/players/login', {
+//         method: 'POST',
+//         headers: {'Content-Type': 'application/json'},
+//         body: JSON.stringify({ username, password })
+//     });
+
+//     const data = await response.json();
+
+//     if (response.ok) {
+//         alert("Connexion réussie !");
+//         // Tu peux stocker les infos du joueur en local si besoin :
+//         localStorage.setItem("username", username);
+//         // Redirection vers la page principale
+//         window.location.href = "dashboard.html";
+//     } else {
+//         alert(data.error || "Erreur de connexion.");
+//     }
+// }
+
 async function login() {
-    // via getelement, on récupère ce que le user a écrit
     const username = document.getElementById('login-username').value;
     const password = document.getElementById('login-password').value;
-    const passwordConfirm = document.getElementById('register-password-confirm').value;
 
-    if(password !== passwordConfirm) {
+    const response = await fetch('http://localhost:5001/players/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+        // ✅ On sauvegarde le joueur connecté
+        localStorage.setItem("player", JSON.stringify(data.player));
+        window.location.href = "dashboard.html";
+    } else {
+        alert(data.error);
+    }
+}
+
+
+// --- Inscription ---
+async function register() {
+    const username = document.getElementById('register-username').value.trim();
+    const password = document.getElementById('register-password').value.trim();
+    const passwordConfirm = document.getElementById('register-password-confirm').value.trim();
+
+    if (!username || !password || !passwordConfirm) {
+        alert("Veuillez remplir tous les champs.");
+        return;
+    }
+
+    if (password !== passwordConfirm) {
         alert("Les mots de passe ne correspondent pas !");
         return;
     }
 
-    // fetch envoie une requête HTTP au backend python
-    const response = await fetch('http://localhost:5001/players/login', {
-        // POST car on envoie des données pour login
-        method: 'POST',
-        // on précise que c'est du JSON
-        headers: {'Content-Type': 'application/json'},
-        // on transforme les données JS en JSON
-        body: JSON.stringify({username, password})
-    });
-
-    //On récupère la réponse JSON du backend et on la stocke dans data
-    const data = await response.json();
-    // afficher la réponse dans une alerte (test pour vérifier si ça marche)
-
-    if (response.ok) {
-        // Redirection vers le dashboard si connexion réussie
-        window.location.href = "dashboard.html"; // mets le chemin de ta page principale
-    } else {
-        alert(data.error); // Affiche l'erreur sinon
-    }
-    alert(JSON.stringify(data));
-}
-
-// Pour l'inscription, la logique est la même que pour le login
-async function register() {
-    const username = document.getElementById('register-username').value;
-    const password = document.getElementById('register-password').value;
+    const playerData = {
+        username,
+        password,
+        account_creation_date: new Date().toISOString().split('T')[0],
+        best_player_stats: { goals: 0, assists: 0, saves: 0 }
+    };
 
     const response = await fetch('http://localhost:5001/players/', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-            username: username, 
-            password: password,
-        account_creation_date: new Date().toISOString().split('T')[0],
-        best_player_stats : {goals : 0, assists : 0, saves : 0}})
+        body: JSON.stringify(playerData)
     });
 
     const data = await response.json();
-    alert(JSON.stringify(data));
+
+    if (response.ok) {
+        alert("Compte créé avec succès !");
+        showLogin(); // On revient sur le formulaire de connexion
+    } else {
+        alert(data.error || "Erreur lors de l'inscription.");
+    }
 }

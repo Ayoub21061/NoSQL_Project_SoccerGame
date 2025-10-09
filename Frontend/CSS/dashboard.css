@@ -144,3 +144,86 @@ main h2 {
 .card p {
     margin-bottom: 8px;
 }
+
+/* Container profil + stats */
+.profile-stats-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Carte profil */
+.profile-card {
+    background: linear-gradient(135deg, #1e1e1e, #2c3e50);
+    color: white;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    width: 280px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.profile-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+}
+
+.profile-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid #f1c40f;
+    margin-bottom: 10px;
+}
+
+/* Carte stats */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.stat-card {
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    background: #f5f5f5;
+    transition: transform 0.2s;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-card h3 {
+    margin: 5px 0;
+    color: #333;
+}
+
+.stat-card p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #1a73e8;
+}
+
+.stat-card img {
+    width: 30px;
+    margin-bottom: 5px;
+}
+
+/* Graph container */
+.graph-container {
+    max-width: 600px;
+    margin: 30px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}

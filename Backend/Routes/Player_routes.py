@@ -1,12 +1,9 @@
 from flask import Blueprint, jsonify, request
 from db.connection import db
 from Models.Player import Player  # ton modèle Pydantic
-import bcrypt 
 from datetime import date 
 
-# Création du Blueprint pour regrouper toutes les routes Player
-# Le blueprint permet de découper l'application en plusieurs fichiers.
-# ça évite de devoir mettre toutes les routes dans le main
+# Création du Blueprint
 player_bp = Blueprint("player_bp", __name__)
 
 # Collection MongoDB
@@ -14,21 +11,20 @@ players_collection = db["players"]
 
 
 ### CREATE (POST) ###
-# CREATE
 @player_bp.route("/", methods=["POST"])
 def add_player():
     try:
         data = request.get_json()
         password = data.get("password")
         if not password:
-            return jsonify({"error":"Le mot de passe est requis"}), 400
-        
-        hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
-        data["password"] = hashed_password.decode('utf-8')  # <-- important
+            return jsonify({"error": "Le mot de passe est requis"}), 400
+
+        # Pas de chiffrement → on garde le mot de passe tel quel
+        data["password"] = password  
 
         if "account_creation_date" not in data:
             data["account_creation_date"] = date.today().isoformat()
-        data["best_player_stats"] = {"goals":0,"assists":0,"saves":0}
+        data["best_player_stats"] = {"goals": 0, "assists": 0, "saves": 0}
 
         player = Player(**data)
         player_dict = player.model_dump()
@@ -37,7 +33,27 @@ def add_player():
     except Exception as e:
         return jsonify({"error": str(e)}), 400
 
-# LOGIN
+
+### LOGIN ###
+# @player_bp.route("/login", methods=["POST"])
+# def login_player():
+#     try:
+#         data = request.get_json()
+#         username = data.get("username")
+#         password = data.get("password")
+
+#         player = players_collection.find_one({"username": username})
+#         if not player:
+#             return jsonify({"error": "Utilisateur introuvable"}), 404
+
+#         # Comparaison simple (en clair)
+#         if player.get("password") == password:
+#             return jsonify({"message": "Connexion réussie"}), 200
+#         else:
+#             return jsonify({"error": "Mot de passe incorrect"}), 401
+#     except Exception as e:
+#         return jsonify({"error": str(e)}), 400
+
 @player_bp.route("/login", methods=["POST"])
 def login_player():
     try:
@@ -49,14 +65,17 @@ def login_player():
         if not player:
             return jsonify({"error": "Utilisateur introuvable"}), 404
 
-        stored_hash = player.get("password").encode('utf-8')  # str → bytes
-        if bcrypt.checkpw(password.encode('utf-8'), stored_hash):
-            return jsonify({"message": "Connexion réussie"}), 200
+        # Mot de passe en clair temporairement
+        if player.get("password") == password:
+            player["_id"] = str(player["_id"])  # convert Mongo ObjectId en string
+            return jsonify({
+                "message": "Connexion réussie",
+                "player": player
+            }), 200
         else:
             return jsonify({"error": "Mot de passe incorrect"}), 401
     except Exception as e:
         return jsonify({"error": str(e)}), 400
-
 
 
 
