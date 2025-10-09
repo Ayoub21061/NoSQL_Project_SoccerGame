@@ -4,17 +4,28 @@
   <meta charset="UTF-8" />
   <title>Modes de Jeu - Soccer Game</title>
   <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/menu.css">
 </head>
 <body>
-  <header>
-    <h1>🎮 Modes de Jeu</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="achievements.html">Achievements</a></li>
-      </ul>
-    </nav>
+  
+  <!-- Header -->
+  <header class="header">
+    <div class="left">
+      <span class="hamburger">&#9776;</span>
+    </div>
+    <div class="center">
+      <h1> ⚽ Games </h1>
+    </div>
   </header>
+
+  <!-- Sidebar -->
+  <div id="mySidebar" class="sidebar">
+    <span class="closebtn">&times;</span>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="achievements.html">Achievements</a>
+    <a href="games.html">Games</a>
+    <a href="#">Règles du jeu</a>
+  </div>
 
   <main>
     <section id="games-container">
@@ -23,5 +34,6 @@
   </main>
 
   <script src="../js/games.js"></script>
+  <script src="../js/menu.js"></script>
 </body>
 </html>

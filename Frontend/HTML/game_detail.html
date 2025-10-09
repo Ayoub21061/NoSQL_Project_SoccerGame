@@ -4,16 +4,25 @@
   <meta charset="UTF-8" />
   <title>Détail du mode de jeu</title>
   <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/menu.css" />
 </head>
 <body>
-  <header>
+
+  <header class="header">
+    <div class="left">
+      <span class="hamburger">&#9776;</span>
+    </div>
     <h1 id="game-title">Mode de jeu</h1>
-    <nav>
-      <ul>
-        <li><a href="games.html">← Retour aux modes de jeux</a></li>
-      </ul>
-    </nav>
   </header>
+
+  <!-- Sidebar -->
+  <div id="mySidebar" class="sidebar">
+    <span class="closebtn">&times;</span>
+    <a href="dashboard.html">Accueil</a>
+    <a href="achievements.html">Achievements</a>
+    <a href="games.html">Games</a>
+    <a href="#">Règles du jeu</a>
+  </div>
 
   <main id="game-detail">
     <!-- Section image centrée -->
@@ -25,8 +34,14 @@
     <p><strong>Type :</strong> <span id="game-type"></span></p>
     <p><strong>Joueurs max par équipe :</strong> <span id="game-max"></span></p>
     <div id="game-special-rules"></div>
+
+    <!-- 🔽 Bouton déplacé ici -->
+    <div class="back-button-container">
+      <a href="games.html" class="back-button">← Retour aux modes de jeux</a>
+    </div>
   </main>
 
   <script src="../js/game_detail.js"></script>
+  <script src="../js/menu.js"></script>
 </body>
 </html>

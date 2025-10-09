@@ -3,7 +3,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 50px;
+  padding: 30px 50px;
   background-color: #222;
   color: #fff;
   font-family: Arial, sans-serif;
@@ -14,8 +14,18 @@
   text-align: center;
 }
 
+/* On centre le titre */
 .header h1 {
-  font-size: 24px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.header .left {
+  z-index: 2; /* Pour éviter que le titre passe dessus */
 }
 
 /* Hamburger */
