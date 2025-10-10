@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    
+
     const player = JSON.parse(localStorage.getItem("player"));
     if (!player) {
         alert("Aucun joueur connecté !");
@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    // Conteneur dashboard asymétrique
+    // Construction du dashboard
     document.querySelector("main").innerHTML = `
         <div class="dashboard-container">
             <div class="dashboard-left">
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
 
                 <!-- Classement -->
-                <div class="card">
+                <div class="card ranking-card" id="rankingCard">
                     <h2>Classement</h2>
                     <div class="stats-card-vertical">
                         <h3>Votre rang</h3>
@@ -42,6 +42,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     <div class="stats-card-vertical">
                         <h3>Score global</h3>
                         <p>${(player.matches_won * 3 + player.matches_draw).toFixed(0)}</p>
+                    </div>
+
+                    <div class="ranking-details" id="rankingDetails">
+                        <ul id="rankingList"></ul>
                     </div>
                 </div>
             </div>
@@ -70,14 +74,39 @@ document.addEventListener("DOMContentLoaded", () => {
                         player.best_player_stats.assists,
                         player.best_player_stats.saves
                     ],
-                    backgroundColor: ['#a3bffa', '#d1d5db', '#fcd34d'] // couleurs sobres et harmonieuses
+                    backgroundColor: ['#a3bffa', '#d1d5db', '#fcd34d']
                 }]
             },
             options: {
-                scales: {
-                    y: { beginAtZero: true }
-                }
+                scales: { y: { beginAtZero: true } }
             }
         });
     }
+
+    // Classement interactif
+    const rankingCard = document.getElementById("rankingCard");
+    const rankingList = document.getElementById("rankingList");
+
+    // Exemple de données fictives
+    const fakeRanking = [
+        { rank: player.rank - 3, username: "PlayerA", score: 1620 },
+        { rank: player.rank - 2, username: "PlayerB", score: 1590 },
+        { rank: player.rank - 1, username: "PlayerC", score: 1550 },
+        { rank: player.rank, username: player.username, score: (player.matches_won * 3 + player.matches_draw) },
+        { rank: player.rank + 1, username: "PlayerD", score: 1480 },
+        { rank: player.rank + 2, username: "PlayerE", score: 1465 },
+        { rank: player.rank + 3, username: "PlayerF", score: 1450 },
+    ];
+
+    fakeRanking.forEach(p => {
+        const li = document.createElement("li");
+        li.innerHTML = `<span>#${p.rank} — ${p.username}</span><span>${p.score} pts</span>`;
+        if (p.username === player.username) li.classList.add("current-player");
+        rankingList.appendChild(li);
+    });
+
+    rankingCard.addEventListener("click", () => {
+        rankingCard.classList.toggle("active");
+    });
+
 });

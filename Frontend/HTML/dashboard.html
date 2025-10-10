@@ -9,14 +9,6 @@
 </head>
 <body>
 
-    <!-- Sidebar menu sandwich -->
-    <div class="sidebar">
-        <a href="dashboard.html">Dashboard</a>
-        <a href="achievements.html">Achievements</a>
-        <a href="games.html">Games</a>
-        <a href="#">Règles du jeu</a>
-    </div>
-
     <!-- Header -->
     <header class="header">
         <div class="left">
@@ -42,65 +34,72 @@
         <a href="dashboard.html">Dashboard</a>
         <a href="achievements.html">Achievements</a>
         <a href="games.html">Games</a>
+        <a href="team.html">Team</a>
+        <a href="invetory_items.html">Inventory</a>
+        <a href="badges.html">Badges</a>
         <a href="#">Règles du jeu</a>
     </div>
 
     <!-- Contenu principal -->
     <main>
         <h2>
-            Bienvenue dans ce nouveau jeu dans lequel vous allez pouvoir expérimenter vos compétences footballistiques au travers de divers modes de jeu. Jouez avec les joueurs les plus emblématiques de ce jeu et empocher la victoire coûte que coûte !
+            Bienvenue dans Soccer Game ! Expérimentez vos compétences footballistiques au travers de divers modes de jeu et mesurez-vous aux meilleurs joueurs.
         </h2>
 
-        <div class="cards-container">
-            <!-- Statistiques -->
-            <div class="card stats-card">
-                <h2>Statistiques</h2>
-                <div class="stats-grid">
-                    <div class="stat-card">
+        <div class="dashboard-container">
+            <div class="dashboard-left">
+                <!-- Statistiques -->
+                <div class="card" id="statsCard">
+                    <h2>Statistiques</h2>
+                    <div class="stats-card-vertical">
                         <h3>Matchs gagnés</h3>
                         <p id="matches-won">0</p>
                     </div>
-                    <div class="stat-card">
+                    <div class="stats-card-vertical">
                         <h3>Matchs perdus</h3>
                         <p id="matches-lost">0</p>
                     </div>
-                    <div class="stat-card">
+                    <div class="stats-card-vertical">
                         <h3>Matchs nuls</h3>
                         <p id="matches-draw">0</p>
                     </div>
-                    <div class="stat-card">
+                    <div class="stats-card-vertical">
                         <h3>Temps total de jeu</h3>
-                        <p id="total-playtime">0h</p>
+                        <p id="total-playtime">0 h</p>
                     </div>
                 </div>
-            </div>
 
-            <!-- Classement -->
-            <div class="card ranking-card">
-                <h2>Classement</h2>
-                <div class="stats-grid">
-                    <div class="stat-card">
+                <!-- Classement -->
+                <div class="card ranking-card" id="rankingCard">
+                    <h2>Classement</h2>
+                    <div class="stats-card-vertical">
                         <h3>Votre rang</h3>
                         <p id="player-rank">1000</p>
                     </div>
-                    <div class="stat-card">
+                    <div class="stats-card-vertical">
                         <h3>Score global</h3>
                         <p id="player-score">0</p>
+                    </div>
+
+                    <!-- Détails dépliables -->
+                    <div class="ranking-details" id="rankingDetails">
+                        <ul id="rankingList"></ul>
                     </div>
                 </div>
             </div>
 
             <!-- Graphique -->
-            <div class="card">
-                <h2>Meilleures performances</h2>
-                <canvas id="statsChart" width="200" height="200"></canvas>
+            <div class="dashboard-right">
+                <div class="card">
+                    <h2>Meilleures performances</h2>
+                    <canvas id="statsChart" width="400" height="400"></canvas>
+                </div>
             </div>
         </div>
     </main>
 
-    <script src="../js/dashboard.js"></script>
     <script src="../js/menu.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+    <script src="../js/dashboard.js"></script>
 </body>
 </html>

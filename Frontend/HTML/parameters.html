@@ -1,43 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soccer Game - Dashboard</title>
-    <link rel="stylesheet" href="../css/dashboard.css">
-    <link rel="stylesheet" href="../css/menu.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paramètres du compte - Soccer Game</title>
+  <link rel="stylesheet" href="../css/menu.css">
+  <link rel="stylesheet" href="../css/parameters.css">
 </head>
 <body>
-
-    <!-- Sidebar menu sandwich -->
-    <div class="sidebar">
-        <a href="dashboard.html">Dashboard</a>
-        <a href="achievements.html">Achievements</a>
-        <a href="games.html">Games</a>
-        <a href="#">Règles du jeu</a>
-    </div>
-
-    <!-- Header -->
-    <header class="header">
-        <div class="left">
-            <div class="hamburger">&#9776;</div>
-        </div>
-        <div class="center">
-            <h1>⚽ Mon Profil </h1>
-        </div>
-        <div class="right">
-            <div class="dropdown">
-                <div class="profil">Mon Profil
-                    <div class="dropdown-content">
-                        <a href="parameters.html">Paramètres</a>
-                        <a href="index.html">Déconnexion</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    
 
   <!-- Sidebar -->
   <div id="mySidebar" class="sidebar">
@@ -45,19 +15,76 @@
     <a href="dashboard.html">Dashboard</a>
     <a href="achievements.html">Achievements</a>
     <a href="games.html">Games</a>
+    <a href="team.html">Team</a>
     <a href="#">Règles du jeu</a>
   </div>
 
-    <!-- Contenu principal -->
-    <main>
-        
+  <!-- Header -->
+  <header class="header">
+    <div class="left">
+      <div class="hamburger">&#9776;</div>
+    </div>
+    <div class="center">
+      <h1>Paramètres du compte</h1>
+    </div>
+    <div class="right">
+      <div class="dropdown">
+       
+       
+      </div>
+    </div>
+  </header>
 
-        
-    </main>
+  <!-- Main content -->
+  <main class="settings-container">
+    
+    <!-- Section gauche : profil -->
+    <section class="profile-section">
+      <h2>Profil du joueur</h2>
 
-    <script src="../js/dashboard.js"></script>
-    <script src="../js/menu.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <div class="avatar-container">
+        <img id="avatar-preview" src="../assets/default-avatar.png" alt="Avatar joueur">
+        <label for="avatar-upload" class="btn">Changer d’avatar</label>
+        <input type="file" id="avatar-upload" accept="image/*" hidden>
+      </div>
 
+      <div class="info-group">
+        <label for="username">Pseudo :</label>
+        <input type="text" id="username" placeholder="Votre pseudo">
+      </div>
+
+      <div class="info-static">
+        <p><strong>Email :</strong> <span id="user-email">non défini</span></p>
+        <p><strong>Date de création :</strong> <span id="creation-date">--/--/----</span></p>
+      </div>
+
+      <button class="btn primary" id="save-profile">Enregistrer</button>
+    </section>
+
+    <!-- Section droite : sécurité -->
+    <section class="security-section">
+      <h2>Sécurité</h2>
+
+      <div class="info-group">
+        <label for="old-password">Ancien mot de passe :</label>
+        <input type="password" id="old-password" placeholder="••••••••">
+      </div>
+
+      <div class="info-group">
+        <label for="new-password">Nouveau mot de passe :</label>
+        <input type="password" id="new-password" placeholder="••••••••">
+      </div>
+
+      <button class="btn primary" id="update-password">Mettre à jour le mot de passe</button>
+
+      <hr>
+
+      <button class="btn danger" id="delete-account">Supprimer le compte</button>
+    </section>
+      <a  class="btn_deconn" href="index.html">Déconnexion</a>
+  </main>
+
+  <script src="../js/menu.js"></script>
+  <script src="../js/parameters.js"></script>
 </body>
 </html>

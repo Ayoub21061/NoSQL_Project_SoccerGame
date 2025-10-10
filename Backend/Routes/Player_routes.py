@@ -2,6 +2,8 @@ from flask import Blueprint, jsonify, request
 from db.connection import db
 from Models.Player import Player  # ton modèle Pydantic
 from datetime import date 
+from bson import ObjectId
+
 
 # Création du Blueprint
 player_bp = Blueprint("player_bp", __name__)
@@ -67,7 +69,8 @@ def login_player():
 
         # Mot de passe en clair temporairement
         if player.get("password") == password:
-            player["_id"] = str(player["_id"])  # convert Mongo ObjectId en string
+            player["id"] = str(player["_id"])  # convert Mongo ObjectId en string
+            del player["_id"]
             return jsonify({
                 "message": "Connexion réussie",
                 "player": player
@@ -83,7 +86,7 @@ def login_player():
 @player_bp.route("/<player_id>", methods=["GET"])
 def get_player(player_id):
     try:
-        player = players_collection.find_one({"id": int(player_id)})
+        player = players_collection.find_one({"_id": ObjectId(player_id)})
         if player:
             player["_id"] = str(player["_id"])
             return jsonify(player)
@@ -108,11 +111,14 @@ def get_all_players():
 @player_bp.route("/<player_id>", methods=["PUT"])
 def update_player(player_id):
     try:
-        update_player = request.get_json()
-        result = players_collection.update_one({"id": int(player_id)}, {"$set": update_player})
+        update_data = request.get_json()
+        result = players_collection.update_one(
+            {"_id": ObjectId(player_id)}, {"$set": update_data}
+        )
+
         if result.matched_count:
-            return jsonify({"message": "Player updated successfully"}), 200
-        return jsonify({"message": "Player not found"}), 404
+            return jsonify({"message": "Profil mis à jour avec succès"}), 200
+        return jsonify({"error": "Joueur introuvable"}), 404
     except Exception as e:
         return jsonify({"error": str(e)}), 400
 
@@ -121,9 +127,54 @@ def update_player(player_id):
 @player_bp.route("/<player_id>", methods=["DELETE"])
 def delete_player(player_id):
     try:
-        result = players_collection.delete_one({"id": int(player_id)})
+        result = players_collection.delete_one({"_id": ObjectId(player_id)})
         if result.deleted_count:
-            return jsonify({"message": "Player deleted successfully"}), 200
-        return jsonify({"message": "Player not found"}), 404
+            return jsonify({"message": "Compte supprimé avec succès"}), 200
+        return jsonify({"error": "Joueur introuvable"}), 404
     except Exception as e:
         return jsonify({"error": str(e)}), 400
+
+
+@player_bp.route("/<player_id>/password", methods=["PUT"])
+def update_password(player_id):
+    try:
+        data = request.get_json()
+        old_pwd = data.get("oldPassword")
+        new_pwd = data.get("newPassword")
+
+        player = players_collection.find_one({"_id": ObjectId(player_id)})
+        if not player:
+            return jsonify({"error": "Joueur introuvable"}), 404
+
+        if player.get("password") != old_pwd:
+            return jsonify({"error": "Ancien mot de passe incorrect"}), 401
+
+        players_collection.update_one(
+            {"_id": ObjectId(player_id)}, {"$set": {"password": new_pwd}}
+        )
+
+        return jsonify({"message": "Mot de passe mis à jour avec succès"}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 400
+
+
+@player_bp.route("/<player_id>/avatar", methods=["PUT"])
+def update_avatar(player_id):
+    try:
+        data = request.get_json()
+        avatar = data.get("avatar")
+
+        if not avatar:
+            return jsonify({"error": "Aucun avatar fourni"}), 400
+
+        result = players_collection.update_one(
+            {"_id": ObjectId(player_id)}, {"$set": {"avatar": avatar}}
+        )
+
+        if result.matched_count:
+            return jsonify({"message": "Avatar mis à jour avec succès"}), 200
+        return jsonify({"error": "Joueur introuvable"}), 404
+    except Exception as e:
+        return jsonify({"error": str(e)}), 400
+
+
