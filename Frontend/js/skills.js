@@ -11,8 +11,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       card.className = "skill-card";
       card.innerHTML = `
         <div class="skill-image-container">
-          <img src="${skill.image}" alt="${skill.id}" />
+          <img src="../images/${skill.image.split("/").pop()}" alt="${skill.id}" class="skill-image" />
         </div>
+        
 
         <div class="skill-header">${skill.id}</div>
         <div class="skill-style">${skill.style}</div>
