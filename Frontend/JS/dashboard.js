@@ -1,26 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // --- Gestion menu & profil : on récupère des éléments HTML qui permettent d'ouvrir et fermer le menu, mais de l'afficher aussi 
-    const hamburger = document.querySelector(".hamburger");
-    const sidebar = document.querySelector(".sidebar");
-    const profilDropdown = document.querySelector(".dropdown .profil");
-    const profilMenu = document.querySelector(".dropdown-content");
-
-    hamburger.addEventListener("click", (e) => {
-        e.stopPropagation();
-        sidebar.classList.toggle("active");
-    });
-
-    profilDropdown.addEventListener("click", (e) => {
-        e.stopPropagation();
-        profilMenu.style.display = profilMenu.style.display === 'block' ? 'none' : 'block';
-    });
-
-    // Fermer tout si on clique ailleurs
-    window.addEventListener("click", () => {
-        sidebar.classList.remove("active");
-        profilMenu.style.display = 'none';
-    });
-
+    
     // --- Partie Dashboard dynamique ---
 
     // Chargement du joueur connecté : on va chercher les données qui ont été stockés lors de la connexion 
