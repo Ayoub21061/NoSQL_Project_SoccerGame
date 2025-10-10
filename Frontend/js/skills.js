@@ -65,9 +65,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       card.innerHTML = `
         <div class="skill-image-container">
-          <img src="${imageSrc}" alt="${skill.id}" class="skill-image" />
+          <img src="../images/${skill.image.split("/").pop()}" alt="${skill.id}" class="skill-image" />
         </div>
-        <div class="skill-header">${skill.name ?? skill.id}</div>
+        
+
+        <div class="skill-header">${skill.id}</div>
         <div class="skill-style">${skill.style}</div>
         <div class="skill-stats">${statsHTML}</div>
         <div class="skill-extra">✨ Tech: ${skill.technical_moves ?? "-"} | 🦶 WF: ${skill.weak_foot ?? "-"}</div>
