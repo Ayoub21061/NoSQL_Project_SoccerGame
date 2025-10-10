@@ -17,8 +17,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       card.className = "game-card";
 
       card.innerHTML = `
-        <img src="${game.image}" alt="${game.name}" class="game-image" />
-        <h3>${game.name}</h3>
+        <img src="../images/${game.image.split("/").pop()}" alt="${game.name}" class="game-image" />
         <p>${game.description || "Aucune description"}</p>
       `;
 
