@@ -40,20 +40,27 @@ function showLogin() {
 // }
 
 async function login() {
+    // On va chercher ce que le user a écrit
     const username = document.getElementById('login-username').value;
     const password = document.getElementById('login-password').value;
 
+    // fetch envoie une requête HTTP vers l'API backend
     const response = await fetch('http://localhost:5001/players/login', {
+        // On envoie les données vers le backend
         method: 'POST',
+        // Indique que le corps de la requête est du json
         headers: { 'Content-Type': 'application/json' },
+        // Body = ce qu'on renvoie, converti d'office en json
         body: JSON.stringify({ username, password })
     });
 
+    // Grâce à await, on attend la réponse du serveur sans le bloquer
     const data = await response.json();
 
     if (response.ok) {
-        // ✅ On sauvegarde le joueur connecté
+        // On sauvegarde le joueur connecté dans localStorage = petite base de données locale dans le navigateur
         localStorage.setItem("player", JSON.stringify(data.player));
+        // Une fois que la connexion est passée, on redirige vers le dashboard
         window.location.href = "dashboard.html";
     } else {
         alert(data.error);

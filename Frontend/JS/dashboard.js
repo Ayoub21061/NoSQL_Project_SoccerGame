@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // --- Gestion menu & profil (inchangé)
+    // --- Gestion menu & profil : on récupère des éléments HTML qui permettent d'ouvrir et fermer le menu, mais de l'afficher aussi 
     const hamburger = document.querySelector(".hamburger");
     const sidebar = document.querySelector(".sidebar");
     const profilDropdown = document.querySelector(".dropdown .profil");
@@ -15,20 +15,24 @@ document.addEventListener("DOMContentLoaded", () => {
         profilMenu.style.display = profilMenu.style.display === 'block' ? 'none' : 'block';
     });
 
+    // Fermer tout si on clique ailleurs
     window.addEventListener("click", () => {
         sidebar.classList.remove("active");
         profilMenu.style.display = 'none';
     });
 
     // --- Partie Dashboard dynamique ---
+
+    // Chargement du joueur connecté : on va chercher les données qui ont été stockés lors de la connexion 
     const player = JSON.parse(localStorage.getItem("player"));
+    // Vérification qu’un joueur est bien connecté : si il est pas connecté, y'a pas de données à afficher donc on redirige vers la page de connexion 
     if (!player) {
         alert("Aucun joueur connecté !");
         window.location.href = "index.html";
         return;
     }
 
-    // Remplir les infos dans la page
+    // Remplir les infos dans la page de manière dynamique 
     document.querySelector(".cards-container").innerHTML = `
         <div class="card">
             <h2>Statistiques</h2>
@@ -50,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
     `;
 
-    // --- Graphique des stats ---
+    // Génération du graphique avec Chart.js
     const ctx = document.getElementById('statsChart');
     if (ctx) {
         new Chart(ctx, {
@@ -66,6 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     ]
                 }]
             },
+            // options : configure les axes, ici on force le début à zéro (beginAtZero: true)
             options: {
                 scales: {
                     y: { beginAtZero: true }

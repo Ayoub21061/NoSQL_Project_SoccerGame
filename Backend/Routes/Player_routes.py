@@ -19,7 +19,7 @@ def add_player():
         if not password:
             return jsonify({"error": "Le mot de passe est requis"}), 400
 
-        # Pas de chiffrement → on garde le mot de passe tel quel
+        # Pas de chiffrement mais envisager d'en ajouter plus tard
         data["password"] = password  
 
         if "account_creation_date" not in data:
@@ -34,7 +34,7 @@ def add_player():
         return jsonify({"error": str(e)}), 400
 
 
-### LOGIN ###
+### LOGIN ### : Ancienne fonction avec chiffrement
 # @player_bp.route("/login", methods=["POST"])
 # def login_player():
 #     try:
