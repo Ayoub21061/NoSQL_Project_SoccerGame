@@ -198,3 +198,74 @@ nav a:hover {
   margin-top: 6px;
   color: #ccc;
 }
+
+/* === Profil utilisateur === */
+#user-profile {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.profile-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+#user-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid gold;
+  object-fit: cover;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+}
+
+.profile-info h3 {
+  margin: 0;
+  font-size: 1.6rem;
+  color: #222;
+}
+
+.profile-info p {
+  margin: 4px 0;
+  font-size: 1.1rem;
+}
+
+/* === Tableau de stats === */
+#user-stats {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+#match-stats {
+  margin: 1rem auto;
+  border-collapse: collapse;
+  width: 60%;
+}
+
+#match-stats th, #match-stats td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  font-size: 1.1rem;
+}
+
+#match-stats th {
+  background-color: #0077ff;
+  color: white;
+}
+
+#match-stats td {
+  background-color: #f9f9f9;
+}
+
+/* === Graphique === */
+#statsChart {
+  margin-top: 1.5rem;
+  max-width: 600px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+

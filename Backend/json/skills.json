@@ -11,7 +11,8 @@
     "dri": 88,
     "def": 35,
     "phy": 79,
-    "image": "images/cristiano.png"
+    "image": "images/cristiano.png",
+    "crédits": 2000000
   },
   {
     "id": "Lionel Messi",
@@ -25,7 +26,8 @@
     "dri": 95,
     "def": 38,
     "phy": 65,
-    "image": "images/messi.png"
+    "image": "images/messi.png",
+    "crédits": 1500000
   },
   {
     "id": "Kylian Mbappé",
@@ -39,7 +41,8 @@
     "dri": 91,
     "def": 34,
     "phy": 80,
-    "image": "images/mbappe.png"
+    "image": "images/mbappe.png",
+    "crédits": 1000000
   },
   {
     "id": "Kevin De Bruyne",
@@ -53,7 +56,8 @@
     "dri": 88,
     "def": 60,
     "phy": 78,
-    "image": "images/de_bruyne.png"
+    "image": "images/de_bruyne.png",
+    "crédits": 500000
   },
   {
     "id": "Virgil van Dijk",
@@ -67,7 +71,8 @@
     "dri": 72,
     "def": 91,
     "phy": 86,
-    "image": "images/van_dijk.png"
+    "image": "images/van_dijk.png",
+    "crédits": 800000
   },
   {
     "id": "Neymar Jr",
@@ -81,7 +86,8 @@
     "dri": 94,
     "def": 36,
     "phy": 63,
-    "image": "images/neymar.png"
+    "image": "images/neymar.png",
+    "crédits": 1400000
   },
   {
     "id": "Mohamed Salah",
@@ -95,7 +101,8 @@
     "dri": 90,
     "def": 32,
     "phy": 75,
-    "image": "images/salah.png"
+    "image": "images/salah.png",
+    "crédits": 475000
   },
   {
     "id": "Sergio Ramos",
@@ -109,7 +116,8 @@
     "dri": 72,
     "def": 89,
     "phy": 88,
-    "image": "images/ramos.png"
+    "image": "images/ramos.png",
+    "crédits": 1200000
   },
   {
     "id": "Luka Modric",
@@ -123,7 +131,8 @@
     "dri": 88,
     "def": 66,
     "phy": 72,
-    "image": "images/modric.png"
+    "image": "images/modric.png",
+    "crédits": 750000
   },
   {
     "id": "Robert Lewandowski",
@@ -137,7 +146,8 @@
     "dri": 84,
     "def": 40,
     "phy": 82,
-    "image": "images/lewandowski.png"
+    "image": "images/lewandowski.png",
+    "crédits": 340000
   },
   {
     "id": "Karim Benzema",
@@ -151,7 +161,8 @@
     "dri": 87,
     "def": 40,
     "phy": 80,
-    "image": "images/benzema.png"
+    "image": "images/benzema.png",
+    "crédits": 670000
   },
   {
     "id": "Manuel Neuer",
@@ -165,7 +176,8 @@
     "ref": 90,
     "spd": 85,
     "pos": 80,
-    "image": "images/neuer.png"
+    "image": "images/neuer.png",
+    "crédits": 100000
   },
   {
     "id": "Alisson Becker",
@@ -179,7 +191,8 @@
     "ref": 92,
     "spd": 82,
     "pos": 85,
-    "image": "images/alisson.png"
+    "image": "images/alisson.png",
+    "crédits": 80000
   },
   {
     "id": "Andres Iniesta",
@@ -193,7 +206,8 @@
     "dri": 91,
     "def": 60,
     "phy": 70,
-    "image": "images/iniesta.png"
+    "image": "images/iniesta.png",
+    "crédits": 940000
   },
   {    
     "id": "N'Golo Kanté",
@@ -207,7 +221,8 @@
     "dri": 81,
     "def": 88,
     "phy": 84,
-    "image": "images/kante.png"
+    "image": "images/kante.png",
+    "crédits": 600000
   },
   {
     "id": "Paul Pogba",
@@ -221,7 +236,8 @@
     "dri": 85,
     "def": 70,
     "phy": 86,
-    "image": "images/pogba.png"
+    "image": "images/pogba.png",
+    "crédits": 700000
   },
   {
     "id": "Eden Hazard",
@@ -235,7 +251,8 @@
     "dri": 91,
     "def": 35,
     "phy": 73,
-    "image": "images/hazard.png"
+    "image": "images/hazard.png",
+    "crédits": 150000
   },
   {
     "id": "Sadio Mané",
@@ -249,7 +266,8 @@
     "dri": 89,
     "def": 40,
     "phy": 75,
-    "image": "images/mane.png"
+    "image": "images/mane.png",
+    "crédits": 50000
   },
   {
     "id": "Luis Suárez",
@@ -263,7 +281,8 @@
     "dri": 86,
     "def": 45,
     "phy": 84,
-    "image": "images/suarez.png"
+    "image": "images/suarez.png",
+    "crédits": 350000
   },
   {
     "id": "Thiago Silva",
@@ -277,6 +296,458 @@
     "dri": 70,
     "def": 90,
     "phy": 85,
-    "image": "images/thiago_silva.png"
+    "image": "images/thiago_silva.png",
+    "crédits": 450000
+  },
+  {
+    "id": "Lamine Yamal",
+    "player_id": 121,
+    "technical_moves": 5,
+    "weak_foot": 4,
+    "style": "Offensif",
+    "pac": 95,
+    "sho": 80,
+    "pas": 82,
+    "dri": 93,
+    "def": 30,
+    "phy": 70,
+    "image": "images/yamal.png",
+    "crédits": 750000
+  },
+  {
+    "id": "Jude Bellingham",
+    "player_id": 122,
+    "technical_moves": 4,
+    "weak_foot": 4,
+    "style": "Polyvalent",
+    "pac": 85,
+    "sho": 78,
+    "pas": 84,
+    "dri": 86,
+    "def": 75,
+    "phy": 80,
+    "image": "images/bellingham.png",
+    "crédits": 900000
+  },
+  {
+    "id": "Pedri",
+    "player_id": 123,
+    "technical_moves": 5,
+    "weak_foot": 4,
+    "style": "Polyvalent",
+    "pac": 82,
+    "sho": 76,
+    "pas": 88,
+    "dri": 90,
+    "def": 60,
+    "phy": 65,
+    "image": "images/pedri.png",
+    "crédits": 500000
+  },
+  {
+    "id": "Vinícius Júnior",
+    "player_id": 124,
+    "technical_moves": 5,
+    "weak_foot": 4,
+    "style": "Offensif",
+    "pac": 96,
+    "sho": 79,
+    "pas": 80,
+    "dri": 92,
+    "def": 35,
+    "phy": 70,
+    "image": "images/vinicius.png",
+    "crédits": 500000
+  },
+  {
+    "id": "Jamal Musiala",
+    "player_id": 125,
+    "technical_moves": 5,
+    "weak_foot": 4,
+    "style": "Polyvalent",
+    "pac": 88,
+    "sho": 80,
+    "pas": 84,
+    "dri": 91,
+    "def": 50,
+    "phy": 68,
+    "image": "images/musiala.png",
+    "crédits": 200000
+  },
+  {
+    "id": "Marcelo",
+    "player_id": 126,
+    "technical_moves": 4,
+    "weak_foot": 4,
+    "style": "Défensif",
+    "pac": 80,
+    "sho": 70,
+    "pas": 82,
+    "dri": 85,
+    "def": 85,
+    "phy": 80,
+    "image": "images/marcelo.png",
+    "crédits": 900000
+  },
+  {
+    "id": "Trent Alexander-Arnold",
+    "player_id": 127,
+    "technical_moves": 4,
+    "weak_foot": 4,
+    "style": "Défensif",
+    "pac": 83,
+    "sho": 70,
+    "pas": 88,
+    "dri": 82,
+    "def": 80,
+    "phy": 75,
+    "image": "images/alexander_arnold.png",
+    "crédits": 70000
+  },
+  {
+    "id": "Joshua Kimmich",
+    "player_id": 128,
+    "technical_moves": 4,
+    "weak_foot": 4,
+    "style": "Polyvalent",
+    "pac": 78,
+    "sho": 76,
+    "pas": 86,
+    "dri": 84,
+    "def": 82,
+    "phy": 80,
+    "image": "images/kimmich.png",
+    "crédits": 90000
+  },
+  {
+    "id": "Erling Haaland",
+    "player_id": 129,
+    "technical_moves": 3,
+    "weak_foot": 4,
+    "style": "Offensif",
+    "pac": 91,
+    "sho": 92,
+    "pas": 75,
+    "dri": 85,
+    "def": 40,
+    "phy": 88,
+    "image": "images/haaland.png",
+    "crédits": 400000
+  },
+  {
+    "id": "Gianluigi Donnarumma",
+    "player_id": 130,
+    "technical_moves": 2,
+    "weak_foot": 3,
+    "style": "Gardien",
+    "div": 82,
+    "han": 85,
+    "kic": 78,
+    "ref": 88,
+    "spd": 80,
+    "pos": 83,
+    "image": "images/donnarumma.png",
+    "crédits": 60000
+  },
+  {
+    "id": "Thibaut Courtois",
+    "player_id": 131,
+    "technical_moves": 2,
+    "weak_foot": 3,
+    "style": "Gardien",
+    "div": 84,
+    "han": 87,
+    "kic": 80,
+    "ref": 89,
+    "spd": 78,
+    "pos": 84,
+    "image": "images/courtois.png",
+    "crédits": 120000
+  },
+  {
+    "id": "Alphonso Davies",
+    "player_id": 132,
+    "technical_moves": 4,
+    "weak_foot": 4,
+    "style": "Défensif",
+    "pac": 96,
+    "sho": 70,
+    "pas": 80,
+    "dri": 88,
+    "def": 82,
+    "phy": 75,
+    "image": "images/davies.png",
+    "crédits": 90000
+  },
+  {
+    "id": "Dani Alves",
+    "player_id": 133,
+    "technical_moves": 4,
+    "weak_foot": 4,
+    "style": "Défensif",
+    "pac": 79,
+    "sho": 72,
+    "pas": 84,
+    "dri": 86,
+    "def": 84,
+    "phy": 78,
+    "image": "images/dani_alves.png",
+    "crédits": 400000
+  },
+  {
+    "id": "Ciro Immobile",
+    "player_id": 134,
+    "technical_moves": 3,
+    "weak_foot": 4,
+    "style": "Offensif",
+    "pac": 82,
+    "sho": 88,
+    "pas": 76,
+    "dri": 80,
+    "def": 40,
+    "phy": 78,
+    "image": "images/immobile.png",
+    "crédits": 10000
+  },
+  {
+    "id": "Harry Kane",
+    "player_id": 135,
+    "technical_moves": 3,
+    "weak_foot": 4,
+    "style": "Offensif",
+    "pac": 78,
+    "sho": 89,
+    "pas": 79,
+    "dri": 81,
+    "def": 45,
+    "phy": 85,
+    "image": "images/kane.png",
+    "crédits": 250000
+  },
+  {
+    "id": "Bruno Fernandes",
+    "player_id": 136,
+    "technical_moves": 4,
+    "weak_foot": 4,
+    "style": "Polyvalent",
+    "pac": 78,
+    "sho": 84,
+    "pas": 87,
+    "dri": 85,
+    "def": 65,
+    "phy": 75,
+    "image": "images/fernandes.png",
+    "crédits": 350000
+  },
+  {
+    "id": "Bukayo Saka",
+    "player_id": 137,
+    "technical_moves": 4,
+    "weak_foot": 4,
+    "style": "Offensif",
+    "pac": 88,
+    "sho": 80,
+    "pas": 82,
+    "dri": 87,
+    "def": 50,
+    "phy": 70,
+    "image": "images/saka.png",
+    "crédits": 90000
+  },
+  {
+    "id": "Riyad Mahrez",
+    "player_id": 138,
+    "technical_moves": 5,
+    "weak_foot": 4,
+    "style": "Offensif",
+    "pac": 85,
+    "sho": 84,
+    "pas": 85,
+    "dri": 91,
+    "def": 40,
+    "phy": 68,
+    "image": "images/mahrez.png",
+    "crédits": 150000
+  },
+  {
+    "id": "Raphinha",
+    "player_id": 139,
+    "technical_moves": 4,
+    "weak_foot": 4,
+    "style": "Offensif",
+    "pac": 87,
+    "sho": 82,
+    "pas": 80,
+    "dri": 88,
+    "def": 45,
+    "phy": 72,
+    "image": "images/raphinha.png",
+    "crédits": 200000
+  },
+  {
+    "id": "Phil Foden",
+    "player_id": 140,
+    "technical_moves": 5,
+    "weak_foot": 4,
+    "style": "Polyvalent",
+    "pac": 84,
+    "sho": 81,
+    "pas": 86,
+    "dri": 89,
+    "def": 60,
+    "phy": 70,
+    "image": "images/foden.png",
+    "crédits": 95000
+  },
+  {
+    "id": "Kai Havertz",
+    "player_id": 141,
+    "technical_moves": 4,
+    "weak_foot": 4,
+    "style": "Polyvalent",
+    "pac": 79,
+    "sho": 83,
+    "pas": 84,
+    "dri": 86,
+    "def": 65,
+    "phy": 74,
+    "image": "images/havertz.png",
+    "crédits": 20000
+  },
+  {
+    "id": "Jadon Sancho",
+    "player_id": 142,
+    "technical_moves": 5,
+    "weak_foot": 4,
+    "style": "Offensif",
+    "pac": 89,
+    "sho": 82,
+    "pas": 84,
+    "dri": 90,
+    "def": 40,
+    "phy": 70,
+    "image": "images/sancho.png",
+    "crédits": 45000
+  },
+  {
+    "id": "Casemiro",
+    "player_id": 143,
+    "technical_moves": 3,
+    "weak_foot": 4,
+    "style": "Défensif",
+    "pac": 78,
+    "sho": 75,
+    "pas": 80,
+    "dri": 78,
+    "def": 88,
+    "phy": 86,
+    "image": "images/casemiro.png",
+    "crédits": 200000
+  },
+  {
+    "id": "Frenkie de Jong",
+    "player_id": 144,
+    "technical_moves": 4,
+    "weak_foot": 4,
+    "style": "Polyvalent",
+    "pac": 80,
+    "sho": 76,
+    "pas": 88,
+    "dri": 87,
+    "def": 75,
+    "phy": 75,
+    "image": "images/de_jong.png",
+    "crédits": 350000
+  },
+  {
+    "id": "Ayoub",
+    "player_id": 145,
+    "technical_moves": 5,
+    "weak_foot": 5,
+    "style": "Offensif",
+    "pac": 99,
+    "sho": 99,
+    "pas": 99,
+    "dri": 99,
+    "def": 99,
+    "phy": 99,
+    "image": "images/ayoub.png",
+    "crédits": 15000000
+  },
+  {
+    "id": "Zlatan Ibrahimović",
+    "player_id": 146,
+    "technical_moves": 4,
+    "weak_foot": 4,
+    "style": "Offensif",
+    "pac": 76,
+    "sho": 88,
+    "pas": 78,
+    "dri": 82,
+    "def": 45,
+    "phy": 87,
+    "image": "images/ibrahimovic.png",
+    "crédits": 900000
+  },
+  {
+    "id": "Sergio Agüero",
+    "player_id": 147,
+    "technical_moves": 4,
+    "weak_foot": 4,
+    "style": "Offensif",
+    "pac": 81,
+    "sho": 87,
+    "pas": 79,
+    "dri": 84,
+    "def": 40,
+    "phy": 78,
+    "image": "images/aguero.png",
+    "crédits": 700000
+  },
+  {
+    "id": "David Alaba",
+    "player_id": 148,
+    "technical_moves": 4,
+    "weak_foot": 4,
+    "style": "Polyvalent",
+    "pac": 81,
+    "sho": 75,
+    "pas": 82,
+    "dri": 84,
+    "def": 85,
+    "phy": 80,
+    "image": "images/alaba.png",
+    "crédits": 100000
+  },
+  {
+    "id": "Gerard Piqué",
+    "player_id": 149,
+    "technical_moves": 3,
+    "weak_foot": 3,
+    "style": "Défensif",
+    "pac": 70,
+    "sho": 60,
+    "pas": 72,
+    "dri": 68,
+    "def": 88,
+    "phy": 82,
+    "image": "images/pique.png",
+    "crédits": 460000
+  },
+  {
+    "id": "Toni Kroos",
+    "player_id": 150,
+    "technical_moves": 4,
+    "weak_foot": 4,
+    "style": "Polyvalent",
+    "pac": 76,
+    "sho": 80,
+    "pas": 91,
+    "dri": 86,
+    "def": 70,
+    "phy": 72,
+    "image": "images/kroos.png",
+    "crédits": 600000
   }
+
 ]

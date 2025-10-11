@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Mon Équipe</title>
+  <link rel="stylesheet" href="../css/equipe.css">
+</head>
+<body>
+  <header>
+    <h1>Mon Équipe</h1>
+    <nav>
+      <ul>
+        <li><a href="skills.html">Retour aux joueurs</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="team-section">
+      <label for="formation">Choisir une formation :</label>
+      <select id="formation">
+        <option value="4-4-2">4-4-2</option>
+        <option value="4-3-3">4-3-3</option>
+        <option value="3-5-2">3-5-2</option>
+      </select>
+
+      <div id="team-container">
+        <!-- Formation dynamique -->
+      </div>
+    </section>
+
+    <aside id="players-list">
+      <h2>Joueurs achetés</h2>
+      <div class="player-cards-container">
+        <!-- Joueurs achetés horizontaux -->
+      </div>
+    </aside>
+  </main>
+
+  <script src="../js/equipe.js"></script>
+</body>
+</html>
