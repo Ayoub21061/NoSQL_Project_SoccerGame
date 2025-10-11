@@ -2,27 +2,49 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>Soccer Game Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard - Soccer Game</title>
   <link rel="stylesheet" href="../css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; background:#1b1b1b; color:#fff; margin:0; padding:20px; }
+    header { display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; flex-wrap:wrap; }
+    nav ul { display:flex; gap:15px; list-style:none; padding:0; margin:0; }
+    nav ul li a { color:#00bfff; text-decoration:none; font-weight:bold; }
+    nav ul li a:hover { text-decoration:underline; }
+    #user-info { display:flex; align-items:center; gap:10px; margin-top:10px; }
+    #user-avatar { width:50px; height:50px; border-radius:50%; object-fit:cover; }
+    main { background:#222; padding:20px; border-radius:10px; max-width:600px; margin:auto; }
+    p { margin:5px 0; }
+    canvas { margin-top:20px; background:#111; border-radius:10px; }
+  </style>
 </head>
 <body>
   <header>
-    <h1>⚽ Soccer Game Management</h1>
+    <h1>⚽ Soccer Game Dashboard</h1>
     <nav>
       <ul>
         <li><a href="achievements.html">Achievements</a></li>
         <li><a href="games.html">Modes de Jeu</a></li>
         <li><a href="skills.html">Marché des joueurs</a></li>
         <li><a href="equipe.html">Mon Équipe</a></li>
-        <!-- Tu pourras ajouter Skills, Players, Game Modes ici -->
       </ul>
     </nav>
+    <div id="user-info">
+      <img id="user-avatar" src="" alt="Avatar">
+      <span id="user-name"></span> | <span id="user-credits"></span>
+    </div>
   </header>
 
   <main>
-    <h2>Bienvenue dans le Dashboard</h2>
-    Bienvenue dans ce nouveau jeu dans lequel vous allez pouvoir expérimenter vos compétences footballistiques au travers de divers modes de jeu. Jouez avec les joueurs les plus emblématiques de ce jeu et empocher la victoire coûte que coûte !
-    <p>Choisissez une section dans le menu ci-dessus.</p>
+    <h2>Statistiques</h2>
+    <p>Victoires : <span id="wins">0</span></p>
+    <p>Défaites : <span id="losses">0</span></p>
+    <p>Nuls : <span id="draws">0</span></p>
+
+    <canvas id="statsChart" width="400" height="200"></canvas>
   </main>
+
+  <script src="../js/index.js"></script>
 </body>
 </html>
