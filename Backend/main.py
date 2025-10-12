@@ -1,12 +1,11 @@
-from flask import Flask
-from Routes.Player_routes import player_bp  # on importe le Blueprint des routes Player
 from flask import Flask, send_from_directory
+from Routes.Player_routes import player_bp
 from Routes.Gamesmode_routes import games_bp
 from Routes.Achievements_routes import achievements_bp
 from Routes.Skills_routes import skills_bp
+from Routes.User_routes import user_bp
 import os
 from flask_cors import CORS  
-
 
 app = Flask(__name__)
 CORS(app)
@@ -18,6 +17,7 @@ app.register_blueprint(player_bp, url_prefix="/players")
 app.register_blueprint(games_bp, url_prefix="/games")
 app.register_blueprint(achievements_bp, url_prefix="/achievements")
 app.register_blueprint(skills_bp, url_prefix="/skills")
+app.register_blueprint(user_bp, url_prefix="/users")
 
 # -------------------------------
 # Chemin du dossier Frontend

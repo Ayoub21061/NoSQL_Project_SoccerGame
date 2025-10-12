@@ -62,4 +62,3 @@ def delete_achievement(achievement_id):
         return jsonify({"message": "Succès non trouvé"}), 404
     except Exception as e:
         return jsonify({"error": str(e)}), 400
-    

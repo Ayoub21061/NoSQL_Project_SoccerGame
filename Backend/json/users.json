@@ -1,0 +1,16 @@
+[
+    {
+        "username": "ayoub",
+        "password": "monMotDePasse123",
+        "avatar": "ayoub.png",
+        "creation_date": "2025-10-11T10:00:00Z",
+        "matches_won": 12,
+        "matches_lost": 5,
+        "matches_drawn": 3,
+        "goals": 28,
+        "assists": 14,
+        "saves": 8,
+        "credits": 15000000,
+        "players_owned": []
+    }
+]
