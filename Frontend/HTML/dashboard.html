@@ -6,6 +6,7 @@
     <title>Soccer Game - Dashboard</title>
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="../css/menu.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
@@ -17,14 +18,12 @@
         <div class="center">
             <h1>⚽ Soccer Game Management</h1>
         </div>
-        <div class="right">
-            <div class="dropdown">
-                <span class="profil">Mon Profil</span>
-                <div class="dropdown-content">
-                    <a href="parameters.html">Paramètres</a>
-                    <a href="index.html">Déconnexion</a>
-                </div>
-            </div>
+        <div class="right user-info">
+             <a href="parameters.html" class="profile-link">
+                <img id="user-avatar" src="../images/default-avatar.png" alt="Avatar" class="avatar">
+                <span id="user-name">Joueur</span>
+            </a>
+    <span id="user-credits">💰 Crédits : 0</span>
         </div>
     </header>
 
@@ -35,62 +34,41 @@
         <a href="achievements.html">Achievements</a>
         <a href="games.html">Games</a>
         <a href="equipe.html">Team</a>
-        <a href="invetory_items.html">Inventory</a>
+        <a href="inventory_items.html">Inventory</a>
         <a href="badges.html">Badges</a>
-        <a href="skills.html"> Skills</a>
+        <a href="skills.html">Skills</a>
         <a href="#">Règles du jeu</a>
     </div>
 
     <!-- Contenu principal -->
     <main>
-        <h2>
-            Bienvenue dans Soccer Game ! Expérimentez vos compétences footballistiques au travers de divers modes de jeu et mesurez-vous aux meilleurs joueurs.
-        </h2>
+        <!-- <h2>Bienvenue dans Soccer Game ! Gérez votre équipe et vos performances.</h2> -->
 
         <div class="dashboard-container">
-            <div class="dashboard-left">
-                <!-- Statistiques -->
-                <div class="card" id="statsCard">
-                    <h2>Statistiques</h2>
-                    <div class="stats-card-vertical">
-                        <h3>Matchs gagnés</h3>
-                        <p id="matches-won">0</p>
+            <!-- Classement full width -->
+            <div class="card ranking-card full-width" id="rankingCard">
+                <h2>Classement</h2>
+                <div class="stats-card-grid">
+                    <div class="stats-card-item">
+                        <h3>Votre rang</h3>
+                        <p id="player-rank">—</p>
                     </div>
-                    <div class="stats-card-vertical">
-                        <h3>Matchs perdus</h3>
-                        <p id="matches-lost">0</p>
-                    </div>
-                    <div class="stats-card-vertical">
-                        <h3>Matchs nuls</h3>
-                        <p id="matches-draw">0</p>
-                    </div>
-                    <div class="stats-card-vertical">
-                        <h3>Temps total de jeu</h3>
-                        <p id="total-playtime">0 h</p>
+                    <div class="stats-card-item">
+                        <h3>Score global</h3>
+                        <p id="player-score">—</p>
                     </div>
                 </div>
-
-                <!-- Classement -->
-                <div class="card ranking-card" id="rankingCard">
-                    <h2>Classement</h2>
-                    <div class="stats-card-vertical">
-                        <h3>Votre rang</h3>
-                        <p id="player-rank">1000</p>
-                    </div>
-                    <div class="stats-card-vertical">
-                        <h3>Score global</h3>
-                        <p id="player-score">0</p>
-                    </div>
-
-                    <!-- Détails dépliables -->
-                    <div class="ranking-details" id="rankingDetails">
-                        <ul id="rankingList"></ul>
-                    </div>
+                <div class="ranking-details" id="rankingDetails">
+                    <ul id="rankingList"></ul>
                 </div>
             </div>
 
-            <!-- Graphique -->
-            <div class="dashboard-right">
+            <!-- Graphiques side by side -->
+            <div class="dashboard-graphs">
+                <div class="card">
+                    <h2>Répartition des matchs</h2>
+                    <canvas id="matchPie" width="400" height="400"></canvas>
+                </div>
                 <div class="card">
                     <h2>Meilleures performances</h2>
                     <canvas id="statsChart" width="400" height="400"></canvas>
@@ -100,7 +78,6 @@
     </main>
 
     <script src="../js/menu.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../js/dashboard.js"></script>
 </body>
 </html>

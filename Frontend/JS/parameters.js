@@ -18,8 +18,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("username").value = data.username || "";
     document.getElementById("user-email").textContent = data.email || "non défini";
     document.getElementById("creation-date").textContent = data.account_creation_date || "non précisée";
-    if (data.avatar) document.getElementById("avatar-preview").src = data.avatar;
-
+    if (data.avatar) {
+      document.getElementById("avatar-preview").src = `../images/${data.avatar}`;
+    }
   } catch (err) {
     console.error(err);
     alert("Impossible de charger les informations du joueur depuis la base de données.");

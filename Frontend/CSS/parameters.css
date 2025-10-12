@@ -102,16 +102,16 @@ section h2 {
 }
 
 .btn.primary {
-  background-color: #1a73e8;
+  background-color: #0a3a78;
   color: white;
 }
 
 .btn.primary:hover {
-  background-color: #155fc0;
+  background-color: #0a3a78;
 }
 
 .btn.danger {
-  background-color: #e53935;
+  background-color: #8b2220;
   color: white;
 }
 
@@ -144,7 +144,7 @@ hr {
 }
 
 .btn_deconn:hover {
-  background-color: #1a73e8;
+  background-color: #0a3a78;
   box-shadow: 0 6px 14px rgba(26,115,232,0.3);
 }
 

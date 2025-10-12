@@ -1,112 +1,84 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+    const creditsElement = document.getElementById("user-credits");
+    const avatar = document.getElementById("user-avatar");
+    const nameSpan = document.getElementById("user-name");
 
-    const player = JSON.parse(localStorage.getItem("player"));
-    if (!player) {
-        alert("Aucun joueur connecté !");
-        window.location.href = "index.html";
-        return;
+    let playerData = null;
+
+    try {
+        const username = localStorage.getItem("username");
+        if (username) {
+            const res = await fetch(`http://127.0.0.1:5001/users/${username}`);
+            if (!res.ok) throw new Error("API inaccessible");
+            playerData = await res.json();
+            localStorage.setItem("player", JSON.stringify(playerData));
+        } else {
+            playerData = JSON.parse(localStorage.getItem("player"));
+        }
+    } catch {
+        playerData = JSON.parse(localStorage.getItem("player"));
     }
 
-    // Construction du dashboard
-    document.querySelector("main").innerHTML = `
-        <div class="dashboard-container">
-            <div class="dashboard-left">
-                <!-- Statistiques -->
-                <div class="card">
-                    <h2>Statistiques</h2>
-                    <div class="stats-card-vertical">
-                        <h3>Matchs gagnés</h3>
-                        <p>${player.matches_won}</p>
-                    </div>
-                    <div class="stats-card-vertical">
-                        <h3>Matchs perdus</h3>
-                        <p>${player.matches_lost}</p>
-                    </div>
-                    <div class="stats-card-vertical">
-                        <h3>Matchs nuls</h3>
-                        <p>${player.matches_draw}</p>
-                    </div>
-                    <div class="stats-card-vertical">
-                        <h3>Temps total de jeu</h3>
-                        <p>${(player.total_playtime / 60).toFixed(1)} h</p>
-                    </div>
-                </div>
+    if (!playerData) { alert("Aucun joueur trouvé !"); window.location.href = "index.html"; return; }
 
-                <!-- Classement -->
-                <div class="card ranking-card" id="rankingCard">
-                    <h2>Classement</h2>
-                    <div class="stats-card-vertical">
-                        <h3>Votre rang</h3>
-                        <p>${player.rank}</p>
-                    </div>
-                    <div class="stats-card-vertical">
-                        <h3>Score global</h3>
-                        <p>${(player.matches_won * 3 + player.matches_draw).toFixed(0)}</p>
-                    </div>
+    avatar.src = `../images/${playerData.avatar || "default-avatar.png"}`;
+    nameSpan.textContent = playerData.username || "Joueur";
+    creditsElement.textContent = `💰 Crédits : ${playerData.credits ?? 0}`;
 
-                    <div class="ranking-details" id="rankingDetails">
-                        <ul id="rankingList"></ul>
-                    </div>
-                </div>
-            </div>
+    document.getElementById("player-rank").textContent = playerData.rank ?? 999;
+    document.getElementById("player-score").textContent = ((playerData.matches_won * 3 + (playerData.matches_draw ?? 0))).toFixed(0);
 
-            <!-- Graphique -->
-            <div class="dashboard-right">
-                <div class="card">
-                    <h2>Meilleures performances</h2>
-                    <canvas id="statsChart" width="400" height="400"></canvas>
-                </div>
-            </div>
-        </div>
-    `;
+    new Chart(document.getElementById("matchPie"), {
+        type: "pie",
+        data: {
+            labels: ["Gagnés", "Perdus", "Nuls"],
+            datasets: [{
+                data: [playerData.matches_won ?? 0, playerData.matches_lost ?? 0, playerData.matches_draw ?? 0],
+                backgroundColor: ["#30573eff", "#793c3cff", "#565655ff"]
+            }]
+        },
+        options: { plugins: { legend: { position: "bottom" } } }
+    });
 
-    // Graphique Chart.js
-    const ctx = document.getElementById('statsChart');
-    if (ctx) {
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Buts', 'Passes', 'Arrêts'],
-                datasets: [{
-                    label: 'Stats du joueur',
-                    data: [
-                        player.best_player_stats.goals,
-                        player.best_player_stats.assists,
-                        player.best_player_stats.saves
-                    ],
-                    backgroundColor: ['#a3bffa', '#d1d5db', '#fcd34d']
-                }]
-            },
-            options: {
-                scales: { y: { beginAtZero: true } }
+    new Chart(document.getElementById("statsChart"), {
+        type: "bar",
+        data: {
+            labels: ["Buts", "Passes", "Arrêts"], // labels des barres
+            datasets: [{
+                label: "Stats du joueur", // titre du dataset
+                data: [
+                    playerData.goals ?? playerData.best_player_stats?.goals ?? 0,
+                    playerData.assists ?? playerData.best_player_stats?.assists ?? 0,
+                    playerData.saves ?? playerData.best_player_stats?.saves ?? 0
+                ],
+                backgroundColor: ['#4A90E2', '#37474F', '#203170ff']
+            }]
+        },
+        options: {
+            scales: {
+                y: { beginAtZero: true }
             }
-        });
-    }
+        }
+    });
 
-    // Classement interactif
-    const rankingCard = document.getElementById("rankingCard");
+
     const rankingList = document.getElementById("rankingList");
-
-    // Exemple de données fictives
+    const rank = playerData.rank ?? 999;
+    const score = (playerData.matches_won * 3 + (playerData.matches_draw ?? 0)).toFixed(0);
     const fakeRanking = [
-        { rank: player.rank - 3, username: "PlayerA", score: 1620 },
-        { rank: player.rank - 2, username: "PlayerB", score: 1590 },
-        { rank: player.rank - 1, username: "PlayerC", score: 1550 },
-        { rank: player.rank, username: player.username, score: (player.matches_won * 3 + player.matches_draw) },
-        { rank: player.rank + 1, username: "PlayerD", score: 1480 },
-        { rank: player.rank + 2, username: "PlayerE", score: 1465 },
-        { rank: player.rank + 3, username: "PlayerF", score: 1450 },
+        { rank: rank-2, username:"PlayerA", score:1800 },
+        { rank: rank-1, username:"PlayerB", score:1700 },
+        { rank, username:playerData.username, score:score },
+        { rank: rank+1, username:"PlayerC", score:1500 },
     ];
-
-    fakeRanking.forEach(p => {
-        const li = document.createElement("li");
-        li.innerHTML = `<span>#${p.rank} — ${p.username}</span><span>${p.score} pts</span>`;
-        if (p.username === player.username) li.classList.add("current-player");
+    fakeRanking.forEach(p=>{
+        const li=document.createElement("li");
+        li.innerHTML=`<span>#${p.rank} — ${p.username}</span><span>${p.score} pts</span>`;
+        if(p.username===playerData.username) li.classList.add("current-player");
         rankingList.appendChild(li);
     });
 
-    rankingCard.addEventListener("click", () => {
-        rankingCard.classList.toggle("active");
+    document.querySelector(".ranking-card").addEventListener("click", ()=>{
+        document.querySelector(".ranking-card").classList.toggle("active");
     });
-
 });

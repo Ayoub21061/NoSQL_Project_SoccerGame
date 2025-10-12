@@ -25,4 +25,5 @@ class Player(BaseModel):
     total_playtime : int = 0 
     best_player_stats : PlayerStats
     achievements : List[str] = []
+    credits : int = 150000
     rank : int = 1000
