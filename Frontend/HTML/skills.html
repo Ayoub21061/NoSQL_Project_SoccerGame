@@ -4,15 +4,44 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Boutique de Joueurs</title>
-  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/skills.css" />
+  <link rel="stylesheet" href="../css/menu.css" />
 </head>
 <body>
-  <header>
-    <h1>Boutique de Joueurs</h1>
-    <div id="credits-container">
-      💰 Crédits : <span id="credits">0</span>
+  <header class="header">
+    <div class="left">
+      <div class="hamburger">&#9776;</div>
     </div>
+
+    <div class="center">
+      <h1>Boutique de joueurs</h1>
+    </div>
+
+    <div class="right user-info">
+        <a href="parameters.html" class="profil">
+            <img id="user-avatar" src="../images/default-avatar.png" alt="Avatar Joueur" class="avatar">
+            <div class="profile-text">
+            <span id="user-name">Joueur</span>
+            
+            </div>
+        </a>
+        <span id="user-credits">💰 Crédits : 0</span>
+        </div>
+
   </header>
+
+  <!-- Sidebar -->
+  <div id="mySidebar" class="sidebar">
+    <span class="closebtn">&times;</span>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="achievements.html">Achievements</a>
+    <a href="games.html">Games</a>
+    <a href="equipe.html">Team</a>
+    <a href="inventory_items.html">Inventory</a>
+    <a href="badges.html">Badges</a>
+    <a href="skills.html">Skills</a>
+    <a href="#">Règles du jeu</a>
+  </div>
 
   <main>
     <div id="skills-container"></div>
@@ -23,5 +52,6 @@
   </footer>
 
   <script src="../js/skills.js"></script>
+  <script src="../js/menu.js"></script>
 </body>
 </html>

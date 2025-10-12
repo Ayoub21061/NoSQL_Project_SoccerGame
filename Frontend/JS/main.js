@@ -59,14 +59,14 @@ async function login() {
 
     if (response.ok) {
         // On sauvegarde le joueur connecté dans localStorage = petite base de données locale dans le navigateur
-        localStorage.setItem("player", JSON.stringify(data.player));
+        localStorage.setItem("username", data.player?.username || username); // ✅ correction ici
+        localStorage.setItem("player", JSON.stringify(data.player || {}));
         // Une fois que la connexion est passée, on redirige vers le dashboard
         window.location.href = "dashboard.html";
     } else {
         alert(data.error);
     }
 }
-
 
 // --- Inscription ---
 async function register() {

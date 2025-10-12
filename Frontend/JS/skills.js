@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (!username) throw new Error("Utilisateur non connecté.");
 
     // --- Charger l'utilisateur et les joueurs achetés ---
-    const userRes = await fetch(`http://127.0.0.1:5001/users/${username}`);
+    const userRes = await fetch(`http://127.0.0.1:5001/players/${username}`);
     const userData = await userRes.json();
     let currentCredits = userData.credits ?? 0;
     const playerIds = userData.players_owned ?? [];
@@ -50,7 +50,10 @@ document.addEventListener("DOMContentLoaded", async () => {
            <div class="skill-stat"><strong>${skill.def ?? "-"}</strong><br>DEF</div>
            <div class="skill-stat"><strong>${skill.phy ?? "-"}</strong><br>PHY</div>`;
 
-      const imageSrc = `../images/${skill.image.split("/").pop()}`;
+      const imageSrc = skill.image 
+        ? `../images/${skill.image.split("/").pop()}`
+        : "../images/default.png"; // ✅ image par défaut si manquante
+
       const playerCredits = skill.crédits ?? 0;
 
       card.innerHTML = `

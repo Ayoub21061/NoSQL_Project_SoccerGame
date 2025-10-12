@@ -3,10 +3,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 30px 50px;
+  padding: 15px 30px;
   background-color: #222;
   color: #fff;
   font-family: Arial, sans-serif;
+  position: relative;
 }
 
 .header .center {
@@ -14,7 +15,6 @@
   text-align: center;
 }
 
-/* On centre le titre */
 .header h1 {
   position: absolute;
   left: 50%;
@@ -24,8 +24,11 @@
   text-align: center;
 }
 
-.header .left {
-  z-index: 2; /* Pour éviter que le titre passe dessus */
+.header .left, .header .right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 2;
 }
 
 /* Hamburger */
@@ -33,20 +36,62 @@
   font-size: 28px;
   cursor: pointer;
   color: #fff;
-  margin-left: 10px;
 }
 
-/* ===== Sidebar ===== */
+/* Profil */
+.profil {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 8px;
+  position: relative;
+}
+
+.profil .avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid gold;
+  object-fit: cover;
+}
+
+/* Dropdown menu */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #333;
+  min-width: 120px;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  z-index: 1000;
+}
+
+.dropdown-content a {
+  display: block;
+  padding: 8px 12px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.dropdown-content a:hover {
+  background-color: #555;
+}
+
+/* Sidebar */
 .sidebar {
   height: 100%;
-  width: 0; /* cachée par défaut */
+  width: 0;
   position: fixed;
   z-index: 2000;
   top: 0;
   left: 0;
   background-color: #222;
   overflow-x: hidden;
-  transition: 0.3s; /* animation glissement */
+  transition: 0.3s;
   padding-top: 60px;
 }
 
@@ -62,7 +107,6 @@
   background-color: #555;
 }
 
-/* Bouton fermer */
 .sidebar .closebtn {
   position: absolute;
   top: 15px;
@@ -72,7 +116,16 @@
   color: #fff;
 }
 
-/* ===== Contenu principal ===== */
+/* Main content padding */
 main {
   padding: 20px;
+}
+
+
+.user-info a.profil {
+  text-decoration: none; /* enlève le souligné */
+  color: inherit;        /* prend la couleur du parent, ici blanc */
+  display: flex;
+  align-items: center;
+  gap: 10px;             /* un petit espace entre l’avatar et le texte */
 }

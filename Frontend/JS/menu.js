@@ -5,15 +5,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeBtn = document.querySelector(".closebtn");
 
   openBtn.addEventListener("click", (e) => {
-    e.stopPropagation(); // éviter que le clic ferme directement
-    sidebar.style.width = "250px"; // largeur de la sidebar
+    e.stopPropagation();
+    sidebar.style.width = "250px";
   });
 
   closeBtn.addEventListener("click", () => {
     sidebar.style.width = "0";
   });
 
-  // Fermer sidebar si clic en dehors
   window.addEventListener("click", (e) => {
     if (!sidebar.contains(e.target) && e.target !== openBtn) {
       sidebar.style.width = "0";
@@ -24,13 +23,35 @@ document.addEventListener("DOMContentLoaded", () => {
   const profil = document.querySelector(".profil");
   const dropdownContent = document.querySelector(".dropdown-content");
 
-  profil.addEventListener("click", (e) => {
-    e.stopPropagation(); // éviter que le clic se propage au window
-    dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
-  });
+  if (profil) {
+    profil.addEventListener("click", (e) => {
+      e.stopPropagation();
+      dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
+    });
 
-  // Fermer menu profil si clic en dehors
-  window.addEventListener("click", () => {
-    dropdownContent.style.display = "none";
-  });
+    window.addEventListener("click", () => {
+      dropdownContent.style.display = "none";
+    });
+  }
+
+  // --- Remplissage de l'avatar, nom et crédits ---
+  const player = JSON.parse(localStorage.getItem("player"));
+  if (player) {
+    const avatarElem = document.getElementById("user-avatar");
+    const nameElem = document.getElementById("user-name");
+    const creditsElem = document.getElementById("user-credits");
+
+    if (avatarElem) avatarElem.src = `../images/${player.avatar || "default-avatar.png"}`;
+    if (nameElem) nameElem.textContent = player.username;
+    if (creditsElem) creditsElem.textContent = `💰 Crédits : ${player.credits ?? 0}`;
+  }
+
+  // --- Déconnexion ---
+  const logoutBtn = document.getElementById("logout-btn");
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", () => {
+      localStorage.removeItem("player");
+      window.location.href = "login.html";
+    });
+  }
 });
