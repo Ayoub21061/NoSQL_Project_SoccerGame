@@ -27,3 +27,4 @@ class Player(BaseModel):
     achievements : List[str] = []
     credits : int = 150000
     rank : int = 1000
+    players_owned: List[str] = []

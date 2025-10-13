@@ -178,3 +178,14 @@ def update_avatar(player_id):
         return jsonify({"error": str(e)}), 400
 
 
+@player_bp.route("/username/<string:username>", methods=["GET"])
+def get_player_by_username(username):
+    try:
+        player = players_collection.find_one({"username": username})
+        if not player:
+            return jsonify({"error": "Joueur introuvable"}), 404
+
+        player["_id"] = str(player["_id"])
+        return jsonify(player), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 400
