@@ -1,26 +1,22 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Mon Équipe</title>
-  <link rel="stylesheet" href="../css/equipe.css">
-    <link rel="stylesheet" href="../css/menu.css">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contrats et formes </title>
+  <link rel="stylesheet" href="../css/menu.css">
+  <link rel="stylesheet" href="../css/style.css" />
 </head>
 <body>
+
+  <!-- Header -->
   <header class="header">
-     <div class="left">
+    <div class="left">
       <span class="hamburger">&#9776;</span>
     </div>
     <div class="center">
-      <h1>Mon Équipe</h1>
+      <h1>Contrats et formes</h1>
     </div>
-    
-    <nav>
-      <ul>
-        <li><a href="skills.html">Retour aux joueurs</a></li>
-      </ul>
-    </nav>
 
     <div class="right user-info">
         <a href="parameters.html" class="profil">
@@ -32,7 +28,7 @@
         </a>
         <span id="user-credits">💰 Crédits : 0</span>
         </div>
-    
+
   </header>
 
   <!-- Sidebar -->
@@ -46,31 +42,9 @@
     <a href="contrats_formes.html">Contrats et formes</a>
   </div>
 
+ 
 
-  <main>
-    <section id="team-section">
-      <label for="formation">Choisir une formation :</label>
-      <select id="formation">
-        <option value="4-4-2">4-4-2</option>
-        <option value="4-3-3">4-3-3</option>
-        <option value="3-5-2">3-5-2</option>
-      </select>
-
-      <div id="team-container">
-        <!-- Formation dynamique -->
-      </div>
-    </section>
-
-    <aside id="players-list">
-      <h2>Joueurs achetés</h2>
-      <div class="player-cards-container">
-        <!-- Joueurs achetés horizontaux -->
-      </div>
-    </aside>
-  </main>
-
-  <script src="../js/equipe.js"></script>
   <script src="../js/menu.js"></script>
-
+  <script src="../js/achievements.js"></script>
 </body>
 </html>

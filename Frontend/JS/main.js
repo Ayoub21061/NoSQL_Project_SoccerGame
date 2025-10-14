@@ -71,10 +71,11 @@ async function login() {
 // --- Inscription ---
 async function register() {
     const username = document.getElementById('register-username').value.trim();
+    const mail = document.getElementById('register-email').value.trim();
     const password = document.getElementById('register-password').value.trim();
     const passwordConfirm = document.getElementById('register-password-confirm').value.trim();
 
-    if (!username || !password || !passwordConfirm) {
+    if (!username || !mail || !password || !passwordConfirm) {
         alert("Veuillez remplir tous les champs.");
         return;
     }
@@ -88,6 +89,7 @@ async function register() {
         username,
         password,
         account_creation_date: new Date().toISOString().split('T')[0],
+        mail,
         best_player_stats: { goals: 0, assists: 0, saves: 0 }
     };
 
@@ -101,7 +103,8 @@ async function register() {
 
     if (response.ok) {
         alert("Compte créé avec succès !");
-        showLogin(); // On revient sur le formulaire de connexion
+        //showLogin(); // On revient sur le formulaire de connexion
+        window.location.href = "dashboard.html";
     } else {
         alert(data.error || "Erreur lors de l'inscription.");
     }

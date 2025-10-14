@@ -21,15 +21,22 @@ def add_player():
         if not password:
             return jsonify({"error": "Le mot de passe est requis"}), 400
 
-        # Pas de chiffrement mais envisager d'en ajouter plus tard
-        data["password"] = password  
+        data["password"] = password
 
         if "account_creation_date" not in data:
+            # côté serveur : mettre une string ISO
             data["account_creation_date"] = date.today().isoformat()
+
         data["best_player_stats"] = {"goals": 0, "assists": 0, "saves": 0}
 
         player = Player(**data)
         player_dict = player.model_dump()
+
+        # Convertir les datetime.date en string ISO si Pydantic les a transformés en date
+        acct_date = player_dict.get("account_creation_date")
+        if isinstance(acct_date, date):
+            player_dict["account_creation_date"] = acct_date.isoformat()
+
         players_collection.insert_one(player_dict)
         return jsonify({"message": "Utilisateur ajouté avec succès"}), 201
     except Exception as e:

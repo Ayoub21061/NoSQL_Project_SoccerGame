@@ -28,3 +28,4 @@ class Player(BaseModel):
     credits : int = 150000
     rank : int = 1000
     players_owned: List[str] = []
+    mail : str

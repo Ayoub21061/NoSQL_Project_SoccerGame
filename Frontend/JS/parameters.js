@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (!res.ok) throw new Error(data.error || "Erreur de chargement des données joueur.");
 
     document.getElementById("username").value = data.username || "";
-    document.getElementById("user-email").textContent = data.email || "non défini";
+    document.getElementById("user-email").textContent = data.mail || "";
     document.getElementById("creation-date").textContent = data.account_creation_date || "non précisée";
     if (data.avatar) {
       document.getElementById("avatar-preview").src = `../images/${data.avatar}`;
