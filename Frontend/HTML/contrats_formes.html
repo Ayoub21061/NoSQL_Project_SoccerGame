@@ -2,20 +2,19 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contrats et formes </title>
-  <link rel="stylesheet" href="../css/menu.css">
-  <link rel="stylesheet" href="../css/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Boutique Contrats & Formes</title>
+  <link rel="stylesheet" href="../css/contracts_forms.css" />
+  <link rel="stylesheet" href="../css/menu.css" />
 </head>
 <body>
-
-  <!-- Header -->
   <header class="header">
     <div class="left">
-      <span class="hamburger">&#9776;</span>
+      <div class="hamburger">&#9776;</div>
     </div>
+
     <div class="center">
-      <h1>Contrats et formes</h1>
+      <h1>Boutique Contrats & Formes</h1>
     </div>
 
     <div class="right user-info">
@@ -23,16 +22,14 @@
             <img id="user-avatar" src="../images/default-avatar.png" alt="Avatar Joueur" class="avatar">
             <div class="profile-text">
             <span id="user-name">Joueur</span>
-            
             </div>
         </a>
         <span id="user-credits">💰 Crédits : 0</span>
-        </div>
-
+    </div>
   </header>
 
   <!-- Sidebar -->
-   <div id="mySidebar" class="sidebar">
+  <div id="mySidebar" class="sidebar">
     <span class="closebtn">&times;</span>
     <a href="dashboard.html">Dashboard</a>
     <a href="achievements.html">Achievements</a>
@@ -42,9 +39,22 @@
     <a href="contrats_formes.html">Contrats et formes</a>
   </div>
 
- 
+  <main>
+    <div class="section-title">Contrats disponibles</div>
+    <div id="contracts-section" class="items-container"></div>
 
+    <div class="section-title">Boosters / Formes disponibles</div>
+    <div id="boosters-section" class="items-container"></div>
+
+    <div class="section-title">Contrats & Formes achetés</div>
+    <div id="my-items" class="items-container"></div>
+  </main>
+
+  <footer>
+    <a href="equipe.html" class="team-link">Aller à mon équipe ⚽</a>
+  </footer>
+
+  <script src="../js/contrats_formes.js"></script>
   <script src="../js/menu.js"></script>
-  <script src="../js/achievements.js"></script>
 </body>
 </html>

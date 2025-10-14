@@ -1,0 +1,65 @@
+[
+  {
+    "name": "Contrat Bronze",
+    "type": "contrat",
+    "bonus": "+5 matchs",
+    "cost": 500,
+    "image": "contrat_bronze.png"
+  },
+  {
+    "name": "Contrat Argent",
+    "type": "contrat",
+    "bonus": "+10 matchs",
+    "cost": 1000,
+    "image": "contrat_argent.png"
+  },
+  {
+    "name": "Contrat Or",
+    "type": "contrat",
+    "bonus": "+20 matchs",
+    "cost": 2000,
+    "image": "contrat_or.png"
+  },
+  {
+    "name": "Forme légère",
+    "type": "forme",
+    "bonus": "+10 endurance",
+    "cost": 300,
+    "image": "forme_10.png"
+  },
+  {
+    "name": "Forme moyenne",
+    "type": "forme",
+    "bonus": "+20 endurance",
+    "cost": 600,
+    "image": "forme_20.png"
+  },
+  {
+    "name": "Forme maximale",
+    "type": "forme",
+    "bonus": "+30 endurance",
+    "cost": 1200,
+    "image": "forme_30.png"
+  },
+  {
+    "name": "Booster vitesse",
+    "type": "forme",
+    "bonus": "+5 vitesse",
+    "cost": 800,
+    "image": "booster_vitesse.png"
+  },
+  {
+    "name": "Booster puissance",
+    "type": "forme",
+    "bonus": "+5 force",
+    "cost": 800,
+    "image": "booster_puissance.png"
+  },
+  {
+    "name": "Contrat Pro",
+    "type": "contrat",
+    "bonus": "+50 matchs",
+    "cost": 5000,
+    "image": "contrat_pro.png"
+  }
+]
