@@ -46,16 +46,18 @@ def buy_contract_or_form(username):
                 "cost": cost
             }), 400
 
+        # 🔹 Convertir item_id en string
+        item_id = str(item_id)
+
         # Déduire le coût et enregistrer l'achat
         new_credits = user["credits"] - cost
         users_collection.update_one(
             {"username": username},
             {
                 "$set": {"credits": new_credits},
-                "$push": {"contrats_formes": item_id}  # <- ici
+                "$push": {"contrats_formes": item_id}
             }
         )
-
 
         updated_user = users_collection.find_one({"username": username}, {"password": 0})
         updated_user["_id"] = str(updated_user["_id"])

@@ -125,22 +125,23 @@ def update_player(player_id):
         if not player:
             return jsonify({"error": "Joueur introuvable"}), 404
 
-        # 🧮 Fusionner sans l'_id
-        merged_player = {k: v for k, v in {**player, **update_data}.items() if k != "_id"}
+        # 🧩 Fusionner les données (le joueur existant + les modifs)
+        merged_player = {**player, **update_data}
 
-        # ✅ Recalculer le score global
-        matches_won = merged_player.get("matches_won", 0)
-        matches_draw = merged_player.get("matches_draw", 0)
+        # ✅ Recalculer le score global à partir des valeurs finales
+        matches_won = int(merged_player.get("matches_won", 0))
+        matches_draw = int(merged_player.get("matches_draw", 0))
         score_global = (matches_won * 3) + matches_draw
 
-        # ⚡️ Mise à jour
+        # 🧾 Préparer les champs à mettre à jour
+        merged_player["score_global"] = score_global
+        del merged_player["_id"]  # jamais modifier _id
+
+        # ⚡️ Mettre à jour en base
         result = players_collection.update_one(
             {"_id": ObjectId(player_id)},
-            {"$set": {**update_data, "score_global": score_global}}
+            {"$set": merged_player}
         )
-
-        if result.modified_count == 0:
-            return jsonify({"warning": "Aucune modification détectée"}), 200
 
         return jsonify({
             "message": "Profil mis à jour avec succès",
@@ -150,6 +151,7 @@ def update_player(player_id):
     except Exception as e:
         print("Erreur update_player:", e)
         return jsonify({"error": str(e)}), 400
+
 
 
 

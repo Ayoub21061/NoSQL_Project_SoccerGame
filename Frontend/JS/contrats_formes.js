@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const items = await res.json();
 
     // --- Récupérer items déjà achetés ---
-    const userRes = await fetch(`http://127.0.0.1:5001/players/${username}`);
+    const userRes = await fetch(`http://127.0.0.1:5001/players/username/${username}`);
     const userData = await userRes.json();
     const ownedIds = (userData.contrats_formes || []).map(id => id.toString());
 
@@ -33,9 +33,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       const imgSrc = item.image ? `../images/${item.image}` : "../images/default.png";
       card.innerHTML = `
-        <div class="skill-image-container">
-          <img src="${imgSrc}" alt="${item.name}">
-        </div>
         <div class="skill-header">${item.name}</div>
         <div class="skill-style">${item.type}</div>
         <div class="skill-extra">${item.bonus}</div>
@@ -81,7 +78,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // --- Remplir les sections ---
     items.forEach(item => {
       const alreadyBought = ownedIds.includes(item._id?.toString());
-      if (alreadyBought) return;
+      
 
       if (item.type === "contrat") contractsSection.appendChild(createCard(item, false));
       else if (item.type === "forme") boostersSection.appendChild(createCard(item, false));
@@ -109,7 +106,7 @@ function displayOwnedItems(allItems, ownedIds, targetDiv) {
         <img src="${imgSrc}" alt="${item.name}">
       </div>
       <div class="skill-header">${item.name}</div>
-      <div class="skill-style">${item.type}</div>
+      
       <div class="skill-extra">${item.bonus}</div>
     `;
     targetDiv.appendChild(div);
