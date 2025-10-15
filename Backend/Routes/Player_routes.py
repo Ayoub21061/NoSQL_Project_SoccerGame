@@ -8,6 +8,7 @@ from bson import ObjectId
 # Création du Blueprint
 player_bp = Blueprint("player_bp", __name__)
 
+
 # Collection MongoDB
 players_collection = db["players"]
 
@@ -88,7 +89,6 @@ def login_player():
         return jsonify({"error": str(e)}), 400
 
 
-
 ### READ (GET one) ###
 @player_bp.route("/<player_id>", methods=["GET"])
 def get_player(player_id):
@@ -151,12 +151,6 @@ def update_player(player_id):
     except Exception as e:
         print("Erreur update_player:", e)
         return jsonify({"error": str(e)}), 400
-
-
-
-
-
-
 
 ### DELETE ###
 @player_bp.route("/<player_id>", methods=["DELETE"])
@@ -222,5 +216,31 @@ def get_player_by_username(username):
 
         player["_id"] = str(player["_id"])
         return jsonify(player), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 400
+
+
+@player_bp.route("/ranking/<username>", methods=["GET"])
+def get_ranking_around(username):
+    try:
+        # Récupérer tous les joueurs triés par score_global décroissant
+        players = list(players_collection.find().sort("score_global", -1))
+        
+        # Ajouter l'index (rang)
+        for i, player in enumerate(players):
+            player["_id"] = str(player["_id"])
+            player["rank"] = i + 1
+
+        # Trouver la position du joueur
+        user_index = next((i for i, p in enumerate(players) if p["username"] == username), None)
+        if user_index is None:
+            return jsonify({"error": "Joueur introuvable"}), 404
+
+        # Définir la tranche autour du joueur (5 avant + joueur + 4 après = 10 max)
+        start = max(user_index - 5, 0)
+        end = min(user_index + 5, len(players))
+        ranking_slice = players[start:end]
+
+        return jsonify(ranking_slice), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 400
