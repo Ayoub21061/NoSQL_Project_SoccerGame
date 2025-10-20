@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soccer Game - Social</title>
+    <link rel="stylesheet" href="../css/social.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="left"><div class="hamburger">&#9776;</div></div>
+        <div class="center"><h1>⚽ Soccer Game - Social</h1></div>
+    </header>
+
+    <!-- Sidebar -->
+    <div id="mySidebar" class="sidebar">
+        <span class="closebtn">&times;</span>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="social.html">Amis</a>
+    </div>
+
+    <!-- Contenu principal -->
+    <main>
+        <div class="dashboard-container">
+
+            <!-- Recherche joueur -->
+            <div class="card full-width">
+                <h2>Rechercher un joueur</h2>
+                <div class="search-container">
+                    <input type="text" id="searchUsername" placeholder="Nom du joueur">
+                    <button id="searchBtn">Rechercher</button>
+                </div>
+            </div>
+
+            <!-- Profil du joueur recherché -->
+            <div class="card full-width" id="playerProfile" style="display:none;">
+                <h2>Profil du joueur</h2>
+                <div class="profile-header">
+                    <img id="profileAvatar" src="../images/default-avatar.png" alt="Avatar" class="avatar">
+                    <h3 id="profileUsername">—</h3>
+                </div>
+                <button id="addFriendBtn">Envoyer une demande d'ami</button>
+                <div class="stats-card-grid">
+                    <div class="stats-card-item"><h3>Score global</h3><p id="profileScore">—</p></div>
+                    <div class="stats-card-item"><h3>Rang</h3><p id="profileRank">—</p></div>
+                    <div class="stats-card-item"><h3>Matchs gagnés</h3><p id="profileWins">—</p></div>
+                    <div class="stats-card-item"><h3>Matchs perdus</h3><p id="profileLosses">—</p></div>
+                    <div class="stats-card-item"><h3>Matchs nuls</h3><p id="profileDraws">—</p></div>
+                </div>
+            </div>
+
+            <!-- Demandes d'amis en attente -->
+            <div class="card full-width">
+                <h2>Demandes d'amis en attente</h2>
+                <ul id="friendRequestsList"></ul>
+            </div>
+
+            <!-- Liste des amis -->
+            <div class="card full-width">
+                <h2>Mes amis</h2>
+                <ul id="friendsList"></ul>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="../js/social.js"></script>
+</body>
+</html>

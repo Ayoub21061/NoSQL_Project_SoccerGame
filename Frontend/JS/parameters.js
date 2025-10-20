@@ -20,6 +20,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("username").value = playerData.username || "";
     document.getElementById("user-email").textContent = playerData.email || "non défini";
     document.getElementById("creation-date").textContent = playerData.creation_date || "non précisée";
+    document.getElementById("playtime").textContent = (playerData.total_playtime || 0) + " heures";
+
     if (playerData.avatar) {
       document.getElementById("avatar-preview").src = `../images/${playerData.avatar}`;
     }

@@ -5,6 +5,8 @@ from Routes.Achievements_routes import achievements_bp
 from Routes.Skills_routes import skills_bp
 from Routes.User_routes import user_bp
 from Routes.Contrats_Formes_routes import contracts_forms_bp
+from Routes.Social_routes import social_bp
+
 import os
 from flask_cors import CORS  
 
@@ -20,6 +22,7 @@ app.register_blueprint(achievements_bp, url_prefix="/achievements")
 app.register_blueprint(skills_bp, url_prefix="/skills")
 app.register_blueprint(user_bp, url_prefix="/users")
 app.register_blueprint(contracts_forms_bp, url_prefix="/contracts_forms")
+app.register_blueprint(social_bp, url_prefix="/social")
 
 # -------------------------------
 # Chemin du dossier Frontend
