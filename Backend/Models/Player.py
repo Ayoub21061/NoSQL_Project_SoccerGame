@@ -13,6 +13,10 @@ class PlayerStats(BaseModel):
     assists : int = 0 
     saves : int = 0 
 
+class FriendRequest(BaseModel):
+    sender: str          # username de l’expéditeur
+    date: Optional[date] = None
+
 
 class Player(BaseModel):
     username : str
@@ -31,6 +35,8 @@ class Player(BaseModel):
     mail : str
     score_global : int = 0 
     contrats_formes : List[str]
+    friends : List[str] = []       
+    friend_requests: List[FriendRequest] = []  
 
 
 # On va utiliser les infos sur le nombres de matchs gagnés, perdus ou nuls et calculés les points en fonction de ça. 

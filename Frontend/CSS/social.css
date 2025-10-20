@@ -1,0 +1,54 @@
+/* Reset et base */
+* { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+body { display:flex; flex-direction:column; min-height:100vh; background:#f9f9f9; color:#222; }
+
+/* Header */
+.header { display:flex; justify-content:space-between; align-items:center; padding:20px 50px; background:#fff; box-shadow:0 2px 8px rgba(0,0,0,0.1); }
+.header h1 { font-size:1.8rem; flex:1; text-align:center; }
+.hamburger { font-size:28px; cursor:pointer; }
+
+/* Sidebar */
+.sidebar { position:fixed; top:0; left:-250px; width:250px; height:100%; background:#2c2c2c; padding-top:60px; transition:0.3s; z-index:1000; }
+.sidebar.active { left:0; }
+.sidebar a { display:block; padding:12px 20px; text-decoration:none; color:#fff; font-weight:bold; }
+.sidebar a:hover { background:#444; }
+
+/* Main */
+main { padding:20px 50px; flex:1; }
+.dashboard-container { display:flex; flex-direction:column; gap:20px; }
+.full-width { width:100%; }
+
+/* Cards */
+.card { background:#fff; padding:20px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.05); }
+
+/* Recherche */
+.search-container { display:flex; gap:10px; margin-top:10px; }
+.search-container input { flex:1; padding:8px 12px; border-radius:6px; border:1px solid #ccc; }
+.search-container button { padding:8px 15px; border:none; border-radius:6px; background:#1a73e8; color:#fff; cursor:pointer; transition:0.2s; }
+.search-container button:hover { background:#155ab6; }
+
+/* Profil joueur */
+.profile-header { display:flex; align-items:center; gap:15px; margin-bottom:10px; }
+.profile-header img.avatar { width:60px; height:60px; border-radius:50%; object-fit:cover; }
+#addFriendBtn { padding:8px 12px; background:#4CAF50; color:#fff; border:none; border-radius:6px; cursor:pointer; transition:0.2s; }
+#addFriendBtn:hover { background:#3e8e41; }
+
+/* Stats grid */
+.stats-card-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(120px,1fr)); gap:15px; margin-top:10px; }
+.stats-card-item { background:#f3f4f6; padding:15px; border-radius:10px; text-align:center; box-shadow:0 2px 6px rgba(0,0,0,0.05); }
+.stats-card-item h3 { color:#444; margin-bottom:8px; font-weight:600; }
+.stats-card-item p { font-size:16px; color:#111; font-weight:bold; }
+
+/* Listes d'amis et demandes */
+ul { list-style:none; padding:0; }
+li { padding:8px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #eee; }
+li button { margin-left:5px; padding:5px 10px; border:none; border-radius:5px; cursor:pointer; }
+li button:hover { opacity:0.8; }
+li button.accept { background:#4CAF50; color:#fff; }
+li button.reject { background:#f44336; color:#fff; }
+
+/* Responsive */
+@media(max-width:900px) {
+    main { padding:20px; }
+    .stats-card-grid { grid-template-columns:repeat(auto-fit,minmax(100px,1fr)); }
+}
