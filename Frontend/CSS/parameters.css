@@ -162,3 +162,28 @@ hr {
     margin-top: 30px;
   }
 }
+
+/* Avatar principal et aperçu */
+#avatar-preview,
+.user-info .avatar,
+.preset-avatar {
+    width: 80px;         /* taille fixe */
+    height: 80px;        /* idem pour garder un carré */
+    border-radius: 50%;  /* pour rendre rond */
+    object-fit: cover;   /* découpe automatiquement l’image si trop grande */
+    border: 2px solid #fff; /* optionnel, joli contour */
+}
+
+/* Si tu veux des avatars prédéfinis plus petits */
+.avatar-selection .preset-avatar {
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.avatar-selection .preset-avatar:hover {
+    transform: scale(1.1); /* léger effet au survol */
+}
+

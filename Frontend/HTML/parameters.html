@@ -31,12 +31,7 @@
     <div class="center">
       <h1>Paramètres du compte</h1>
     </div>
-    <div class="right">
-      <div class="dropdown">
-       
-       
-      </div>
-    </div>
+    <div class="right"></div>
   </header>
 
   <!-- Main content -->
@@ -46,12 +41,29 @@
     <section class="profile-section">
       <h2>Profil du joueur</h2>
 
+      <!-- Avatar -->
       <div class="avatar-container">
-        <img id="avatar-preview" src="../assets/default-avatar.png" alt="Avatar joueur">
+        <img id="avatar-preview" src="../images/default-avatar.png" alt="Avatar joueur">
         <label for="avatar-upload" class="btn">Changer d’avatar</label>
         <input type="file" id="avatar-upload" accept="image/*" hidden>
       </div>
 
+      <!-- Sélection d'avatars prédéfinis -->
+      <div class="avatar-selection">
+        <h3>Ou choisir un avatar prédéfini</h3>
+        <div class="avatar-grid">
+          <img src="../images/Luffay.png" class="preset-avatar" alt="avatar1">
+          <img src="../images/mahrez.png" class="preset-avatar" alt="avatar2">
+          <img src="../images/fernandes.png" class="preset-avatar" alt="avatar3">
+          <img src="../images/cristiano.png" class="preset-avatar" alt="avatar4">
+          <img src="../images/casemiro.png" class="preset-avatar" alt="avatar5">
+          <img src="../images/bellingham.png" class="preset-avatar" alt="avatar6">
+          <img src="../images/messi.png" class="preset-avatar" alt="avatar7">
+
+        </div>
+      </div>
+
+      <!-- Infos joueur -->
       <div class="info-group">
         <label for="username">Pseudo :</label>
         <input type="text" id="username" placeholder="Votre pseudo">
@@ -61,7 +73,6 @@
         <p><strong>Email :</strong> <span id="user-email"> </span></p>
         <p><strong>Date de création :</strong> <span id="creation-date">--/--/----</span></p>
         <p><strong>Temps de jeu :</strong> <span id="playtime">--/--/----</span></p>
-
       </div>
 
       <button class="btn primary" id="save-profile">Enregistrer</button>
@@ -87,7 +98,8 @@
 
       <button class="btn danger" id="delete-account">Supprimer le compte</button>
     </section>
-      <a  class="btn_deconn" href="index.html">Déconnexion</a>
+
+    <a class="btn_deconn" href="index.html">Déconnexion</a>
   </main>
 
   <script src="../js/menu.js"></script>
