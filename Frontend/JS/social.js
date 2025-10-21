@@ -7,14 +7,24 @@ document.addEventListener("DOMContentLoaded", () => {
     let viewedPlayer = null;
     let expandedFriend = null;
 
-    // Rechercher un joueur
+    // --- Recherche d'un joueur avec bouton ou touche Entrée ---
     searchBtn.addEventListener("click", async () => {
         const username = searchInput.value.trim();
         if (!username) return alert("Veuillez entrer un nom d'utilisateur");
         await loadPlayerProfile(username);
     });
 
-    // Charger le profil d'un joueur
+    // ✅ Permet d'appuyer sur "Entrée" pour lancer la recherche d'un joueur
+    searchInput.addEventListener("keydown", async (event) => {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            const username = searchInput.value.trim();
+            if (!username) return alert("Veuillez entrer un nom d'utilisateur");
+            await loadPlayerProfile(username);
+        }
+    });
+
+    // --- Charger le profil d'un joueur ---
     async function loadPlayerProfile(username) {
         try {
             const res = await fetch(`http://127.0.0.1:5001/social/search?username=${username}`);
@@ -36,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Envoyer une demande d'ami
+    // --- Envoyer une demande d'ami ---
     addFriendBtn.addEventListener("click", async () => {
         if (!currentPlayer || !viewedPlayer) return alert("Impossible d'envoyer la demande");
         if (currentPlayer.username === viewedPlayer.username) return alert("Vous ne pouvez pas vous ajouter vous-même");
@@ -55,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Demandes d'amis
+    // --- Charger les demandes d'amis ---
     async function loadFriendRequests() {
         if (!currentPlayer) return;
         try {
@@ -86,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Répondre à une demande
+    // --- Répondre à une demande d'ami ---
     async function respondFriend(sender, accept) {
         try {
             const res = await fetch("http://127.0.0.1:5001/social/friend_request/respond", {
@@ -104,7 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Liste des amis
+    // --- Liste des amis ---
     async function loadFriends() {
         if (!currentPlayer) return;
         try {
@@ -182,6 +192,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // --- Chargement initial ---
     loadFriendRequests();
     loadFriends();
 });
