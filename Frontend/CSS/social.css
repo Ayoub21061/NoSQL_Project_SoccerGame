@@ -41,11 +41,78 @@ main { padding:20px 50px; flex:1; }
 
 /* Listes d'amis et demandes */
 ul { list-style:none; padding:0; }
-li { padding:8px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #eee; }
+li { padding:8px; display:flex; flex-direction:column; border-bottom:1px solid #eee; }
+li > div:first-child { display:flex; justify-content:space-between; align-items:center; }
 li button { margin-left:5px; padding:5px 10px; border:none; border-radius:5px; cursor:pointer; }
 li button:hover { opacity:0.8; }
 li button.accept { background:#4CAF50; color:#fff; }
 li button.reject { background:#f44336; color:#fff; }
+
+/* --- Détails ami --- */
+.friend-details {
+    background: #f3f4f6;
+    margin-top: 10px;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+    display: none;
+    transition: all 0.25s ease;
+    animation: fadeIn 0.25s ease forwards;
+}
+
+.friend-details.show {
+    display: block;
+}
+
+.friend-details .header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.friend-details .header img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.friend-details .header h4 {
+    font-size: 1rem;
+    color: #333;
+}
+
+.friend-details .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px;
+}
+
+.friend-details .stats-item {
+    background: white;
+    border-radius: 8px;
+    padding: 8px;
+    text-align: center;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+}
+
+.friend-details .stats-item h5 {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 4px;
+}
+
+.friend-details .stats-item p {
+    font-size: 0.95rem;
+    font-weight: bold;
+    color: #111;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
 /* Responsive */
 @media(max-width:900px) {
