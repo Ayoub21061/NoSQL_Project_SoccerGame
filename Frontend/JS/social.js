@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let currentPlayer = JSON.parse(localStorage.getItem("player")) || null;
     let viewedPlayer = null;
-    let expandedFriend = null; // pour toggle affichage infos ami
+    let expandedFriend = null;
 
     // Rechercher un joueur
     searchBtn.addEventListener("click", async () => {
@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
         await loadPlayerProfile(username);
     });
 
-    // Charger le profil d'un joueur (recherche)
+    // Charger le profil d'un joueur
     async function loadPlayerProfile(username) {
         try {
             const res = await fetch(`http://127.0.0.1:5001/social/search?username=${username}`);
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Afficher les demandes d'amis en attente
+    // Demandes d'amis
     async function loadFriendRequests() {
         if (!currentPlayer) return;
         try {
@@ -66,7 +66,8 @@ document.addEventListener("DOMContentLoaded", () => {
             list.innerHTML = "";
             data.requests.forEach(req => {
                 const li = document.createElement("li");
-                li.textContent = req.sender + " ";
+                const line = document.createElement("div");
+                line.textContent = req.sender + " ";
                 const acceptBtn = document.createElement("button");
                 acceptBtn.textContent = "Accepter";
                 acceptBtn.className = "accept";
@@ -75,8 +76,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 rejectBtn.textContent = "Refuser";
                 rejectBtn.className = "reject";
                 rejectBtn.onclick = () => respondFriend(req.sender, false);
-                li.appendChild(acceptBtn);
-                li.appendChild(rejectBtn);
+                line.appendChild(acceptBtn);
+                line.appendChild(rejectBtn);
+                li.appendChild(line);
                 list.appendChild(li);
             });
         } catch (err) {
@@ -84,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Accepter ou refuser une demande
+    // Répondre à une demande
     async function respondFriend(sender, accept) {
         try {
             const res = await fetch("http://127.0.0.1:5001/social/friend_request/respond", {
@@ -102,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Afficher les amis avec toggle infos
+    // Liste des amis
     async function loadFriends() {
         if (!currentPlayer) return;
         try {
@@ -114,43 +116,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
             (player.friends || []).forEach(async f => {
                 const li = document.createElement("li");
+                const header = document.createElement("div");
 
-                // Nom cliquable de l'ami
+                // Nom cliquable
                 const span = document.createElement("span");
                 span.textContent = f;
                 span.style.cursor = "pointer";
                 span.style.fontWeight = "bold";
-
-                // Container infos ami
-                const infoDiv = document.createElement("div");
-                infoDiv.style.display = "none";
-                infoDiv.style.marginTop = "5px";
-                infoDiv.style.padding = "10px";
-                infoDiv.style.background = "#f3f4f6";
-                infoDiv.style.borderRadius = "8px";
-
-                span.addEventListener("click", async () => {
-                    if (expandedFriend === f) {
-                        infoDiv.style.display = "none";
-                        expandedFriend = null;
-                    } else {
-                        const friendData = await fetch(`http://127.0.0.1:5001/social/search?username=${f}`).then(r => r.json());
-                        infoDiv.innerHTML = `
-                            <p>Score global: ${friendData.score_global}</p>
-                            <p>Rang: ${friendData.rank}</p>
-                            <p>Matchs gagnés: ${friendData.matches_won}</p>
-                            <p>Matchs perdus: ${friendData.matches_lost}</p>
-                            <p>Matchs nuls: ${friendData.matches_draw}</p>
-                        `;
-                        infoDiv.style.display = "block";
-                        expandedFriend = f;
-                    }
-                });
+                span.style.color = "#1a73e8";
 
                 // Bouton supprimer
                 const removeBtn = document.createElement("button");
                 removeBtn.textContent = "Supprimer";
-                removeBtn.className = "remove";
+                removeBtn.className = "reject";
                 removeBtn.onclick = async () => {
                     try {
                         const res = await fetch("http://127.0.0.1:5001/social/friend/remove", {
@@ -164,8 +142,38 @@ document.addEventListener("DOMContentLoaded", () => {
                     } catch (err) { console.error(err); }
                 };
 
-                li.appendChild(span);
-                li.appendChild(removeBtn);
+                header.appendChild(span);
+                header.appendChild(removeBtn);
+
+                // Détails ami
+                const infoDiv = document.createElement("div");
+                infoDiv.className = "friend-details";
+
+                span.addEventListener("click", async () => {
+                    if (expandedFriend === f) {
+                        infoDiv.classList.remove("show");
+                        expandedFriend = null;
+                    } else {
+                        const friendData = await fetch(`http://127.0.0.1:5001/social/search?username=${f}`).then(r => r.json());
+                        infoDiv.innerHTML = `
+                            <div class="header">
+                                <img src="../images/${friendData.avatar || "default-avatar.png"}" alt="avatar">
+                                <h4>${friendData.username}</h4>
+                            </div>
+                            <div class="stats-grid">
+                                <div class="stats-item"><h5>Score global</h5><p>${friendData.score_global}</p></div>
+                                <div class="stats-item"><h5>Rang</h5><p>${friendData.rank}</p></div>
+                                <div class="stats-item"><h5>Victoires</h5><p>${friendData.matches_won}</p></div>
+                                <div class="stats-item"><h5>Défaites</h5><p>${friendData.matches_lost}</p></div>
+                                <div class="stats-item"><h5>Nuls</h5><p>${friendData.matches_draw}</p></div>
+                            </div>
+                        `;
+                        infoDiv.classList.add("show");
+                        expandedFriend = f;
+                    }
+                });
+
+                li.appendChild(header);
                 li.appendChild(infoDiv);
                 list.appendChild(li);
             });

@@ -5,21 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Soccer Game - Social</title>
     <link rel="stylesheet" href="../css/social.css">
+    <link rel="stylesheet" href="../css/menu.css">
 </head>
 <body>
 
-    <!-- Header -->
     <header class="header">
-        <div class="left"><div class="hamburger">&#9776;</div></div>
-        <div class="center"><h1>⚽ Soccer Game - Social</h1></div>
-    </header>
-
-    <!-- Sidebar -->
-    <div id="mySidebar" class="sidebar">
-        <span class="closebtn">&times;</span>
-        <a href="dashboard.html">Dashboard</a>
-        <a href="social.html">Amis</a>
+    <div class="left">
+      <div class="hamburger">&#9776;</div>
     </div>
+
+    <div class="center">
+      <h1>Amis</h1>
+    </div>
+
+    <div class="right user-info">
+        <a href="parameters.html" class="profil">
+            <img id="user-avatar" src="../images/default-avatar.png" alt="Avatar Joueur" class="avatar">
+            <div class="profile-text">
+            <span id="user-name">Joueur</span>
+            
+            </div>
+        </a>
+        <span id="user-credits">💰 Crédits : 0</span>
+        </div>
+
+  </header>
+
+  <!-- Sidebar -->
+  <div id="mySidebar" class="sidebar">
+    <span class="closebtn">&times;</span>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="achievements.html">Achievements</a>
+    <a href="games.html">Games</a>
+    <a href="equipe.html">Team</a>
+    <a href="skills.html">Skills</a>
+    <a href="contrats_formes.html">Contrats et formes</a>
+    <a href="social.html">Amis</a>
+  </div>
+
 
     <!-- Contenu principal -->
     <main>
@@ -67,5 +90,6 @@
     </main>
 
     <script src="../js/social.js"></script>
+    <script src="../js/menu.js"></script>
 </body>
 </html>
