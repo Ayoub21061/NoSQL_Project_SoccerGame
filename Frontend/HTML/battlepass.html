@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Battle Pass</title>
+    <link rel="stylesheet" href="../css/battlepass.css">
+    <link rel="stylesheet" href="../css/menu.css">
+</head>
+
+<body>
+    <header>
+        <h1>Battle Pass</h1>
+    </header>
+
+     <!-- Sidebar -->
+  <div id="mySidebar" class="sidebar">
+    <span class="closebtn">&times;</span>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="achievements.html">Achievements</a>
+    <a href="games.html">Games</a>
+    <a href="equipe.html">Team</a>
+    <a href="skills.html">Skills</a>
+    <a href="my_packs.html">My Packs</a>
+    <a href="battlepass.html">Battle Pass</a>
+  </div>
+
+    <main>
+        <div id="battlepass-wrapper">
+            <div id="battlepass-progress">
+                <!-- Barre horizontale -->
+            </div>
+        </div>
+
+        <div id="battle-pass-container"></div>
+
+        <!-- Fenêtre d’aperçu (modale) -->
+        <div id="reward-preview" class="hidden">
+            <div class="preview-content">
+                <h2 id="reward-title"></h2>
+                <div id="reward-images"></div>
+                <button id="close-preview">Fermer</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="../js/battlepass.js"></script>
+</body>
+
+</html>
