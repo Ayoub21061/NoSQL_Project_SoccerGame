@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       card.innerHTML = `
         <img src="../images/${game.image.split("/").pop()}" alt="${game.name}" class="game-image" />
+        <h3>${game.name}</h3>
         <p>${game.description || "Aucune description"}</p>
       `;
 

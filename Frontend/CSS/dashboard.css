@@ -1,0 +1,244 @@
+/* ===== Reset ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: #f9f9f9;
+    color: #222;
+}
+
+/* ===== Header ===== */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background: #fff;
+    color: #222;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.header h1 {
+    font-size: 1.8rem;
+    flex: 1;
+    text-align: center;
+}
+.hamburger {
+    font-size: 28px;
+    cursor: pointer;
+}
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.user-info .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background: #2c2c2c;
+    padding-top: 60px;
+    transition: 0.3s;
+    z-index: 1000;
+}
+.sidebar.active {
+    left: 0;
+}
+.sidebar a {
+    display: block;
+    padding: 12px 20px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+.sidebar a:hover {
+    background: #444;
+}
+
+/* ===== Dropdown profil ===== */
+.dropdown {
+    position: relative;
+    cursor: pointer;
+}
+.dropdown .profil {
+    position: relative;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background-color: #333;
+    min-width: 150px;
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 1001;
+}
+.dropdown-content a {
+    display: block;
+    padding: 10px 15px;
+    color: #fff;
+    text-decoration: none;
+}
+.dropdown-content a:hover {
+    background-color: #444;
+}
+
+/* ===== Main ===== */
+main {
+    padding: 20px 50px;
+    flex: 1;
+}
+
+/* Dashboard container */
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Classement full width */
+.full-width {
+    width: 100%;
+}
+
+/* Stats grid inside ranking */
+.stats-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+}
+.stats-card-item {
+    background: #f3f4f6;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
+}
+.stats-card-item:hover {
+    transform: translateY(-2px);
+}
+.stats-card-item h3 {
+    color: #444;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+.stats-card-item p {
+    font-size: 16px;
+    color: #111;
+    font-weight: bold;
+}
+
+/* Cards */
+.card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
+    cursor: default;
+}
+.card:hover {
+    transform: translateY(-3px);
+}
+.card h2 {
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+/* Graphs side by side */
+.dashboard-graphs {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.dashboard-graphs .card {
+    flex: 1;
+    min-width: 300px;
+}
+
+/* Classement interactif */
+.ranking-card {
+    cursor: pointer;
+}
+.ranking-details {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.4s ease, opacity 0.3s ease;
+    margin-top: 10px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    padding: 0 15px;
+}
+.ranking-card.active .ranking-details {
+    max-height: 260px;
+    opacity: 1;
+    padding: 15px;
+}
+.ranking-details ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.ranking-details li {
+    padding: 6px 0;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    color: #444;
+    font-size: 0.95rem;
+}
+.ranking-details li.current-player {
+    background-color: #e3f2fd;
+    border-radius: 6px;
+    font-weight: bold;
+    color: #1a73e8;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+    .dashboard-graphs {
+        flex-direction: column;
+    }
+}
+
+
+.profile-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.profile-link img.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fff; /* optionnel */
+}
+
+.profile-link span {
+    font-weight: 600;
+}

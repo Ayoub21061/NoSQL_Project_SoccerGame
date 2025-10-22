@@ -18,7 +18,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("game-title").textContent = game.name;
 
     // 🖼️ Chemin correct pour l'image
+
+    //document.getElementById("game-image").src = game.image;
+    //document.getElementById("game-image").src = `../images/${game.image.split("/").pop()}`;
     document.getElementById("game-image").src = `../images/${game.image.split("/").pop()}`;
+
+
+    
     document.getElementById("game-image").alt = game.name;
 
     document.getElementById("game-description").textContent = game.description;

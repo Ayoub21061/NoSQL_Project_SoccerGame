@@ -63,3 +63,14 @@ def delete_achievement(achievement_id):
     except Exception as e:
         return jsonify({"error": str(e)}), 400
     
+# User_routes ou Achievements_routes
+@achievements_bp.route("/battlepass", methods=["GET"])
+def get_battle_pass():
+    try:
+        battle_pass_levels = list(db["achievements"].find({"type": "Battle Pass"}))
+        # Sérialisation ObjectId
+        for lvl in battle_pass_levels:
+            lvl["_id"] = str(lvl["_id"])
+        return jsonify(battle_pass_levels), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500

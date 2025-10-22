@@ -12,7 +12,9 @@
     "def": 35,
     "phy": 79,
     "image": "images/cristiano.png",
-    "crédits": 2000000
+    "crédits": 2000000,
+    "country": "Portugal",
+    "club": "Al Nassr"
   },
   {
     "id": "Lionel Messi",
@@ -27,7 +29,9 @@
     "def": 38,
     "phy": 65,
     "image": "images/messi.png",
-    "crédits": 1500000
+    "crédits": 1500000,
+    "country": "Argentina",
+    "club": "Inter Miami"
   },
   {
     "id": "Kylian Mbappé",
@@ -42,7 +46,9 @@
     "def": 34,
     "phy": 80,
     "image": "images/mbappe.png",
-    "crédits": 1000000
+    "crédits": 1000000,
+    "country": "France",
+    "club": "Real Madrid"
   },
   {
     "id": "Kevin De Bruyne",
@@ -57,7 +63,9 @@
     "def": 60,
     "phy": 78,
     "image": "images/de_bruyne.png",
-    "crédits": 500000
+    "crédits": 500000,
+    "country": "Belgium",
+    "club": "Naples"
   },
   {
     "id": "Virgil van Dijk",
@@ -72,7 +80,9 @@
     "def": 91,
     "phy": 86,
     "image": "images/van_dijk.png",
-    "crédits": 800000
+    "crédits": 800000,
+    "country": "Netherlands",
+    "club": "Liverpool"
   },
   {
     "id": "Neymar Jr",
@@ -87,7 +97,9 @@
     "def": 36,
     "phy": 63,
     "image": "images/neymar.png",
-    "crédits": 1400000
+    "crédits": 1400000,
+    "country": "Brazil",
+    "club": "Al Hilal"
   },
   {
     "id": "Mohamed Salah",
@@ -102,7 +114,9 @@
     "def": 32,
     "phy": 75,
     "image": "images/salah.png",
-    "crédits": 475000
+    "crédits": 475000,
+    "country": "Egypt",
+    "club": "Liverpool"
   },
   {
     "id": "Sergio Ramos",
@@ -117,7 +131,9 @@
     "def": 89,
     "phy": 88,
     "image": "images/ramos.png",
-    "crédits": 1200000
+    "crédits": 1200000,
+    "country": "Spain",
+    "club": "Paris Saint-Germain"
   },
   {
     "id": "Luka Modric",
@@ -132,7 +148,9 @@
     "def": 66,
     "phy": 72,
     "image": "images/modric.png",
-    "crédits": 750000
+    "crédits": 750000,
+    "country": "Croatia",
+    "club": "Real Madrid"
   },
   {
     "id": "Robert Lewandowski",
@@ -147,7 +165,9 @@
     "def": 40,
     "phy": 82,
     "image": "images/lewandowski.png",
-    "crédits": 340000
+    "crédits": 340000,
+    "country": "Poland",
+    "club": "FC Barcelona"
   },
   {
     "id": "Karim Benzema",
@@ -162,7 +182,9 @@
     "def": 40,
     "phy": 80,
     "image": "images/benzema.png",
-    "crédits": 670000
+    "crédits": 670000,
+    "country": "France",
+    "club": "Al-Ittihad"
   },
   {
     "id": "Manuel Neuer",
@@ -177,7 +199,9 @@
     "spd": 85,
     "pos": 80,
     "image": "images/neuer.png",
-    "crédits": 100000
+    "crédits": 100000,
+    "country": "Germany",
+    "club": "Bayern Munich"
   },
   {
     "id": "Alisson Becker",
@@ -192,7 +216,9 @@
     "spd": 82,
     "pos": 85,
     "image": "images/alisson.png",
-    "crédits": 80000
+    "crédits": 80000,
+    "country": "Brazil",
+    "club": "Liverpool"
   },
   {
     "id": "Andres Iniesta",
@@ -207,7 +233,9 @@
     "def": 60,
     "phy": 70,
     "image": "images/iniesta.png",
-    "crédits": 940000
+    "crédits": 940000,
+    "country": "Spain",
+    "club": "FC Barcelona"
   },
   {    
     "id": "N'Golo Kanté",
@@ -222,7 +250,9 @@
     "def": 88,
     "phy": 84,
     "image": "images/kante.png",
-    "crédits": 600000
+    "crédits": 600000,
+    "country": "France",
+    "club": "Al-Ittihad"
   },
   {
     "id": "Paul Pogba",
@@ -237,7 +267,9 @@
     "def": 70,
     "phy": 86,
     "image": "images/pogba.png",
-    "crédits": 700000
+    "crédits": 700000,
+    "country": "France",
+    "club": "AS Monaco"
   },
   {
     "id": "Eden Hazard",
@@ -252,7 +284,9 @@
     "def": 35,
     "phy": 73,
     "image": "images/hazard.png",
-    "crédits": 150000
+    "crédits": 150000,
+    "country": "Belgium",
+    "club": "Real Madrid"
   },
   {
     "id": "Sadio Mané",
@@ -267,7 +301,9 @@
     "def": 40,
     "phy": 75,
     "image": "images/mane.png",
-    "crédits": 50000
+    "crédits": 50000,
+    "country": "Senegal",
+    "club": "Al Nassr"
   },
   {
     "id": "Luis Suárez",
@@ -282,7 +318,9 @@
     "def": 45,
     "phy": 84,
     "image": "images/suarez.png",
-    "crédits": 350000
+    "crédits": 350000,
+    "country": "Uruguay",
+    "club": "FC Barcelona"
   },
   {
     "id": "Thiago Silva",
@@ -297,7 +335,9 @@
     "def": 90,
     "phy": 85,
     "image": "images/thiago_silva.png",
-    "crédits": 450000
+    "crédits": 450000,
+    "country": "Brazil",
+    "club": "Chelsea"
   },
   {
     "id": "Lamine Yamal",
@@ -312,7 +352,9 @@
     "def": 30,
     "phy": 70,
     "image": "images/yamal.png",
-    "crédits": 750000
+    "crédits": 750000,
+    "country": "Spain",
+    "club": "FC Barcelona"
   },
   {
     "id": "Jude Bellingham",
@@ -327,7 +369,9 @@
     "def": 75,
     "phy": 80,
     "image": "images/bellingham.png",
-    "crédits": 900000
+    "crédits": 900000,
+    "country": "England",
+    "club": "Real Madrid"
   },
   {
     "id": "Pedri",
@@ -342,7 +386,9 @@
     "def": 60,
     "phy": 65,
     "image": "images/pedri.png",
-    "crédits": 500000
+    "crédits": 500000,
+    "country": "Spain",
+    "club": "FC Barcelona"
   },
   {
     "id": "Vinícius Júnior",
@@ -357,7 +403,9 @@
     "def": 35,
     "phy": 70,
     "image": "images/vinicius.png",
-    "crédits": 500000
+    "crédits": 500000,
+    "country": "Brazil",
+    "club": "Real Madrid"
   },
   {
     "id": "Jamal Musiala",
@@ -372,7 +420,9 @@
     "def": 50,
     "phy": 68,
     "image": "images/musiala.png",
-    "crédits": 200000
+    "crédits": 200000,
+    "country": "Germany",
+    "club": "Bayern Munich"
   },
   {
     "id": "Marcelo",
@@ -387,7 +437,9 @@
     "def": 85,
     "phy": 80,
     "image": "images/marcelo.png",
-    "crédits": 900000
+    "crédits": 900000,
+    "country": "Brazil",
+    "club": "Real Madrid"
   },
   {
     "id": "Trent Alexander-Arnold",
@@ -402,7 +454,9 @@
     "def": 80,
     "phy": 75,
     "image": "images/alexander_arnold.png",
-    "crédits": 70000
+    "crédits": 70000,
+    "country": "England",
+    "club": "Real Madrid"
   },
   {
     "id": "Joshua Kimmich",
@@ -417,7 +471,9 @@
     "def": 82,
     "phy": 80,
     "image": "images/kimmich.png",
-    "crédits": 90000
+    "crédits": 90000,
+    "country": "Germany",
+    "club": "Bayern Munich"
   },
   {
     "id": "Erling Haaland",
@@ -432,7 +488,9 @@
     "def": 40,
     "phy": 88,
     "image": "images/haaland.png",
-    "crédits": 400000
+    "crédits": 400000,
+    "country": "Norway",
+    "club": "Manchester City"
   },
   {
     "id": "Gianluigi Donnarumma",
@@ -447,7 +505,9 @@
     "spd": 80,
     "pos": 83,
     "image": "images/donnarumma.png",
-    "crédits": 60000
+    "crédits": 60000,
+    "country": "Italy",
+    "club": "Paris Saint-Germain"
   },
   {
     "id": "Thibaut Courtois",
@@ -462,7 +522,9 @@
     "spd": 78,
     "pos": 84,
     "image": "images/courtois.png",
-    "crédits": 120000
+    "crédits": 120000,
+    "country": "Belgium",
+    "club": "Real Madrid"
   },
   {
     "id": "Alphonso Davies",
@@ -477,7 +539,9 @@
     "def": 82,
     "phy": 75,
     "image": "images/davies.png",
-    "crédits": 90000
+    "crédits": 90000,
+    "country": "Canada",
+    "club": "Bayern Munich"
   },
   {
     "id": "Dani Alves",
@@ -492,7 +556,9 @@
     "def": 84,
     "phy": 78,
     "image": "images/dani_alves.png",
-    "crédits": 400000
+    "crédits": 400000,
+    "country": "Brazil",
+    "club": "FC Barcelona"
   },
   {
     "id": "Ciro Immobile",
@@ -507,7 +573,9 @@
     "def": 40,
     "phy": 78,
     "image": "images/immobile.png",
-    "crédits": 10000
+    "crédits": 10000,
+    "country": "Italy",
+    "club": "Lazio"
   },
   {
     "id": "Harry Kane",
@@ -522,7 +590,9 @@
     "def": 45,
     "phy": 85,
     "image": "images/kane.png",
-    "crédits": 250000
+    "crédits": 250000,
+    "country": "England",
+    "club": "Bayern Munich"
   },
   {
     "id": "Bruno Fernandes",
@@ -537,7 +607,9 @@
     "def": 65,
     "phy": 75,
     "image": "images/fernandes.png",
-    "crédits": 350000
+    "crédits": 350000,
+    "country": "Portugal",
+    "club": "Manchester United"
   },
   {
     "id": "Bukayo Saka",
@@ -552,7 +624,9 @@
     "def": 50,
     "phy": 70,
     "image": "images/saka.png",
-    "crédits": 90000
+    "crédits": 90000,
+    "country": "England",
+    "club": "Arsenal"
   },
   {
     "id": "Riyad Mahrez",
@@ -567,7 +641,9 @@
     "def": 40,
     "phy": 68,
     "image": "images/mahrez.png",
-    "crédits": 150000
+    "crédits": 150000,
+    "country": "Algeria",
+    "club": "Al Ahli"
   },
   {
     "id": "Raphinha",
@@ -582,7 +658,9 @@
     "def": 45,
     "phy": 72,
     "image": "images/raphinha.png",
-    "crédits": 200000
+    "crédits": 200000,
+    "country": "Brazil",
+    "club": "FC Barcelona"
   },
   {
     "id": "Phil Foden",
@@ -597,7 +675,9 @@
     "def": 60,
     "phy": 70,
     "image": "images/foden.png",
-    "crédits": 95000
+    "crédits": 95000,
+    "country": "England",
+    "club": "Manchester City"
   },
   {
     "id": "Kai Havertz",
@@ -612,7 +692,9 @@
     "def": 65,
     "phy": 74,
     "image": "images/havertz.png",
-    "crédits": 20000
+    "crédits": 20000,
+    "country": "Germany",
+    "club": "Arsenal"
   },
   {
     "id": "Jadon Sancho",
@@ -627,7 +709,9 @@
     "def": 40,
     "phy": 70,
     "image": "images/sancho.png",
-    "crédits": 45000
+    "crédits": 45000,
+    "country": "England",
+    "club": "Manchester United"
   },
   {
     "id": "Casemiro",
@@ -642,7 +726,9 @@
     "def": 88,
     "phy": 86,
     "image": "images/casemiro.png",
-    "crédits": 200000
+    "crédits": 200000,
+    "country": "Brazil",
+    "club": "Manchester United"
   },
   {
     "id": "Frenkie de Jong",
@@ -657,7 +743,9 @@
     "def": 75,
     "phy": 75,
     "image": "images/de_jong.png",
-    "crédits": 350000
+    "crédits": 350000,
+    "country": "Netherlands",
+    "club": "FC Barcelona"
   },
   {
     "id": "Ayoub",
@@ -672,7 +760,9 @@
     "def": 99,
     "phy": 99,
     "image": "images/ayoub.png",
-    "crédits": 15000000
+    "crédits": 15000000,
+    "country": "Morocco",
+    "club": "Real Madrid"
   },
   {
     "id": "Zlatan Ibrahimović",
@@ -687,7 +777,9 @@
     "def": 45,
     "phy": 87,
     "image": "images/ibrahimovic.png",
-    "crédits": 900000
+    "crédits": 900000,
+    "country": "Sweden",
+    "club": "AC Milan"
   },
   {
     "id": "Sergio Agüero",
@@ -702,7 +794,9 @@
     "def": 40,
     "phy": 78,
     "image": "images/aguero.png",
-    "crédits": 700000
+    "crédits": 700000,
+    "country": "Argentina",
+    "club": "FC Barcelona"
   },
   {
     "id": "David Alaba",
@@ -717,7 +811,9 @@
     "def": 85,
     "phy": 80,
     "image": "images/alaba.png",
-    "crédits": 100000
+    "crédits": 100000,
+    "country": "Austria",
+    "club": "Real Madrid"
   },
   {
     "id": "Gerard Piqué",
@@ -732,7 +828,9 @@
     "def": 88,
     "phy": 82,
     "image": "images/pique.png",
-    "crédits": 460000
+    "crédits": 460000,
+    "country": "Spain",
+    "club": "FC Barcelona"
   },
   {
     "id": "Toni Kroos",
@@ -747,7 +845,9 @@
     "def": 70,
     "phy": 72,
     "image": "images/kroos.png",
-    "crédits": 600000
+    "crédits": 600000,
+    "country": "Germany",
+    "club": "Real Madrid"
   }
 
 ]

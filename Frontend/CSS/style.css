@@ -129,12 +129,24 @@ nav a:hover {
   max-width: 500px;
 }
 
-#skills-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  justify-content: center;
-  padding: 20px;
+.back-button-container {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.back-button {
+  display: inline-block;
+  background-color: #f5f5f5;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #ddd;
 }
 
 .skill-card {
@@ -160,112 +172,100 @@ nav a:hover {
   align-items: center;
 }
 
-.skill-image-container img {
-  max-width: 100%;
-  max-height: 100%;
-  border-radius: 8px;
+/* === PAGE DE CONNEXION / INSCRIPTION === */
+
+.container {
+  max-width: 400px;
+  margin: 80px auto;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
 }
 
-/* Nom et style */
-.skill-header {
-  font-size: 1.1rem;
-  font-weight: bold;
-  margin-top: 8px;
+.container h1 {
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+  font-size: 2rem;
 }
 
-.skill-style {
-  font-size: 0.9rem;
-  color: #f5c518;
-  margin-bottom: 8px;
+.container h2 {
+  margin-bottom: 1rem;
+  color: #333;
+  font-size: 1.2rem;
 }
 
-/* Stats */
-.skill-stats {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px 12px;
   margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
 }
 
-.skill-stat {
-  width: 50px;
-  font-size: 0.8rem;
+input[type="text"]:focus,
+input[type="password"]:focus {
+  outline: none;
+  border-color: #2c3e50;
 }
 
-/* Info extra */
-.skill-extra {
-  font-size: 0.8rem;
-  margin-top: 6px;
-  color: #ccc;
-}
-
-/* === Profil utilisateur === */
-#user-profile {
-  margin-top: 2rem;
-  text-align: center;
-}
-
-.profile-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-  margin-top: 1rem;
-}
-
-#user-avatar {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  border: 3px solid gold;
-  object-fit: cover;
-  box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
-}
-
-.profile-info h3 {
-  margin: 0;
-  font-size: 1.6rem;
-  color: #222;
-}
-
-.profile-info p {
-  margin: 4px 0;
-  font-size: 1.1rem;
-}
-
-/* === Tableau de stats === */
-#user-stats {
-  margin-top: 2rem;
-  text-align: center;
-}
-
-#match-stats {
-  margin: 1rem auto;
-  border-collapse: collapse;
-  width: 60%;
-}
-
-#match-stats th, #match-stats td {
-  border: 1px solid #ddd;
-  padding: 10px;
-  font-size: 1.1rem;
-}
-
-#match-stats th {
-  background-color: #0077ff;
+button {
+  width: 100%;
+  background-color: #2c3e50;
   color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s;
 }
 
-#match-stats td {
-  background-color: #f9f9f9;
+button:hover {
+  background-color: #1a242f;
 }
 
-/* === Graphique === */
-#statsChart {
-  margin-top: 1.5rem;
-  max-width: 600px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+p {
+  margin-top: 1rem;
+  color: #555;
 }
+
+p span {
+  color: #2c3e50;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+p span:hover {
+  text-decoration: underline;
+}
+
+/* Animation d’apparition douce */
+#login-form, #register-form {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Adaptation mobile */
+@media (max-width: 480px) {
+  .container {
+    width: 90%;
+    padding: 1.5rem;
+  }
+
+  .container h1 {
+    font-size: 1.5rem;
+  }
+}
+
 

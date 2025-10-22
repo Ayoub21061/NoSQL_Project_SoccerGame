@@ -1,0 +1,224 @@
+/* === RESET & BASE === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  background-color: #1b1b1b;
+  color: #f0f0f0;
+  min-height: 100vh;
+}
+
+/* === HEADER === */
+header {
+  background-color: #111;
+  padding: 20px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2rem;
+  color: #f9f9f9;
+}
+
+nav ul {
+  list-style: none;
+  margin-top: 10px;
+}
+
+nav ul li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+nav ul li a {
+  color: #00bfff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+/* === LAYOUT PRINCIPAL === */
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  padding: 20px;
+}
+
+/* === JOUEURS ACHETÉS === */
+#players-list {
+  width: 100%;
+  background-color: #222;
+  padding: 15px;
+  border-radius: 10px;
+  overflow-x: auto;
+}
+
+#players-list h2 {
+  text-align: center;
+  margin-bottom: 10px;
+  color: #00bfff;
+}
+
+.player-cards-container {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 10px 0;
+}
+
+.player-cards-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.player-cards-container::-webkit-scrollbar-thumb {
+  background-color: #555;
+  border-radius: 4px;
+}
+
+.player-cards-container::-webkit-scrollbar-track {
+  background-color: #222;
+}
+
+.skill-card {
+  background-color: #333;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  cursor: grab;
+  min-width: 80px;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.skill-card:hover {
+  background-color: #444;
+  transform: translateY(-2px);
+}
+
+.skill-card img.player-mini {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-bottom: 5px;
+  border: 2px solid #00bfff;
+}
+
+/* === FORMATION === */
+#team-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+#formation {
+  padding: 8px 12px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: none;
+  background-color: #333;
+  color: #fff;
+}
+
+/* === TERRAIN === */
+#team-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  position: relative;
+  width: 90%;
+  max-width: 900px;
+}
+
+/* === LIGNES DE JOUEURS === */
+.team-line {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  gap: 30px;
+}
+
+/* === SLOT DE JOUEUR === */
+.team-slot {
+  width: 90px;
+  height: 90px;
+  background-color: #2a2a2a;
+  border: 2px dashed #555;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.team-slot:hover {
+  border-color: #00bfff;
+  transform: scale(1.05);
+}
+
+.position-label {
+  position: absolute;
+  top: -22px;
+  font-size: 0.8rem;
+  color: #00bfff;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+}
+
+.team-player {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px solid #00bfff;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  z-index: 2;
+}
+
+.team-player:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px #00bfff;
+}
+
+/* === LIENS ENTRE JOUEURS === */
+.link-line {
+  position: absolute;
+  height: 6px;
+  border-radius: 3px;
+  z-index: 1;
+  transform-origin: left center;
+  transition: background-color 0.3s ease;
+  opacity: 0.9;
+}
+
+/* Couleurs de liens */
+.link-line.red {
+  background-color: red;
+}
+
+.link-line.orange {
+  background-color: orange;
+}
+
+.link-line.green {
+  background-color: limegreen;
+}
+
+/* === COLLECTIF === */
+#team-chemistry {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #00bfff;
+  text-align: center;
+  margin-top: 10px;
+}

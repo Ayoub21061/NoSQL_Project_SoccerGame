@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Mes Packs</title>
+  <link rel="stylesheet" href="../css/my_packs.css">
+  <link rel="stylesheet" href="../css/menu.css">
+</head>
+
+<body>
+  <header>
+    <h1>🎁 Mes Packs</h1>
+  </header>
+
+  <!-- Sidebar -->
+  <div id="mySidebar" class="sidebar">
+    <span class="closebtn">&times;</span>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="achievements.html">Achievements</a>
+    <a href="games.html">Games</a>
+    <a href="equipe.html">Team</a>
+    <a href="skills.html">Skills</a>
+    <a href="my_packs.html">My Packs</a>
+    <a href="battlepass.html">Battle Pass</a>
+  </div>
+
+  <main id="packs-container">
+    <p>Chargement...</p>
+  </main>
+
+  <!-- Overlay pour ouverture de pack -->
+  <div id="pack-overlay" class="hidden">
+    <div class="pack-container">
+      <div class="pack-card-animation">
+        <p id="pack-text">Ouverture du pack...</p>
+        <div class="cards"></div>
+      </div>
+      <button id="close-pack-btn" class="hidden">Fermer</button>
+    </div>
+  </div>
+
+  <script src="../js/my_packs.js"></script>
+</body>
+
+</html>

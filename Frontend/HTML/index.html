@@ -1,50 +1,34 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard - Soccer Game</title>
-  <link rel="stylesheet" href="../css/style.css" />
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <style>
-    body { font-family: Arial, sans-serif; background:#1b1b1b; color:#fff; margin:0; padding:20px; }
-    header { display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; flex-wrap:wrap; }
-    nav ul { display:flex; gap:15px; list-style:none; padding:0; margin:0; }
-    nav ul li a { color:#00bfff; text-decoration:none; font-weight:bold; }
-    nav ul li a:hover { text-decoration:underline; }
-    #user-info { display:flex; align-items:center; gap:10px; margin-top:10px; }
-    #user-avatar { width:50px; height:50px; border-radius:50%; object-fit:cover; }
-    main { background:#222; padding:20px; border-radius:10px; max-width:600px; margin:auto; }
-    p { margin:5px 0; }
-    canvas { margin-top:20px; background:#111; border-radius:10px; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soccer Game - Connexion</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-  <header>
-    <h1>⚽ Soccer Game Dashboard</h1>
-    <nav>
-      <ul>
-        <li><a href="achievements.html">Achievements</a></li>
-        <li><a href="games.html">Modes de Jeu</a></li>
-        <li><a href="skills.html">Marché des joueurs</a></li>
-        <li><a href="equipe.html">Mon Équipe</a></li>
-      </ul>
-    </nav>
-    <div id="user-info">
-      <img id="user-avatar" src="" alt="Avatar">
-      <span id="user-name"></span> | <span id="user-credits"></span>
+    <div class="container">
+        <h1>Soccer Game</h1>
+
+        <div id="login-form">
+            <h2>Connexion</h2>
+            <input type="text" id="login-username" placeholder="Nom d'utilisateur">
+            <input type="password" id="login-password" placeholder="Mot de passe">
+            <button onclick="login()">Se connecter</button>
+            <p>Pas encore de compte ? <span onclick="showRegister()">Créer un compte</span></p>
+        </div>
+
+        <div id="register-form" style="display:none;">
+            <h2>Créer un compte</h2>
+            <input type="text" id="register-username" placeholder="Nom d'utilisateur">
+            <input type="text" id="register-email" placeholder="Adresse email">
+            <input type="password" id="register-password" placeholder="Mot de passe">
+            <input type="password" id="register-password-confirm" placeholder="Confirmer le mot de passe">
+            <button onclick="register()">Créer</button>
+            <p>Déjà un compte ? <span onclick="showLogin()">Se connecter</span></p>
+        </div>
     </div>
-  </header>
 
-  <main>
-    <h2>Statistiques</h2>
-    <p>Victoires : <span id="wins">0</span></p>
-    <p>Défaites : <span id="losses">0</span></p>
-    <p>Nuls : <span id="draws">0</span></p>
-
-    <canvas id="statsChart" width="400" height="200"></canvas>
-  </main>
-
-  <script src="../js/index.js"></script>
+    <script src="../js/main.js"></script>
 </body>
 </html>
