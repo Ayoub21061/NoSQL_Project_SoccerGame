@@ -1,16 +1,23 @@
 document.addEventListener("DOMContentLoaded", async () => {
   try {
-    const username = localStorage.getItem("username");
-    if (!username) throw new Error("Utilisateur non connecté.");
+    // --- Récupérer le joueur depuis localStorage ---
+    const player = JSON.parse(localStorage.getItem("player"));
+    if (!player) throw new Error("Utilisateur non connecté.");
 
-    // --- Charger l'utilisateur et les joueurs achetés ---
-    const userRes = await fetch(`http://127.0.0.1:5001/users/${username}`);
+    const username = player.username;
+    let currentCredits = player.credits ?? 0;
+
+    // --- Charger les joueurs achetés ---
+    const userRes = await fetch(`http://127.0.0.1:5001/players/${username}`);
     const userData = await userRes.json();
-    let currentCredits = userData.credits ?? 0;
     const playerIds = userData.players_owned ?? [];
 
-    const creditsSpan = document.getElementById("credits");
-    if (creditsSpan) creditsSpan.textContent = currentCredits;
+    //const creditsSpan = document.getElementById("credits");
+    const creditsSpan = document.getElementById("user-credits");
+
+    //if (creditsSpan) creditsSpan.textContent = currentCredits;
+    if (creditsSpan) creditsSpan.textContent = `💰 Crédits : ${currentCredits}`;
+
 
     // --- Charger tous les skills ---
     const skillsRes = await fetch("http://127.0.0.1:5001/skills");
@@ -19,7 +26,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     container.innerHTML = "";
 
     let myTeam = skills
-      .filter(skill => playerIds.includes(skill.id))
+      .filter(skill => playerIds.includes(skill.id)) // Vérifier si déjà possédé
       .map(skill => ({
         player_id: skill.id,
         id: skill.id,
@@ -50,14 +57,17 @@ document.addEventListener("DOMContentLoaded", async () => {
            <div class="skill-stat"><strong>${skill.def ?? "-"}</strong><br>DEF</div>
            <div class="skill-stat"><strong>${skill.phy ?? "-"}</strong><br>PHY</div>`;
 
-      const imageSrc = `../images/${skill.image.split("/").pop()}`;
+      const imageSrc = skill.image
+        ? `../images/${skill.image.split("/").pop()}`
+        : "../images/default.png";
+
       const playerCredits = skill.crédits ?? 0;
 
       card.innerHTML = `
         <div class="skill-image-container">
           <img src="${imageSrc}" alt="${skill.id}" class="skill-image" />
         </div>
-        <div class="skill-header">${skill.id}</div>
+        <div class="skill-header">${skill.name ?? skill.id}</div>
         <div class="skill-style">${skill.style}</div>
         <div class="skill-stats">${statsHTML}</div>
         <div class="skill-extra">✨ Tech: ${skill.technical_moves ?? "-"} | 🦶 WF: ${skill.weak_foot ?? "-"}</div>
@@ -72,17 +82,23 @@ document.addEventListener("DOMContentLoaded", async () => {
       buyButton.addEventListener("click", async () => {
         if (currentCredits < playerCredits) return alert("Crédits insuffisants !");
         try {
-          const res = await fetch(`http://127.0.0.1:5001/users/${username}/buy_player`, {
+          const res = await fetch(`http://127.0.0.1:5001/users/players/${username}/buy_player`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ player_id: skill.id, cost: playerCredits })
           });
+
           const data = await res.json();
+          console.log("Réponse brute du serveur :", res);
+    console.log("Données reçues :", data);
+
           if (!res.ok) throw new Error(data.error || "Erreur achat");
 
           // --- MAJ frontend ---
           currentCredits = data.credits;
-          creditsSpan.textContent = currentCredits;
+          //creditsSpan.textContent = currentCredits;
+          if (creditsSpan) creditsSpan.textContent = `💰 Crédits : ${currentCredits}`;
+
 
           const newPlayer = {
             player_id: skill.id,
@@ -94,9 +110,13 @@ document.addEventListener("DOMContentLoaded", async () => {
           myTeam.push(newPlayer);
           localStorage.setItem("myTeam", JSON.stringify(myTeam));
 
+          // Mettre à jour le localStorage player aussi
+          player.credits = currentCredits;
+          localStorage.setItem("player", JSON.stringify(player));
+
           buyButton.textContent = "Déjà acheté";
           buyButton.disabled = true;
-          alert(`${skill.id} acheté !`);
+          alert(`${skill.name ?? skill.id} acheté !`);
         } catch (err) {
           console.error("Erreur achat joueur :", err);
           alert("Erreur serveur, veuillez réessayer.");
