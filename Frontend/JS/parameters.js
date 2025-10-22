@@ -1,133 +1,128 @@
 const API_URL = "http://localhost:5001/players";
 
 document.addEventListener("DOMContentLoaded", async () => {
-  const player = JSON.parse(localStorage.getItem("player"));
-  if (!player || !player.id) {
+  // Récupérer le joueur connecté depuis le localStorage
+  const username = localStorage.getItem("username");
+  if (!username) {
     alert("Aucun joueur connecté !");
     window.location.href = "index.html";
     return;
   }
 
-  // --- Charger les infos réelles depuis la DB ---
   try {
-    const res = await fetch(`${API_URL}/${player.id}`);
-    const data = await res.json();
+    // --- Charger les infos réelles depuis la DB via le username ---
+    const res = await fetch(`${API_URL}/username/${username}`);
+    const playerData = await res.json();
 
-    if (!res.ok) throw new Error(data.error || "Erreur de chargement des données joueur.");
+    if (!res.ok) throw new Error(playerData.error || "Erreur de chargement des données joueur.");
 
-    document.getElementById("username").value = data.username || "";
-    document.getElementById("user-email").textContent = data.mail || "";
-    document.getElementById("creation-date").textContent = data.account_creation_date || "non précisée";
-    if (data.avatar) {
-      document.getElementById("avatar-preview").src = `../images/${data.avatar}`;
+    // --- Remplir le formulaire avec les infos ---
+    document.getElementById("username").value = playerData.username || "";
+    document.getElementById("user-email").textContent = playerData.email || "non défini";
+    document.getElementById("creation-date").textContent = playerData.creation_date || "non précisée";
+    if (playerData.avatar) {
+      document.getElementById("avatar-preview").src = `../images/${playerData.avatar}`;
     }
-  } catch (err) {
-    console.error(err);
-    alert("Impossible de charger les informations du joueur depuis la base de données.");
-  }
 
-  // --- Upload / changement d’avatar ---
-  document.getElementById("avatar-upload").addEventListener("change", async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
+    // --- Upload / changement d’avatar ---
+    document.getElementById("avatar-upload").addEventListener("change", async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
 
-    const reader = new FileReader();
-    reader.onload = async () => {
-      const avatarData = reader.result; // image en base64
+      const reader = new FileReader();
+      reader.onload = async () => {
+        const avatarData = reader.result;
+
+        try {
+          const response = await fetch(`${API_URL}/${playerData._id}/avatar`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ avatar: avatarData }),
+          });
+
+          const result = await response.json();
+          if (!response.ok) throw new Error(result.error);
+
+          document.getElementById("avatar-preview").src = avatarData;
+          alert("✅ Avatar mis à jour !");
+        } catch (err) {
+          alert("Erreur lors de la mise à jour de l’avatar.");
+          console.error(err);
+        }
+      };
+      reader.readAsDataURL(file);
+    });
+
+    // --- Mise à jour du pseudo ---
+    document.getElementById("save-profile").addEventListener("click", async () => {
+      const newUsername = document.getElementById("username").value.trim();
+      if (!newUsername) return alert("Le pseudo ne peut pas être vide.");
 
       try {
-        const response = await fetch(`${API_URL}/${player.id}/avatar`, {
+        const response = await fetch(`${API_URL}/${playerData._id}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ avatar: avatarData }),
+          body: JSON.stringify({ username: newUsername }),
         });
 
         const result = await response.json();
         if (!response.ok) throw new Error(result.error);
 
-        document.getElementById("avatar-preview").src = avatarData;
-
         // Mise à jour du localStorage
-        player.avatar = avatarData;
-        localStorage.setItem("player", JSON.stringify(player));
-
-        alert("✅ Avatar mis à jour !");
+        localStorage.setItem("username", newUsername);
+        alert("✅ Pseudo mis à jour !");
       } catch (err) {
-        alert("Erreur lors de la mise à jour de l’avatar.");
+        alert("Erreur lors de la mise à jour du pseudo.");
         console.error(err);
       }
-    };
-    reader.readAsDataURL(file);
-  });
+    });
 
-  // --- Mise à jour du pseudo ---
-  document.getElementById("save-profile").addEventListener("click", async () => {
-    const newUsername = document.getElementById("username").value.trim();
-    if (!newUsername) return alert("Le pseudo ne peut pas être vide.");
+    // --- Mise à jour du mot de passe ---
+    document.getElementById("update-password").addEventListener("click", async () => {
+      const oldPwd = document.getElementById("old-password").value.trim();
+      const newPwd = document.getElementById("new-password").value.trim();
 
-    try {
-      const response = await fetch(`${API_URL}/${player.id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username: newUsername }),
-      });
+      if (!oldPwd || !newPwd) return alert("Veuillez remplir tous les champs !");
+      if (oldPwd === newPwd) return alert("Le nouveau mot de passe doit être différent de l'ancien.");
 
-      const result = await response.json();
-      if (!response.ok) throw new Error(result.error);
+      try {
+        const response = await fetch(`${API_URL}/${playerData._id}/password`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ oldPassword: oldPwd, newPassword: newPwd }),
+        });
 
-      // On met à jour le localStorage pour garder la session cohérente
-      player.username = newUsername;
-      localStorage.setItem("player", JSON.stringify(player));
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error);
 
-      alert("✅ Pseudo mis à jour !");
-    } catch (err) {
-      alert("Erreur lors de la mise à jour du pseudo.");
-      console.error(err);
-    }
-  });
+        alert("🔒 Mot de passe mis à jour avec succès !");
+      } catch (err) {
+        alert("Erreur lors de la mise à jour du mot de passe.");
+        console.error(err);
+      }
+    });
 
-  // --- Mise à jour du mot de passe ---
-  document.getElementById("update-password").addEventListener("click", async () => {
-    const oldPwd = document.getElementById("old-password").value.trim();
-    const newPwd = document.getElementById("new-password").value.trim();
+    // --- Suppression du compte ---
+    document.getElementById("delete-account").addEventListener("click", async () => {
+      const confirmDelete = confirm("⚠️ Voulez-vous vraiment supprimer votre compte ?");
+      if (!confirmDelete) return;
 
-    if (!oldPwd || !newPwd) return alert("Veuillez remplir tous les champs !");
-    if (oldPwd === newPwd) return alert("Le nouveau mot de passe doit être différent de l'ancien.");
+      try {
+        const response = await fetch(`${API_URL}/${playerData._id}`, { method: "DELETE" });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error);
 
-    try {
-      const response = await fetch(`${API_URL}/${player.id}/password`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ oldPassword: oldPwd, newPassword: newPwd }),
-      });
+        localStorage.removeItem("username");
+        alert("🗑️ Compte supprimé avec succès !");
+        window.location.href = "index.html";
+      } catch (err) {
+        alert("Erreur lors de la suppression du compte.");
+        console.error(err);
+      }
+    });
 
-      const result = await response.json();
-      if (!response.ok) throw new Error(result.error);
-
-      alert("🔒 Mot de passe mis à jour avec succès !");
-    } catch (err) {
-      alert("Erreur lors de la mise à jour du mot de passe.");
-      console.error(err);
-    }
-  });
-
-  // --- Suppression du compte ---
-  document.getElementById("delete-account").addEventListener("click", async () => {
-    const confirmDelete = confirm("⚠️ Voulez-vous vraiment supprimer votre compte ?");
-    if (!confirmDelete) return;
-
-    try {
-      const response = await fetch(`${API_URL}/${player.id}`, { method: "DELETE" });
-      const result = await response.json();
-
-      if (!response.ok) throw new Error(result.error);
-
-      localStorage.removeItem("player");
-      alert("🗑️ Compte supprimé avec succès !");
-      window.location.href = "index.html";
-    } catch (err) {
-      alert("Erreur lors de la suppression du compte.");
-      console.error(err);
-    }
-  });
+  } catch (err) {
+    console.error(err);
+    alert("Impossible de charger les informations du joueur depuis la base de données.");
+  }
 });
