@@ -11,6 +11,43 @@
         "assists": 14,
         "saves": 8,
         "credits": 15000000,
-        "players_owned": []
+        "current_xp": 1200,
+        "players_owned": [],
+        "packs_owned": [],
+        "claimed_rewards": []
+    },
+    {
+        "username": "ibtihal",
+        "password": "test",
+        "avatar": "ibtihal.png",
+        "creation_date": "2025-10-11T10:00:00Z",
+        "matches_won": 76,
+        "matches_lost": 15,
+        "matches_drawn": 23,
+        "goals": 128,
+        "assists": 104,
+        "saves": 68,
+        "credits": 15000000,
+        "current_xp": 500,
+        "players_owned": [],
+        "packs_owned": [],
+        "claimed_rewards": []
+    },
+    {
+        "username": "test",
+        "password": "test",
+        "avatar": "test.png",
+        "creation_date": "2025-10-11T10:00:00Z",
+        "matches_won": 23,
+        "matches_lost": 51,
+        "matches_drawn": 7,
+        "goals": 200,
+        "assists": 20,
+        "saves": 9,
+        "credits": 10000000,
+        "current_xp": 4000,
+        "players_owned": [],
+        "packs_owned": [],
+        "claimed_rewards": []
     }
 ]
