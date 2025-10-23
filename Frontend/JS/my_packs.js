@@ -89,37 +89,72 @@ async function openPack(packName) {
 
         const playerName = player.id || "Joueur inconnu";
         const playerStyle = player.style || "Classique";
-        const playerImage = player.image?.startsWith("images/") ? `../${player.image}` : `../images/${player.image || "default-player.png"}`;
-        const playerPAC = player.pac ?? 0;
-        const playerSHO = player.sho ?? 0;
-        const playerPAS = player.pas ?? 0;
-        const playerDRI = player.dri ?? 0;
-        const playerDEF = player.def ?? 0;
-        const playerPHY = player.phy ?? 0;
+        const playerImage = player.image?.startsWith("images/")
+          ? `../${player.image}`
+          : `../images/${player.image || "default-player.png"}`;
 
+        // --- Détection si le joueur est un gardien ---
+        const isGoalkeeper = playerStyle.toLowerCase() === "gardien";
+
+        // --- Bloc d’affichage des stats ---
+        let statsHTML = "";
+        if (isGoalkeeper) {
+          // 🔹 Stats spécifiques aux gardiens
+          const DIV = player.div ?? 0;
+          const HAN = player.han ?? 0;
+          const KIC = player.kic ?? 0;
+          const REF = player.ref ?? 0;
+          const SPE = player.spd ?? 0;
+          const POS = player.pos ?? 0;
+
+          statsHTML = `
+      <div class="skill-stats">
+        <div class="skill-stat">🧤 ${DIV} DIV</div>
+        <div class="skill-stat">🤲 ${HAN} HAN</div>
+        <div class="skill-stat">🚀 ${KIC} KIC</div>
+        <div class="skill-stat">⚡ ${REF} REF</div>
+        <div class="skill-stat">🏃 ${SPE} SPE</div>
+        <div class="skill-stat">🎯 ${POS} POS</div>
+      </div>
+    `;
+        } else {
+          // 🔹 Stats classiques pour les joueurs de champ
+          const PAC = player.pac ?? 0;
+          const SHO = player.sho ?? 0;
+          const PAS = player.pas ?? 0;
+          const DRI = player.dri ?? 0;
+          const DEF = player.def ?? 0;
+          const PHY = player.phy ?? 0;
+
+          statsHTML = `
+      <div class="skill-stats">
+        <div class="skill-stat">⚡ ${PAC}</div>
+        <div class="skill-stat">🎯 ${SHO}</div>
+        <div class="skill-stat">🎩 ${PAS}</div>
+        <div class="skill-stat">🌀 ${DRI}</div>
+        <div class="skill-stat">🛡️ ${DEF}</div>
+        <div class="skill-stat">💪 ${PHY}</div>
+      </div>
+    `;
+        }
+
+        // --- Structure finale de la carte ---
         card.innerHTML = `
-          <div class="skill-image-container">
-            <img src="${playerImage}" alt="${playerName}">
-          </div>
-          <div class="skill-header">${playerName}</div>
-          <div class="skill-style">${playerStyle}</div>
-          <div class="skill-stats">
-            <div class="skill-stat">⚡ ${playerPAC}</div>
-            <div class="skill-stat">🎯 ${playerSHO}</div>
-            <div class="skill-stat">🎩 ${playerPAS}</div>
-            <div class="skill-stat">🌀 ${playerDRI}</div>
-            <div class="skill-stat">🛡️ ${playerDEF}</div>
-            <div class="skill-stat">💪 ${playerPHY}</div>
-          </div>
-        `;
+    <div class="skill-image-container">
+      <img src="${playerImage}" alt="${playerName}">
+    </div>
+    <div class="skill-header">${playerName}</div>
+    <div class="skill-style">${playerStyle}</div>
+    ${statsHTML}
+  `;
 
-        // --- Animation ---
+        // --- Animation d’apparition ---
         setTimeout(() => {
           cardsContainer.appendChild(card);
           setTimeout(() => card.classList.add("show"), 100);
         }, index * 700);
 
-        // --- Ajout automatique du joueur dans la liste players_owned ---
+        // --- Ajout automatique du joueur dans la collection ---
         try {
           const res = await fetch(`http://127.0.0.1:5001/users/${username}/add_player`, {
             method: "POST",
@@ -132,6 +167,7 @@ async function openPack(packName) {
           console.error("❌ Erreur ajout joueur :", err);
         }
       });
+
     }, 2000);
   } catch (err) {
     console.error(err);
