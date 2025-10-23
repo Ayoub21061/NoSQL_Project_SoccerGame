@@ -2,7 +2,7 @@
   {
     "username": "Ayoub",
     "password": "mdp123",
-    "avatar": null,
+    "avatar": "cristiano.png",
     "account_creation_date": "2025-10-12",
     "matches_won": 12,
     "matches_lost": 5,
@@ -25,7 +25,7 @@
   {
     "username": "Test_stats",
     "password": "test",
-    "avatar": null,
+    "avatar": "casemiro.png",
     "account_creation_date": "2025-10-14",
     "matches_won": 150,
     "matches_lost": 20,
@@ -48,7 +48,7 @@
   {
     "username": "ShadowStrike",
     "password": "shadow123",
-    "avatar": null,
+    "avatar": "yamal.png",
     "account_creation_date": "2025-10-13",
     "matches_won": 19,
     "matches_lost": 4,
@@ -71,7 +71,7 @@
   {
     "username": "CrimsonWolf",
     "password": "wolf123",
-    "avatar": null,
+    "avatar": "suarez.png",
     "account_creation_date": "2025-10-10",
     "matches_won": 16,
     "matches_lost": 5,
@@ -94,7 +94,7 @@
   {
     "username": "NovaPulse",
     "password": "nova123",
-    "avatar": null,
+    "avatar": "messi.png",
     "account_creation_date": "2025-10-09",
     "matches_won": 10,
     "matches_lost": 7,
@@ -117,7 +117,7 @@
   {
     "username": "IronBlaze",
     "password": "iron123",
-    "avatar": null,
+    "avatar": "neymar.png",
     "account_creation_date": "2025-10-06",
     "matches_won": 8,
     "matches_lost": 9,
