@@ -221,4 +221,37 @@ def add_player_to_user(username):
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+@user_bp.route("/<username>/remove_pack", methods=["POST"])
+def remove_pack(username):
+    try:
+        data = request.get_json()
+        pack_name = data.get("pack_name")
+
+        if not pack_name:
+            return jsonify({"error": "pack_name manquant"}), 400
+
+        user = users_collection.find_one({"username": username})
+        if not user:
+            return jsonify({"error": "Utilisateur non trouvé"}), 404
+
+        packs = user.get("packs_owned", [])
+        if pack_name not in packs:
+            return jsonify({"error": "Ce pack n'est pas dans la liste de l'utilisateur"}), 400
+
+        packs.remove(pack_name)
+
+        users_collection.update_one(
+            {"username": username},
+            {"$set": {"packs_owned": packs}}
+        )
+
+        return jsonify({
+            "message": f"Pack '{pack_name}' supprimé avec succès.",
+            "remaining_packs": packs
+        }), 200
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
 

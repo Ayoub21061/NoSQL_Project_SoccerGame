@@ -168,6 +168,26 @@ async function openPack(packName) {
         }
       });
 
+      // 🟢 Après avoir affiché tous les joueurs, supprimer le pack ouvert
+      setTimeout(async () => {
+        try {
+          const removeRes = await fetch(`http://127.0.0.1:5001/users/${username}/remove_pack`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ pack_name: packName })
+          });
+
+          const removeData = await removeRes.json();
+          if (removeRes.ok) {
+            console.log(`🗑️ Pack "${packName}" supprimé avec succès.`);
+          } else {
+            console.warn("⚠️ Erreur suppression pack :", removeData.error);
+          }
+        } catch (err) {
+          console.error("Erreur lors de la suppression du pack :", err);
+        }
+      }, selectedPlayers.length * 800 + 1000); // délai pour laisser le temps d'afficher les joueurs
+      
     }, 2000);
   } catch (err) {
     console.error(err);
