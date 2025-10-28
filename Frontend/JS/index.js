@@ -55,4 +55,5 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Ici, on peut juste afficher 0 crédits sans alerter
     creditsElement.textContent = `💰 Crédits : 0`;
   }
+  
 });
