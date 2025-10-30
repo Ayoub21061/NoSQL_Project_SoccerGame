@@ -152,4 +152,5 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error(err);
     alert("Erreur serveur, veuillez réessayer plus tard.");
   }
+  
 });
