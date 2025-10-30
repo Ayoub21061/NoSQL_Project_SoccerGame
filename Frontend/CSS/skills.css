@@ -105,3 +105,80 @@ footer a {
 footer a:hover {
   text-decoration: underline;
 }
+
+.search-bar {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+#search-input {
+  width: 60%;
+  max-width: 400px;
+  padding: 10px 15px;
+  border: 2px solid #ccc;
+  border-radius: 25px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+#search-input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 6px rgba(0, 123, 255, 0.4);
+}
+
+/* --- Barre de filtre (recherche + tri) --- */
+.filters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 20px;
+  margin: 20px auto;
+  background: #1f1f1f;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  max-width: 700px;
+}
+
+.filters input[type="text"],
+.filters select {
+  padding: 10px 14px;
+  border: 1px solid #444;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #2a2a2a;
+  color: #fff;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.filters input[type="text"]:focus,
+.filters select:focus {
+  border-color: #00b4d8;
+  box-shadow: 0 0 5px #00b4d8;
+}
+
+.filters input[type="text"]::placeholder {
+  color: #aaa;
+}
+
+.filters select {
+  cursor: pointer;
+}
+
+/* --- Responsive --- */
+@media (max-width: 600px) {
+  .filters {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .filters input,
+  .filters select {
+    width: 100%;
+  }
+}
+

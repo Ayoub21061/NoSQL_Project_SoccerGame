@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,6 +8,7 @@
   <link rel="stylesheet" href="../css/skills.css" />
   <link rel="stylesheet" href="../css/menu.css" />
 </head>
+
 <body>
   <header class="header">
     <div class="left">
@@ -18,15 +20,15 @@
     </div>
 
     <div class="right user-info">
-        <a href="parameters.html" class="profil">
-            <img id="user-avatar" src="../images/default-avatar.png" alt="Avatar Joueur" class="avatar">
-            <div class="profile-text">
-            <span id="user-name">Joueur</span>
-            
-            </div>
-        </a>
-        <span id="user-credits">💰 Crédits : 0</span>
+      <a href="parameters.html" class="profil">
+        <img id="user-avatar" src="../images/default-avatar.png" alt="Avatar Joueur" class="avatar">
+        <div class="profile-text">
+          <span id="user-name">Joueur</span>
+
         </div>
+      </a>
+      <span id="user-credits">💰 Crédits : 0</span>
+    </div>
 
   </header>
 
@@ -45,6 +47,19 @@
   </div>
 
   <main>
+    <div class="search-bar">
+      <input type="text" id="search-input" placeholder="🔍 Rechercher un joueur..." />
+    </div>
+
+    <div class="filters">
+      <select id="sort-select">
+        <option value="default">-- Trier par --</option>
+        <option value="alphabetical">Ordre alphabétique (A → Z)</option>
+        <option value="price-asc">Prix croissant 💰</option>
+        <option value="price-desc">Prix décroissant 💰</option>
+      </select>
+    </div>
+
     <div id="skills-container"></div>
   </main>
 
@@ -55,4 +70,5 @@
   <script src="../js/skills.js"></script>
   <script src="../js/menu.js"></script>
 </body>
+
 </html>
