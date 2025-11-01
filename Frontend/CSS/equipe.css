@@ -94,7 +94,7 @@ main {
   border-radius: 8px;
   text-align: center;
   cursor: grab;
-  min-width: 80px;
+  min-width: 120px;
   transition: transform 0.2s, background-color 0.2s;
 }
 
@@ -318,3 +318,72 @@ main {
   from { opacity: 0; transform: scale(0.95); }
   to { opacity: 1; transform: scale(1); }
 }
+
+.player-name {
+  font-weight: bold;
+  color: #00bfff;
+  margin-top: 5px;
+}
+
+.player-info {
+  margin-top: 5px;
+  font-size: 0.8rem;
+  color: #ddd;
+  text-align: left;
+  line-height: 1.2;
+}
+
+.player-info p {
+  margin: 2px 0;
+}
+
+.player-info span {
+  color: #00bfff;
+  font-weight: bold;
+}
+
+.player-detail-popup {
+  background: #222;
+  color: #f0f0f0;
+  border: 2px solid #00bfff;
+  width: 350px;
+  text-align: center;
+}
+
+.player-detail-popup h3 {
+  color: #00bfff;
+  margin-bottom: 10px;
+}
+
+.player-detail-popup .skill-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid #00bfff;
+  margin-bottom: 10px;
+}
+
+.player-detail-popup .skill-stats {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.player-detail-popup .skill-stat {
+  background: #333;
+  border-radius: 6px;
+  padding: 6px;
+  width: 60px;
+  font-size: 0.8rem;
+}
+
+.player-detail-popup .skill-meta {
+  background: #333;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 0.85rem;
+}
+

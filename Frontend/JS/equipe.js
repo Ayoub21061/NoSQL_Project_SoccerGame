@@ -90,7 +90,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       card.innerHTML = `
         <img src="../images/${player.image.split("/").pop()}" alt="${player.id}" class="player-mini" />
-        <div>${player.id}</div>
+        <div class="player-name">${player.id}</div>
+        <div class="player-info">
+          <p>Contracts : <span>${player.contracts ?? 0}</span></p>
+          <p>Energy : <span>${player.energy ?? 100}</span></p>
+        </div>
       `;
 
       card.addEventListener("dragstart", e => {
@@ -98,9 +102,15 @@ document.addEventListener("DOMContentLoaded", async () => {
         e.dataTransfer.setData("from-list", "true");
       });
 
+      card.addEventListener("click", async () => {
+        // on ouvre le détail en chargeant d'abord les données complètes depuis la DB
+        await showPlayerDetails(player);
+      });
+
       cardsContainer.appendChild(card);
     });
   }
+
 
   // --- Affichage de la formation ---
   function renderTeam(formation) {
@@ -326,6 +336,78 @@ function createPopup(item) {
       console.error(err);
       alert("Erreur lors de l’application du bonus");
     }
+  });
+}
+
+async function showPlayerDetails(player) {
+  // essayer de récupérer la version complète côté serveur via skills/<_id>
+  let fullPlayer = null;
+  try {
+    // player._id doit exister dans myTeam (tel que tu l'as construit)
+    if (player._id) {
+      const res = await fetch(`http://127.0.0.1:5001/skills/${player._id}`);
+      if (res.ok) {
+        fullPlayer = await res.json();
+        // si le backend renvoie _id en ObjectId transformé, assure-toi qu'il soit string
+        if (fullPlayer._id) fullPlayer._id = String(fullPlayer._id);
+      } else {
+        console.warn("Impossible de charger les détails depuis le serveur, status:", res.status);
+      }
+    } else {
+      console.warn("player._id introuvable, utilisation des données locales");
+    }
+  } catch (err) {
+    console.warn("Erreur fetch détail joueur :", err);
+  }
+
+  // fallback sur les données locales si le fetch n'a rien retourné
+  const p = fullPlayer || player;
+
+  // construire l'HTML comme dans skills.js en prenant p.* (les champs viendront du backend)
+  const isGoalkeeper = (p.style || "").toLowerCase() === "gardien";
+  const statsHTML = isGoalkeeper
+    ? `<div class="skill-stat"><strong>${p.div ?? "-"}</strong><br>DIV</div>
+       <div class="skill-stat"><strong>${p.han ?? "-"}</strong><br>HAN</div>
+       <div class="skill-stat"><strong>${p.kic ?? "-"}</strong><br>KIC</div>
+       <div class="skill-stat"><strong>${p.ref ?? "-"}</strong><br>REF</div>
+       <div class="skill-stat"><strong>${p.spd ?? "-"}</strong><br>SPD</div>
+       <div class="skill-stat"><strong>${p.pos ?? "-"}</strong><br>POS</div>`
+    : `<div class="skill-stat"><strong>${p.pac ?? "-"}</strong><br>PAC</div>
+       <div class="skill-stat"><strong>${p.sho ?? "-"}</strong><br>SHO</div>
+       <div class="skill-stat"><strong>${p.pas ?? "-"}</strong><br>PAS</div>
+       <div class="skill-stat"><strong>${p.dri ?? "-"}</strong><br>DRI</div>
+       <div class="skill-stat"><strong>${p.def ?? "-"}</strong><br>DEF</div>
+       <div class="skill-stat"><strong>${p.phy ?? "-"}</strong><br>PHY</div>`;
+
+  const imageSrc = p.image ? `../images/${p.image.split("/").pop()}` : "../images/default.png";
+
+  // créer overlay / popup
+  const overlay = document.createElement("div");
+  overlay.className = "popup-overlay";
+
+  const popup = document.createElement("div");
+  popup.className = "popup-window player-detail-popup";
+
+  popup.innerHTML = `
+    <h3>${p.name ?? p.id}</h3>
+    <div class="skill-image-container">
+      <img src="${imageSrc}" alt="${p.id}" class="skill-image" />
+    </div>
+    <div class="skill-style">${p.style ?? "-"}</div>
+    <div class="skill-stats">${statsHTML}</div>
+    <div class="skill-extra">✨ Tech: ${p.technical_moves ?? "-"} | 🦶 WF: ${p.weak_foot ?? "-"}</div>
+    <div class="skill-meta">
+      ⚡ Énergie : ${p.energy ?? "-"}<br>
+      📜 Contrats : ${p.contracts ?? "-"}
+    </div>
+    <button id="close-player-popup" class="popup-btn cancel">Fermer</button>
+  `;
+
+  overlay.appendChild(popup);
+  document.body.appendChild(overlay);
+
+  document.getElementById("close-player-popup").addEventListener("click", () => {
+    document.body.removeChild(overlay);
   });
 }
 
