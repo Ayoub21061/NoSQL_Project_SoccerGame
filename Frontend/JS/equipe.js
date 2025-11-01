@@ -293,7 +293,7 @@ function createPopup(item) {
       if (item.type === "contrat") {
         updatedData.contracts = (player.contracts || 0) + item.bonus;
       } else if (item.type === "forme") {
-        updatedData.energy = Math.min((player.energy || 100) + item.bonus, 100);
+        updatedData.energy = (player.energy || 0) + item.bonus;
       }
 
       const res = await fetch(`http://127.0.0.1:5001/skills/updatePlayerStats/${player._id}`, {
