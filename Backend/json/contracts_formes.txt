@@ -1,0 +1,58 @@
+db.contracts_forms.insertMany([
+  {
+    "name": "Contrat Bronze",
+    "type": "contrat",
+    "bonus": 5 ,
+    "cost": 500,
+    "image": "contrat_bronze.png"
+  },
+  {
+    "name": "Contrat Argent",
+    "type": "contrat",
+    "bonus": 10,
+    "cost": 1000,
+    "image": "contrat_argent.png"
+  },
+  {
+    "name": "Contrat Or",
+    "type": "contrat",
+    "bonus": 20,
+    "cost": 2000,
+    "image": "contrat_or.png"
+  },
+  {
+    "name": "Forme légère",
+    "type": "forme",
+    "bonus": 10,
+    "cost": 300,
+    "image": "forme_10.png"
+  },
+  {
+    "name": "Forme moyenne",
+    "type": "forme",
+    "bonus": 20,
+    "cost": 600,
+    "image": "forme_20.png"
+  },
+  {
+    "name": "Forme maximale",
+    "type": "forme",
+    "bonus": 30,
+    "cost": 1200,
+    "image": "forme_30.png"
+  },
+  {
+    "name": "Booster vitesse",
+    "type": "forme",
+    "bonus": 5,
+    "cost": 800,
+    "image": "booster_vitesse.png"
+  },
+  {
+    "name": "Contrat Pro",
+    "type": "contrat",
+    "bonus": 50,
+    "cost": 5000,
+    "image": "contrat_pro.png"
+  }
+])

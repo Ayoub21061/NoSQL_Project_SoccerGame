@@ -43,7 +43,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         player_id: skill.id,
         id: skill.id,
         image: skill.image,
-        style: skill.style
+        style: skill.style,
+        _id: skill._id,
+        energy: skill.energy,
+        contracts: skill.contracts
       }));
 
     localStorage.setItem("myTeam", JSON.stringify(myTeam));
@@ -70,7 +73,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // --- Affichage des joueurs achetés ---
   function renderPlayers() {
-    if (!cardsContainer) return;
     cardsContainer.innerHTML = "";
 
     const availablePlayers = myTeam.filter(p => !p.assignedPositionLine);
@@ -102,7 +104,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // --- Affichage de la formation ---
   function renderTeam(formation) {
-    if (!teamContainer) return;
     teamContainer.innerHTML = "";
 
     const positions = formations[formation];
@@ -202,4 +203,132 @@ document.addEventListener("DOMContentLoaded", async () => {
       console.error("Erreur mise à jour équipe :", err);
     }
   }
+
+  // --- Affichage des contrats et formes ---
+  const contractsFormsContainer = document.getElementById("contracts-forms-container");
+  if (contractsFormsContainer) {
+    try {
+      const res = await fetch("http://127.0.0.1:5001/contracts_forms");
+      if (!res.ok) throw new Error("Erreur serveur");
+      const allItems = await res.json();
+
+      const userRes = await fetch(`http://127.0.0.1:5001/players/username/${username}`);
+      if (!userRes.ok) throw new Error("Erreur serveur");
+      const userData = await userRes.json();
+      const ownedIds = (userData.contrats_formes || []).map(id => id.toString());
+
+      const ownedItems = allItems.filter(item => ownedIds.includes(item._id?.toString()));
+      contractsFormsContainer.innerHTML = "";
+
+      if (ownedItems.length === 0) {
+        contractsFormsContainer.innerHTML = "<p>Aucun contrat ou forme acheté.</p>";
+      } else {
+        ownedItems.forEach(item => {
+          const card = document.createElement("div");
+          card.className = `skill-card ${item.type}`;
+          const imgSrc = item.image ? `../images/${item.image}` : "../images/default.png";
+          card.innerHTML = `
+            <div class="skill-image-container">
+              <img src="${imgSrc}" alt="${item.name}">
+            </div>
+            <div class="skill-header">${item.name}</div>
+            <div class="skill-style">${item.type}</div>
+            <div class="skill-extra">${item.bonus}</div>
+          `;
+
+          card.addEventListener("click", () => {
+            createPopup(item);
+          });
+
+          contractsFormsContainer.appendChild(card);
+        });
+      }
+
+    } catch (err) {
+      console.error("Erreur chargement contrats/formes :", err);
+      contractsFormsContainer.innerHTML = "<p>Impossible de charger les contrats et formes.</p>";
+    }
+  }
+
+  // --- FONCTION POPUP ---
+function createPopup(item) {
+  const overlay = document.createElement("div");
+  overlay.className = "popup-overlay";
+
+  const popup = document.createElement("div");
+  popup.className = "popup-window";
+
+  popup.innerHTML = `
+    <h3>Appliquer ${item.name}</h3>
+    <p>Choisis un joueur à qui l’appliquer :</p>
+    <select id="player-select" class="popup-select">
+      ${myTeam.map(p => `<option value="${p.id}">${p.id}</option>`).join("")}
+    </select>
+    <div class="popup-buttons">
+      <button id="apply-item" class="popup-btn apply">Appliquer</button>
+      <button id="cancel-popup" class="popup-btn cancel">Annuler</button>
+    </div>
+  `;
+
+  overlay.appendChild(popup);
+  document.body.appendChild(overlay);
+
+  // Annuler popup
+  document.getElementById("cancel-popup").addEventListener("click", () => {
+    document.body.removeChild(overlay);
+  });
+
+  document.getElementById("apply-item").addEventListener("click", async () => {
+    const selectedPlayerName = document.getElementById("player-select").value;
+    const player = myTeam.find(p => p.id === selectedPlayerName);
+
+    if (!player || !player._id) {
+      alert("Joueur introuvable dans la base de données");
+      return;
+    }
+
+    try {
+      // --- 1️⃣ Mettre à jour le joueur ---
+      let updatedData = {};
+      if (item.type === "contrat") {
+        updatedData.contracts = (player.contracts || 0) + item.bonus;
+      } else if (item.type === "forme") {
+        updatedData.energy = Math.min((player.energy || 100) + item.bonus, 100);
+      }
+
+      const res = await fetch(`http://127.0.0.1:5001/skills/updatePlayerStats/${player._id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updatedData)
+      });
+
+      if (!res.ok) throw new Error("Erreur mise à jour joueur");
+
+      // --- 2️⃣ Supprimer le contrat/forme côté serveur ---
+      const deleteRes = await fetch(
+        `http://127.0.0.1:5001/players/username/${username}/removeItem/${item._id}`,
+        { method: "DELETE" }
+      );
+      if (!deleteRes.ok) throw new Error("Erreur suppression item");
+
+      // --- 3️⃣ Supprimer la carte du DOM ---
+      const card = [...contractsFormsContainer.children].find(
+        c => c.querySelector(".skill-header")?.textContent === item.name
+      );
+      if (card) contractsFormsContainer.removeChild(card);
+
+      // --- 4️⃣ Fermer le popup ---
+      document.body.removeChild(overlay);
+
+      alert(`${item.name} appliqué avec succès à ${player.id} !`);
+
+    } catch (err) {
+      console.error(err);
+      alert("Erreur lors de l’application du bonus");
+    }
+  });
+}
+
+
+
 });

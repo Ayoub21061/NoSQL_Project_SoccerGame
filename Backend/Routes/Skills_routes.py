@@ -63,3 +63,34 @@ def delete_skill(skill_id):
         return jsonify({"message": "Compétence non trouvée"}), 404
     except Exception as e:
         return jsonify({"error": str(e)}), 400
+
+@skills_bp.route("/updatePlayerStats/<player_id>", methods=["PUT"])
+def update_player_stats(player_id):
+    """
+    Met à jour les stats d'un joueur (carte) : energy, contracts, etc.
+    """
+    try:
+        data = request.get_json()
+        updates = {}
+
+        if "energy" in data:
+            updates["energy"] = data["energy"]
+        if "contracts" in data:
+            updates["contracts"] = data["contracts"]
+
+        if not updates:
+            return jsonify({"error": "Aucune donnée à mettre à jour"}), 400
+
+        result = skills_collection.update_one(
+            {"_id": ObjectId(player_id)},
+            {"$set": updates}
+        )
+
+        if result.matched_count == 0:
+            return jsonify({"error": "Joueur non trouvé"}), 404
+
+        return jsonify({"message": "Statistiques mises à jour avec succès"}), 200
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 400
+
