@@ -46,7 +46,7 @@ def buy_contract_or_form(username):
                 "cost": cost
             }), 400
 
-        # 🔹 Convertir item_id en string
+        # Convertir item_id en string
         item_id = str(item_id)
 
         # Déduire le coût et enregistrer l'achat

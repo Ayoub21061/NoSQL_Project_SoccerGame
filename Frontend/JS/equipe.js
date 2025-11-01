@@ -260,7 +260,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }
 
-  // --- FONCTION POPUP ---
+   
 function createPopup(item) {
   const overlay = document.createElement("div");
   overlay.className = "popup-overlay";
@@ -283,7 +283,7 @@ function createPopup(item) {
   overlay.appendChild(popup);
   document.body.appendChild(overlay);
 
-  // Annuler popup
+  
   document.getElementById("cancel-popup").addEventListener("click", () => {
     document.body.removeChild(overlay);
   });
@@ -298,7 +298,7 @@ function createPopup(item) {
     }
 
     try {
-      // --- 1️⃣ Mettre à jour le joueur ---
+      //Mettre à jour le joueur 
       let updatedData = {};
       if (item.type === "contrat") {
         updatedData.contracts = (player.contracts || 0) + item.bonus;
@@ -314,20 +314,20 @@ function createPopup(item) {
 
       if (!res.ok) throw new Error("Erreur mise à jour joueur");
 
-      // --- 2️⃣ Supprimer le contrat/forme côté serveur ---
+      // Supprimer le contrat/forme côté serveur 
       const deleteRes = await fetch(
         `http://127.0.0.1:5001/players/username/${username}/removeItem/${item._id}`,
         { method: "DELETE" }
       );
       if (!deleteRes.ok) throw new Error("Erreur suppression item");
 
-      // --- 3️⃣ Supprimer la carte du DOM ---
+      // Supprimer la carte du DOM 
       const card = [...contractsFormsContainer.children].find(
         c => c.querySelector(".skill-header")?.textContent === item.name
       );
       if (card) contractsFormsContainer.removeChild(card);
 
-      // --- 4️⃣ Fermer le popup ---
+      // Fermer le popup 
       document.body.removeChild(overlay);
 
       alert(`${item.name} appliqué avec succès à ${player.id} !`);
@@ -343,12 +343,12 @@ async function showPlayerDetails(player) {
   // essayer de récupérer la version complète côté serveur via skills/<_id>
   let fullPlayer = null;
   try {
-    // player._id doit exister dans myTeam (tel que tu l'as construit)
+    // player._id doit exister dans myTeam 
     if (player._id) {
       const res = await fetch(`http://127.0.0.1:5001/skills/${player._id}`);
       if (res.ok) {
         fullPlayer = await res.json();
-        // si le backend renvoie _id en ObjectId transformé, assure-toi qu'il soit string
+        // si le backend renvoie _id en ObjectId transformé, il faut le convertir en string
         if (fullPlayer._id) fullPlayer._id = String(fullPlayer._id);
       } else {
         console.warn("Impossible de charger les détails depuis le serveur, status:", res.status);
@@ -360,10 +360,10 @@ async function showPlayerDetails(player) {
     console.warn("Erreur fetch détail joueur :", err);
   }
 
-  // fallback sur les données locales si le fetch n'a rien retourné
+  
   const p = fullPlayer || player;
 
-  // construire l'HTML comme dans skills.js en prenant p.* (les champs viendront du backend)
+
   const isGoalkeeper = (p.style || "").toLowerCase() === "gardien";
   const statsHTML = isGoalkeeper
     ? `<div class="skill-stat"><strong>${p.div ?? "-"}</strong><br>DIV</div>
@@ -381,7 +381,7 @@ async function showPlayerDetails(player) {
 
   const imageSrc = p.image ? `../images/${p.image.split("/").pop()}` : "../images/default.png";
 
-  // créer overlay / popup
+  
   const overlay = document.createElement("div");
   overlay.className = "popup-overlay";
 
@@ -397,8 +397,8 @@ async function showPlayerDetails(player) {
     <div class="skill-stats">${statsHTML}</div>
     <div class="skill-extra">✨ Tech: ${p.technical_moves ?? "-"} | 🦶 WF: ${p.weak_foot ?? "-"}</div>
     <div class="skill-meta">
-      ⚡ Énergie : ${p.energy ?? "-"}<br>
-      📜 Contrats : ${p.contracts ?? "-"}
+      Énergie : ${p.energy ?? "-"}<br>
+      Contrats : ${p.contracts ?? "-"}
     </div>
     <button id="close-player-popup" class="popup-btn cancel">Fermer</button>
   `;
@@ -410,7 +410,6 @@ async function showPlayerDetails(player) {
     document.body.removeChild(overlay);
   });
 }
-
 
 
 });

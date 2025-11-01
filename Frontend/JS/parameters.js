@@ -18,8 +18,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // --- Remplir le formulaire avec les infos ---
     document.getElementById("username").value = playerData.username || "";
-    document.getElementById("user-email").textContent = playerData.email || "non défini";
-    document.getElementById("creation-date").textContent = playerData.creation_date || "non précisée";
+    document.getElementById("user-email").textContent = playerData.mail || "non défini";
+    document.getElementById("creation-date").textContent = playerData.account_creation_date || "non précisée";
     document.getElementById("playtime").textContent = (playerData.total_playtime || 0) + " heures";
 
     if (playerData.avatar) {
