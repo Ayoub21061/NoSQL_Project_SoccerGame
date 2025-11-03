@@ -53,7 +53,6 @@ async function openPack(packName) {
   const confirmOpen = confirm(`Souhaitez-vous ouvrir le ${packName} ?`);
   if (!confirmOpen) return;
 
-  // Animation d'ouverture
   const container = document.getElementById("packs-container");
   container.innerHTML = `
     <div class="opening-animation">
@@ -63,22 +62,39 @@ async function openPack(packName) {
   `;
 
   try {
-    // Récupération de tous les joueurs
-    const res = await fetch("http://127.0.0.1:5001/skills");
-    const allPlayers = await res.json();
+    // --- Récupérer tous les joueurs ---
+    const resPlayers = await fetch("http://127.0.0.1:5001/skills");
+    const allPlayers = await resPlayers.json();
 
-    // Sélection aléatoire de joueurs selon le pack
+    // --- Récupérer l'utilisateur pour les joueurs déjà possédés ---
+    const resUser = await fetch(`http://127.0.0.1:5001/users/${username}`);
+    const user = await resUser.json();
+    const owned = user.players_owned || [];
+
+    // --- Déterminer le nombre de joueurs selon le pack ---
     let numPlayers = 1;
-    if (packName.toLowerCase().includes("gold")) numPlayers = 2;
-    if (packName.toLowerCase().includes("diamond")) numPlayers = 3;
+    const lowerPack = packName.toLowerCase();
+    if (lowerPack.includes("gold")) numPlayers = 2;
+    if (lowerPack.includes("diamond")) numPlayers = 3;
 
-    const selectedPlayers = [];
-    for (let i = 0; i < numPlayers; i++) {
-      const random = allPlayers[Math.floor(Math.random() * allPlayers.length)];
-      selectedPlayers.push(random);
+    // --- Filtrer les joueurs disponibles (non possédés) ---
+    let availablePlayers = allPlayers.filter(p => !owned.includes(p.id));
+    if (availablePlayers.length === 0) {
+      alert("❌ Tous les joueurs de ce pack sont déjà possédés !");
+      container.innerHTML = "";
+      return;
     }
 
-    // Effet dramatique avant révélation 😄
+    // --- Tirage aléatoire sans doublons ---
+    const selectedPlayers = [];
+    const copyAvailable = [...availablePlayers];
+    for (let i = 0; i < numPlayers && copyAvailable.length > 0; i++) {
+      const randomIndex = Math.floor(Math.random() * copyAvailable.length);
+      const player = copyAvailable.splice(randomIndex, 1)[0]; // retire pour éviter doublon
+      selectedPlayers.push(player);
+    }
+
+    // --- Effet dramatique avant révélation ---
     setTimeout(() => {
       container.innerHTML = `<h2>🎉 Voici tes nouveaux joueurs !</h2><div id="player-cards"></div>`;
       const cardsContainer = document.getElementById("player-cards");
@@ -113,37 +129,31 @@ async function openPack(packName) {
           </div>
         `;
 
-        // --- Animation ---
         setTimeout(() => {
           cardsContainer.appendChild(card);
           setTimeout(() => card.classList.add("show"), 100);
         }, index * 700);
 
-        // --- Ajout automatique du joueur dans la liste players_owned ---
+        // --- Ajout automatique du joueur dans players_owned ---
         try {
-          const res = await fetch(`http://127.0.0.1:5001/users/${username}/add_player`, {
+          await fetch(`http://127.0.0.1:5001/users/${username}/add_player`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ player_id: player.id })
           });
-          const data = await res.json();
-          console.log("✅ Joueur ajouté :", data.message);
         } catch (err) {
           console.error("❌ Erreur ajout joueur :", err);
         }
       });
     }, 2000);
-    
-    // --- Suppression du pack une fois ouvert ---
+
+    // --- Suppression du pack ---
     try {
-      const removeRes = await fetch(`http://127.0.0.1:5001/users/${username}/remove_pack`, {
+      await fetch(`http://127.0.0.1:5001/users/${username}/remove_pack`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ pack_name: packName })
       });
-
-      const removeData = await removeRes.json();
-      console.log("🗑️ Pack supprimé :", removeData.message);
     } catch (err) {
       console.error("❌ Erreur lors de la suppression du pack :", err);
     }
