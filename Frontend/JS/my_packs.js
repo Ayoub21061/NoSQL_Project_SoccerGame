@@ -133,6 +133,21 @@ async function openPack(packName) {
         }
       });
     }, 2000);
+    
+    // --- Suppression du pack une fois ouvert ---
+    try {
+      const removeRes = await fetch(`http://127.0.0.1:5001/users/${username}/remove_pack`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ pack_name: packName })
+      });
+
+      const removeData = await removeRes.json();
+      console.log("🗑️ Pack supprimé :", removeData.message);
+    } catch (err) {
+      console.error("❌ Erreur lors de la suppression du pack :", err);
+    }
+
   } catch (err) {
     console.error(err);
     container.innerHTML = "<p>Erreur lors de l'ouverture du pack.</p>";
