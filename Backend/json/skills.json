@@ -14,7 +14,9 @@
     "image": "images/cristiano.png",
     "crédits": 2000000,
     "country": "Portugal",
-    "club": "Al Nassr"
+    "club": "Al Nassr",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Lionel Messi",
@@ -31,7 +33,9 @@
     "image": "images/messi.png",
     "crédits": 1500000,
     "country": "Argentina",
-    "club": "Inter Miami"
+    "club": "Inter Miami",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Kylian Mbappé",
@@ -48,7 +52,9 @@
     "image": "images/mbappe.png",
     "crédits": 1000000,
     "country": "France",
-    "club": "Real Madrid"
+    "club": "Real Madrid",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Kevin De Bruyne",
@@ -65,7 +71,9 @@
     "image": "images/de_bruyne.png",
     "crédits": 500000,
     "country": "Belgium",
-    "club": "Naples"
+    "club": "Naples",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Virgil van Dijk",
@@ -82,7 +90,9 @@
     "image": "images/van_dijk.png",
     "crédits": 800000,
     "country": "Netherlands",
-    "club": "Liverpool"
+    "club": "Liverpool",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Neymar Jr",
@@ -99,7 +109,9 @@
     "image": "images/neymar.png",
     "crédits": 1400000,
     "country": "Brazil",
-    "club": "Al Hilal"
+    "club": "Al Hilal",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Mohamed Salah",
@@ -116,7 +128,9 @@
     "image": "images/salah.png",
     "crédits": 475000,
     "country": "Egypt",
-    "club": "Liverpool"
+    "club": "Liverpool",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Sergio Ramos",
@@ -133,7 +147,9 @@
     "image": "images/ramos.png",
     "crédits": 1200000,
     "country": "Spain",
-    "club": "Paris Saint-Germain"
+    "club": "Paris Saint-Germain",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Luka Modric",
@@ -150,7 +166,9 @@
     "image": "images/modric.png",
     "crédits": 750000,
     "country": "Croatia",
-    "club": "Real Madrid"
+    "club": "Real Madrid",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Robert Lewandowski",
@@ -167,7 +185,9 @@
     "image": "images/lewandowski.png",
     "crédits": 340000,
     "country": "Poland",
-    "club": "FC Barcelona"
+    "club": "FC Barcelona",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Karim Benzema",
@@ -184,7 +204,9 @@
     "image": "images/benzema.png",
     "crédits": 670000,
     "country": "France",
-    "club": "Al-Ittihad"
+    "club": "Al-Ittihad",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Manuel Neuer",
@@ -201,7 +223,9 @@
     "image": "images/neuer.png",
     "crédits": 100000,
     "country": "Germany",
-    "club": "Bayern Munich"
+    "club": "Bayern Munich",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Alisson Becker",
@@ -218,7 +242,9 @@
     "image": "images/alisson.png",
     "crédits": 80000,
     "country": "Brazil",
-    "club": "Liverpool"
+    "club": "Liverpool",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Andres Iniesta",
@@ -235,7 +261,9 @@
     "image": "images/iniesta.png",
     "crédits": 940000,
     "country": "Spain",
-    "club": "FC Barcelona"
+    "club": "FC Barcelona",
+    "energy": 100,
+    "contracts": 20
   },
   {    
     "id": "N'Golo Kanté",
@@ -252,7 +280,9 @@
     "image": "images/kante.png",
     "crédits": 600000,
     "country": "France",
-    "club": "Al-Ittihad"
+    "club": "Al-Ittihad",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Paul Pogba",
@@ -269,7 +299,9 @@
     "image": "images/pogba.png",
     "crédits": 700000,
     "country": "France",
-    "club": "AS Monaco"
+    "club": "AS Monaco",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Eden Hazard",
@@ -286,7 +318,9 @@
     "image": "images/hazard.png",
     "crédits": 150000,
     "country": "Belgium",
-    "club": "Real Madrid"
+    "club": "Real Madrid",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Sadio Mané",
@@ -303,7 +337,9 @@
     "image": "images/mane.png",
     "crédits": 50000,
     "country": "Senegal",
-    "club": "Al Nassr"
+    "club": "Al Nassr",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Luis Suárez",
@@ -320,7 +356,9 @@
     "image": "images/suarez.png",
     "crédits": 350000,
     "country": "Uruguay",
-    "club": "FC Barcelona"
+    "club": "FC Barcelona",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Thiago Silva",
@@ -337,7 +375,9 @@
     "image": "images/thiago_silva.png",
     "crédits": 450000,
     "country": "Brazil",
-    "club": "Chelsea"
+    "club": "Chelsea",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Lamine Yamal",
@@ -354,7 +394,9 @@
     "image": "images/yamal.png",
     "crédits": 750000,
     "country": "Spain",
-    "club": "FC Barcelona"
+    "club": "FC Barcelona",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Jude Bellingham",
@@ -371,7 +413,9 @@
     "image": "images/bellingham.png",
     "crédits": 900000,
     "country": "England",
-    "club": "Real Madrid"
+    "club": "Real Madrid",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Pedri",
@@ -388,7 +432,9 @@
     "image": "images/pedri.png",
     "crédits": 500000,
     "country": "Spain",
-    "club": "FC Barcelona"
+    "club": "FC Barcelona",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Vinícius Júnior",
@@ -405,7 +451,9 @@
     "image": "images/vinicius.png",
     "crédits": 500000,
     "country": "Brazil",
-    "club": "Real Madrid"
+    "club": "Real Madrid",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Jamal Musiala",
@@ -422,7 +470,9 @@
     "image": "images/musiala.png",
     "crédits": 200000,
     "country": "Germany",
-    "club": "Bayern Munich"
+    "club": "Bayern Munich",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Marcelo",
@@ -439,7 +489,9 @@
     "image": "images/marcelo.png",
     "crédits": 900000,
     "country": "Brazil",
-    "club": "Real Madrid"
+    "club": "Real Madrid",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Trent Alexander-Arnold",
@@ -456,7 +508,9 @@
     "image": "images/alexander_arnold.png",
     "crédits": 70000,
     "country": "England",
-    "club": "Real Madrid"
+    "club": "Real Madrid",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Joshua Kimmich",
@@ -473,7 +527,9 @@
     "image": "images/kimmich.png",
     "crédits": 90000,
     "country": "Germany",
-    "club": "Bayern Munich"
+    "club": "Bayern Munich",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Erling Haaland",
@@ -490,7 +546,9 @@
     "image": "images/haaland.png",
     "crédits": 400000,
     "country": "Norway",
-    "club": "Manchester City"
+    "club": "Manchester City",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Gianluigi Donnarumma",
@@ -507,7 +565,9 @@
     "image": "images/donnarumma.png",
     "crédits": 60000,
     "country": "Italy",
-    "club": "Paris Saint-Germain"
+    "club": "Paris Saint-Germain",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Thibaut Courtois",
@@ -524,7 +584,9 @@
     "image": "images/courtois.png",
     "crédits": 120000,
     "country": "Belgium",
-    "club": "Real Madrid"
+    "club": "Real Madrid",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Alphonso Davies",
@@ -541,7 +603,9 @@
     "image": "images/davies.png",
     "crédits": 90000,
     "country": "Canada",
-    "club": "Bayern Munich"
+    "club": "Bayern Munich",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Dani Alves",
@@ -558,7 +622,9 @@
     "image": "images/dani_alves.png",
     "crédits": 400000,
     "country": "Brazil",
-    "club": "FC Barcelona"
+    "club": "FC Barcelona",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Ciro Immobile",
@@ -575,7 +641,9 @@
     "image": "images/immobile.png",
     "crédits": 10000,
     "country": "Italy",
-    "club": "Lazio"
+    "club": "Lazio",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Harry Kane",
@@ -592,7 +660,9 @@
     "image": "images/kane.png",
     "crédits": 250000,
     "country": "England",
-    "club": "Bayern Munich" 
+    "club": "Bayern Munich",
+    "energy": 100,
+    "contracts": 20 
   },
   {
     "id": "Bruno Fernandes",
@@ -609,7 +679,9 @@
     "image": "images/fernandes.png",
     "crédits": 350000,
     "country": "Portugal",
-    "club": "Manchester United"
+    "club": "Manchester United",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Bukayo Saka",
@@ -626,7 +698,9 @@
     "image": "images/saka.png",
     "crédits": 90000,
     "country": "England",
-    "club": "Arsenal"
+    "club": "Arsenal",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Riyad Mahrez",
@@ -643,7 +717,9 @@
     "image": "images/mahrez.png",
     "crédits": 150000,
     "country": "Algeria",
-    "club": "Al Ahli"
+    "club": "Al Ahli",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Raphinha",
@@ -660,7 +736,9 @@
     "image": "images/raphinha.png",
     "crédits": 200000,
     "country": "Brazil",
-    "club": "FC Barcelona"
+    "club": "FC Barcelona",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Phil Foden",
@@ -677,7 +755,9 @@
     "image": "images/foden.png",
     "crédits": 95000,
     "country": "England",
-    "club": "Manchester City"
+    "club": "Manchester City",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Kai Havertz",
@@ -694,7 +774,9 @@
     "image": "images/havertz.png",
     "crédits": 20000,
     "country": "Germany",
-    "club": "Arsenal"
+    "club": "Arsenal",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Jadon Sancho",
@@ -711,7 +793,9 @@
     "image": "images/sancho.png",
     "crédits": 45000,
     "country": "England",
-    "club": "Manchester United"
+    "club": "Manchester United",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Casemiro",
@@ -728,7 +812,9 @@
     "image": "images/casemiro.png",
     "crédits": 200000,
     "country": "Brazil",
-    "club": "Manchester United"
+    "club": "Manchester United",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Frenkie de Jong",
@@ -745,7 +831,9 @@
     "image": "images/de_jong.png",
     "crédits": 350000,
     "country": "Netherlands",
-    "club": "FC Barcelona"
+    "club": "FC Barcelona",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Ayoub",
@@ -762,7 +850,9 @@
     "image": "images/ayoub.png",
     "crédits": 15000000,
     "country": "Morocco",
-    "club": "Real Madrid"
+    "club": "Real Madrid",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Zlatan Ibrahimović",
@@ -779,7 +869,9 @@
     "image": "images/ibrahimovic.png",
     "crédits": 900000,
     "country": "Sweden",
-    "club": "AC Milan"
+    "club": "AC Milan",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Sergio Agüero",
@@ -796,7 +888,9 @@
     "image": "images/aguero.png",
     "crédits": 700000,
     "country": "Argentina",
-    "club": "FC Barcelona"
+    "club": "FC Barcelona",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "David Alaba",
@@ -813,7 +907,9 @@
     "image": "images/alaba.png",
     "crédits": 100000,
     "country": "Austria",
-    "club": "Real Madrid"
+    "club": "Real Madrid",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Gerard Piqué",
@@ -830,7 +926,9 @@
     "image": "images/pique.png",
     "crédits": 460000,
     "country": "Spain",
-    "club": "FC Barcelona"
+    "club": "FC Barcelona",
+    "energy": 100,
+    "contracts": 20
   },
   {
     "id": "Toni Kroos",
@@ -847,7 +945,9 @@
     "image": "images/kroos.png",
     "crédits": 600000,
     "country": "Germany",
-    "club": "Real Madrid"
+    "club": "Real Madrid",
+    "energy": 100,
+    "contracts": 20
   }
 
 ]

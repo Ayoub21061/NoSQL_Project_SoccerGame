@@ -244,3 +244,45 @@ def get_ranking_around(username):
         return jsonify(ranking_slice), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 400
+    
+
+@player_bp.route("/username/<username>/updateItems", methods=["POST"])
+def update_user_items(username):
+    try:
+        data = request.get_json()
+        players_collection.update_one(
+            {"username": username},
+            {"$set": {"contrats_formes": data.get("contrats_formes", [])}}
+        )
+        return jsonify({"message": "Items mis à jour"}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 400
+
+
+from bson import ObjectId
+
+from bson import ObjectId
+
+@player_bp.route("/username/<username>/removeItem/<item_id>", methods=["DELETE"])
+def remove_item_from_user(username, item_id):
+    try:
+        player = players_collection.find_one({"username": username})
+        if not player:
+            return jsonify({"error": "Utilisateur introuvable"}), 404
+
+        current_items = player.get("contrats_formes", [])
+        updated_items = [i for i in current_items if ObjectId(str(i)) != ObjectId(item_id)]
+
+        players_collection.update_one(
+            {"username": username},
+            {"$set": {"contrats_formes": updated_items}}
+        )
+
+        return jsonify({
+            "message": "Item retiré de l'inventaire",
+            "remaining_items": updated_items
+        }), 200
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 400
+

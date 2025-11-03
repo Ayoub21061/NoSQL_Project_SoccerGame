@@ -29,12 +29,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("creation-date").textContent = data.creation_date || data.account_creation_date || "--/--/----";
     document.getElementById("playtime").textContent = (data.total_playtime || 0) + " heures";
 
-    // Avatar
-    const avatarPreview = document.getElementById("avatar-preview");
-    if (data.avatar && typeof data.avatar === "string" && data.avatar.startsWith("data:image/")) {
-      avatarPreview.src = data.avatar;
-    } else {
-      avatarPreview.src = `../images/${data.avatar || "default-avatar.png"}`;
+    // --- Remplir le formulaire avec les infos ---
+    document.getElementById("username").value = playerData.username || "";
+    document.getElementById("user-email").textContent = playerData.mail || "non défini";
+    document.getElementById("creation-date").textContent = playerData.account_creation_date || "non précisée";
+    document.getElementById("playtime").textContent = (playerData.total_playtime || 0) + " heures";
+
+    if (playerData.avatar) {
+      document.getElementById("avatar-preview").src = `../images/${playerData.avatar}`;
     }
 
     // On met à jour l'objet player local avec les données fraîches (notamment l'_id si manquant)

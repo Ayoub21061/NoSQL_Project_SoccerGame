@@ -94,7 +94,7 @@ main {
   border-radius: 8px;
   text-align: center;
   cursor: grab;
-  min-width: 80px;
+  min-width: 120px;
   transition: transform 0.2s, background-color 0.2s;
 }
 
@@ -222,3 +222,168 @@ main {
   text-align: center;
   margin-top: 10px;
 }
+
+/* --- Overlay général --- */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(27,27,27,0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* --- Fenêtre du popup --- */
+.popup-window {
+  background-color: #2a2a2a;
+  border-radius: 12px;
+  padding: 20px;
+  width: 320px;
+  max-width: 90%;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+  text-align: center;
+  animation: fadeIn 0.25s ease-in-out;
+  color: #f0f0f0;
+}
+
+/* --- Titre et texte --- */
+.popup-window h3 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  color: #00bfff;
+}
+
+.popup-window p {
+  font-size: 0.95rem;
+  color: #ccc;
+  margin-bottom: 10px;
+}
+
+/* --- Sélecteur --- */
+.popup-select {
+  margin: 12px 0;
+  padding: 6px 10px;
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid #555;
+  background-color: #333;
+  color: #f0f0f0;
+  outline: none;
+}
+
+/* --- Boutons --- */
+.popup-buttons {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.popup-btn {
+  flex: 1;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: transform 0.15s ease, background-color 0.2s ease;
+}
+
+.popup-btn.apply {
+  background-color: #00bfff;
+  color: #1b1b1b;
+}
+
+.popup-btn.apply:hover {
+  background-color: #0099e6;
+  transform: translateY(-2px);
+}
+
+.popup-btn.cancel {
+  background-color: #f44336;
+  color: #fff;
+}
+
+.popup-btn.cancel:hover {
+  background-color: #d32f2f;
+  transform: translateY(-2px);
+}
+
+/* --- Animation apparition --- */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.player-name {
+  font-weight: bold;
+  color: #00bfff;
+  margin-top: 5px;
+}
+
+.player-info {
+  margin-top: 5px;
+  font-size: 0.8rem;
+  color: #ddd;
+  text-align: left;
+  line-height: 1.2;
+}
+
+.player-info p {
+  margin: 2px 0;
+}
+
+.player-info span {
+  color: #00bfff;
+  font-weight: bold;
+}
+
+.player-detail-popup {
+  background: #222;
+  color: #f0f0f0;
+  border: 2px solid #00bfff;
+  width: 350px;
+  text-align: center;
+}
+
+.player-detail-popup h3 {
+  color: #00bfff;
+  margin-bottom: 10px;
+}
+
+.player-detail-popup .skill-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid #00bfff;
+  margin-bottom: 10px;
+}
+
+.player-detail-popup .skill-stats {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.player-detail-popup .skill-stat {
+  background: #333;
+  border-radius: 6px;
+  padding: 6px;
+  width: 60px;
+  font-size: 0.8rem;
+}
+
+.player-detail-popup .skill-meta {
+  background: #333;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 0.85rem;
+}
+

@@ -8,7 +8,7 @@ body {
   overflow-x: hidden;
 }
 
-header {
+/* header {
   text-align: center;
   padding: 25px 0;
   background: linear-gradient(90deg, #1a1a1d, #222226);
@@ -18,7 +18,7 @@ header {
   text-transform: uppercase;
   border-bottom: 2px solid #222;
   text-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
-}
+} */
 
 /* ---------- BATTLE PASS WRAPPER ---------- */
 #battlepass-wrapper {

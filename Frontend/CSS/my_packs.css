@@ -10,7 +10,7 @@ body {
 header {
   background: #1e1e1e;
   padding: 20px;
-  font-size: 1.5em;
+  /* font-size: 1.5em; */
 }
 
 #packs-container {
