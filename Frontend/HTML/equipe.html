@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <title>Mon Équipe</title>
@@ -9,15 +10,16 @@
 
 
 </head>
+
 <body>
   <header class="header">
-     <div class="left">
+    <div class="left">
       <span class="hamburger">&#9776;</span>
     </div>
     <div class="center">
       <h1>My team</h1>
     </div>
-    
+
     <nav>
       <ul>
         <li><a href="skills.html">Back to player's shop</a></li>
@@ -34,11 +36,14 @@
         </a>
         <span id="user-credits">💰 Crédits : 0</span>
         </div>
-    
+      </a>
+      <span id="user-credits">💰 Crédits : 0</span>
+    </div>
+
   </header>
 
   <!-- Sidebar -->
-   <div id="mySidebar" class="sidebar">
+  <div id="mySidebar" class="sidebar">
     <span class="closebtn">&times;</span>
     <a href="dashboard.html">Dashboard</a>
     <a href="achievements.html">Achievements</a>
@@ -59,7 +64,6 @@
       <select id="formation">
         <option value="4-4-2">4-4-2</option>
         <option value="4-3-3">4-3-3</option>
-        <option value="3-5-2">3-5-2</option>
       </select>
 
       <div id="team-container">
@@ -74,10 +78,16 @@
       </div>
     </aside>
 
-    
+
 
     <h2 class="section-title">Items purchased</h2>
     <div id="contracts-forms-container" class="items-container"></div>
+    
+    <h2 class="section-title">Maillots obtenus</h2>
+    <div id="kits-container" class="items-container">
+      <!-- Maillots du Battle Pass -->
+    </div>
+
 
 
   </main>
@@ -86,4 +96,5 @@
   <script src="../js/menu.js"></script>
 
 </body>
+
 </html>

@@ -14,7 +14,7 @@
     "description": "Win 5 matches",
     "type": "Reward",
     "xp_required": 50,
-    "reward": { "coins": 100, "player_card": "Bronze" },
+    "reward": { "coins": 100, "player_card": "Bronze Player Card" },
     "is_unlocked": false
   },
   {
@@ -23,7 +23,7 @@
     "description": "Win 10 matches",
     "type": "Reward",
     "xp_required": 100,
-    "reward": { "coins": 200, "player_card": "Silver" },
+    "reward": { "coins": 200, "player_card": "Silver Player Card" },
     "is_unlocked": false
   },
   {
@@ -32,7 +32,7 @@
     "description": "Win 20 matches",
     "type": "Reward",
     "xp_required": 200,
-    "reward": { "coins": 500, "player_card": "Gold", "exclusive_kit": true },
+    "reward": { "coins": 500, "player_card": "Gold Player Card", "exclusive_kit": true },
     "is_unlocked": false
   },
   {
@@ -41,7 +41,7 @@
     "description": "Win 50 matches",
     "type": "Reward",
     "xp_required": 500,
-    "reward": { "coins": 1000, "player_card": "Gold 82+", "exclusive_kit": true, "trophy": true },
+    "reward": { "coins": 1000, "player_card": "Gold Player Card 82+", "exclusive_kit": true, "trophy": true },
     "is_unlocked": false
   },
   {
@@ -50,7 +50,7 @@
     "description": "Win 100 matches",
     "type": "Reward",
     "xp_required": 1000,
-    "reward": { "coins": 1000, "player_card": "Gold 85+", "exclusive_kit": true, "trophy": true },
+    "reward": { "coins": 1000, "player_card": "Gold Player Card 85+", "exclusive_kit": true, "trophy": true},
     "is_unlocked": false
   },
   {
@@ -95,7 +95,7 @@
     "description": "Reach 1500 XP in the Battle Pass",
     "type": "Battle Pass",
     "xp_required": 1500,
-    "reward": { "coins": 1500, "pack": "Platinum Pack", "exclusive_kit": "exclusive_kit2.png", "trophy": true },
+    "reward": { "coins": 1500, "pack": "Platinum Pack", "exclusive_kit": "exclusive_kit2.png"},
     "is_unlocked": false
   },
   {
@@ -104,7 +104,7 @@
     "description": "Reach 2000 XP in the Battle Pass",
     "type": "Battle Pass",
     "xp_required": 2000,
-    "reward": { "coins": 2000, "pack": "Diamond Pack", "exclusive_kit": "exclusive_kit3.png", "trophy": true },
+    "reward": { "coins": 2000, "pack": "Diamond Pack", "exclusive_kit": "exclusive_kit3.png"},
     "is_unlocked": false
   },
   {
@@ -113,7 +113,7 @@
     "description": "Reach 3000 XP in the Battle Pass",
     "type": "Battle Pass",
     "xp_required": 3000,
-    "reward": { "coins": 3000, "pack": "Elite Pack", "exclusive_kit": "exclusive_kit4.png", "trophy": true },
+    "reward": { "coins": 3000, "pack": "Elite Pack", "exclusive_kit": "exclusive_kit4.png"},
     "is_unlocked": false
   },
   {
@@ -122,7 +122,7 @@
     "description": "Reach 4000 XP in the Battle Pass",
     "type": "Battle Pass",
     "xp_required": 4000,
-    "reward": { "coins": 4000, "pack": "Mythical Pack", "exclusive_kit": "exclusive_kit5.png", "trophy": true },
+    "reward": { "coins": 4000, "pack": "Mythical Pack", "exclusive_kit": "exclusive_kit5.png"},
     "is_unlocked": false
   },
   {
@@ -131,7 +131,7 @@
     "description": "Reach 5000 XP in the Battle Pass",
     "type": "Battle Pass",
     "xp_required": 5000,
-    "reward": { "coins": 5000, "pack": "Legendary Pack", "exclusive_kit": "exclusive_kit6.png", "trophy": true },
+    "reward": { "coins": 5000, "pack": "Legendary Pack", "exclusive_kit": "exclusive_kit6.png"},
     "is_unlocked": false
   },
   {
@@ -140,7 +140,7 @@
     "description": "Reach 6000 XP in the Battle Pass",
     "type": "Battle Pass",
     "xp_required": 6000,
-    "reward": { "coins": 6000, "pack": "Ultimate Pack", "exclusive_kit": "exclusive_kit8.png", "trophy": true },
+    "reward": { "coins": 6000, "pack": "Ultimate Pack", "exclusive_kit": "exclusive_kit8.png"},
     "is_unlocked": false
   },
   {

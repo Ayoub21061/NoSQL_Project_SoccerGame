@@ -18,8 +18,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (!res.ok) throw new Error("Erreur serveur Battle Pass");
     const battlePass = await res.json();
 
+    // ✅ Tri du Battle Pass par XP requis croissant
+    battlePass.sort((a, b) => a.xp_required - b.xp_required);
+
     container.innerHTML = "";
-    container.scrollLeft = 0;
 
     // --- Construire le Battle Pass dynamique ---
     battlePass.forEach(level => {
@@ -45,7 +47,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         </button>
       `;
 
-      // --- Section des récompenses / bouton ---
       const rewardSection = document.createElement("div");
       rewardSection.className = "reward-section";
 
@@ -59,12 +60,10 @@ document.addEventListener("DOMContentLoaded", async () => {
             const claimRes = await fetch(`http://127.0.0.1:5001/users/${username}/claim_reward/${level.id}`, {
               method: "POST"
             });
-
             const data = await claimRes.json();
-
             if (claimRes.ok) {
               rewardSection.innerHTML = `<p class="claimed">✅ Récompense récupérée : +${data.earned_coins} coins</p>`;
-              claimedRewards.push(level.id); // mettre à jour localement
+              claimedRewards.push(level.id);
             } else {
               alert(data.error || "Erreur lors de la récupération.");
             }
@@ -95,13 +94,50 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
     });
 
+    // --- Slider 3 cartes ---
+    const levels = Array.from(container.children);
+    let currentIndex = 0;
+
+    function updateClasses() {
+      levels.forEach((lvl, i) => {
+        lvl.classList.remove("prev", "active", "next");
+        lvl.style.display = "none"; // cacher toutes les cartes par défaut
+
+        if (i === currentIndex) {
+          lvl.classList.add("active");
+          lvl.style.display = "block";
+        } else if (i === currentIndex - 1) {
+          lvl.classList.add("prev");
+          lvl.style.display = "block";
+        } else if (i === currentIndex + 1) {
+          lvl.classList.add("next");
+          lvl.style.display = "block";
+        }
+      });
+    }
+
+    // --- Ajouter flèches directionnelles ---
+    const leftArrow = document.createElement("div");
+    leftArrow.className = "arrow arrow-left";
+    leftArrow.textContent = "❮";
+    leftArrow.onclick = () => { if (currentIndex > 0) { currentIndex--; updateClasses(); } };
+    container.parentElement.appendChild(leftArrow);
+
+    const rightArrow = document.createElement("div");
+    rightArrow.className = "arrow arrow-right";
+    rightArrow.textContent = "❯";
+    rightArrow.onclick = () => { if (currentIndex < levels.length - 1) { currentIndex++; updateClasses(); } };
+    container.parentElement.appendChild(rightArrow);
+
+    updateClasses();
+
   } catch (err) {
     console.error("Erreur lors du chargement du Battle Pass :", err);
     container.innerHTML = "<p>Erreur lors du chargement du Battle Pass</p>";
   }
 });
 
-// --- Fonction d’affichage des récompenses ---
+// --- Fonction d’affichage des récompenses (inchangée) ---
 function showRewardPreview(title, reward) {
   let modal = document.getElementById("reward-preview");
   if (!modal) return;
@@ -145,7 +181,8 @@ function showRewardPreview(title, reward) {
     if (packName.includes("platinum")) packImg.src = "../images/pack_platinum.png";
     else if (packName.includes("gold")) packImg.src = "../images/pack_gold.png";
     else if (packName.includes("silver")) packImg.src = "../images/pack_silver.png";
-    else packImg.src = "../images/pack_bronze.png";
+    else if (packName.includes("bronze")) packImg.src = "../images/pack_bronze.png";
+    else packImg.src = "../images/pack_ultime.png";
 
     packImg.alt = reward.pack;
     packImg.className = "reward-img";
@@ -168,7 +205,9 @@ function showRewardPreview(title, reward) {
     kitDiv.style.textAlign = "center";
 
     const kitImg = document.createElement("img");
-    kitImg.src = "../images/exclusive_kit.png";
+
+    // ✅ Utilisation dynamique de l’image correspondant au niveau
+    kitImg.src = `../images/${reward.exclusive_kit}`;
     kitImg.alt = "Kit exclusif";
     kitImg.className = "reward-img";
     kitDiv.appendChild(kitImg);
@@ -184,33 +223,10 @@ function showRewardPreview(title, reward) {
     imagesContainer.appendChild(kitDiv);
   }
 
-  // --- Trophée ---
-  if (reward.trophy) {
-    const trophyDiv = document.createElement("div");
-    trophyDiv.style.textAlign = "center";
 
-    const trophyImg = document.createElement("img");
-    trophyImg.src = "../images/trophy.png";
-    trophyImg.alt = "Trophée";
-    trophyImg.className = "reward-img";
-    trophyDiv.appendChild(trophyImg);
-
-    const trophyText = document.createElement("span");
-    trophyText.textContent = "Trophée";
-    trophyText.style.display = "block";
-    trophyText.style.marginTop = "6px";
-    trophyText.style.fontWeight = "bold";
-    trophyText.style.color = "#ffd700";
-    trophyDiv.appendChild(trophyText);
-
-    imagesContainer.appendChild(trophyDiv);
-  }
-
-  // --- Afficher la modal ---
   modal.classList.add("active");
   modal.classList.remove("hidden");
 
-  // --- Fermeture ---
   const closeBtn = modal.querySelector("#close-preview");
   closeBtn.onclick = () => {
     modal.classList.remove("active");
