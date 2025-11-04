@@ -238,23 +238,9 @@ main {
   opacity: 0.9;
 }
 
-<<<<<<< HEAD
-.link-line.red {
-  background-color: #f44336; /* rouge */
-}
-
-.link-line.orange {
-  background-color: #ff9800; /* orange */
-}
-
-.link-line.green {
-  background-color: #4caf50; /* vert */
-}
-=======
 .link-line.red { background-color: red; }
 .link-line.orange { background-color: orange; }
 .link-line.green { background-color: limegreen; }
->>>>>>> 40e141290ec0d47b6577cdf59fb3989c00dd1463
 
 /* === COLLECTIF === */
 #team-chemistry {
@@ -408,7 +394,6 @@ main {
   to { opacity: 1; transform: scale(1); }
 }
 
-<<<<<<< HEAD
 /* --- PLAYER INFO --- */
 .player-name {
   font-weight: bold;
@@ -433,9 +418,6 @@ main {
   font-weight: bold;
 }
 
-=======
-/* === DÉTAIL JOUEUR === */
->>>>>>> 40e141290ec0d47b6577cdf59fb3989c00dd1463
 .player-detail-popup {
   background: #10182b;
   color: #e0e6f0;
@@ -480,7 +462,3 @@ main {
   margin: 10px 0;
   font-size: 0.85rem;
 }
-<<<<<<< HEAD
-  
-=======
->>>>>>> 40e141290ec0d47b6577cdf59fb3989c00dd1463
