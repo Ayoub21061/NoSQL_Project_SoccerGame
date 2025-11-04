@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const username = localStorage.getItem("username");
         if (username) {
             const res = await fetch(`http://127.0.0.1:5001/users/${username}`);
-            if (!res.ok) throw new Error("API inaccessible");
+            if (!res.ok) throw new Error("Unavailable API");
             playerData = await res.json();
             localStorage.setItem("player", JSON.stringify(playerData));
         } else {
@@ -20,13 +20,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     if (!playerData) { 
-        alert("Aucun joueur trouvé !"); 
+        alert("No players found !"); 
         window.location.href = "index.html"; 
         return; 
     }
 
     avatar.src = `../images/${playerData.avatar || "default-avatar.png"}`;
-    nameSpan.textContent = playerData.username || "Joueur";
+    nameSpan.textContent = playerData.username || "Player";
     creditsElement.textContent = `💰 Crédits : ${playerData.credits ?? 0}`;
 
     document.getElementById("player-score").textContent = ((playerData.matches_won * 3 + (playerData.matches_draw ?? 0))).toFixed(0);
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     new Chart(document.getElementById("matchPie"), {
         type: "pie",
         data: {
-            labels: ["Gagnés", "Perdus", "Nuls"],
+            labels: ["Won", "Lost", "Null"],
             datasets: [{
                 data: [playerData.matches_won ?? 0, playerData.matches_lost ?? 0, playerData.matches_draw ?? 0],
                 backgroundColor: ["#30573eff", "#793c3cff", "#565655ff"]
@@ -46,9 +46,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     new Chart(document.getElementById("statsChart"), {
         type: "bar",
         data: {
-            labels: ["Buts", "Passes", "Arrêts"],
+            labels: ["Goals", "Passes", "Stops"],
             datasets: [{
-                label: "Stats du joueur",
+                label: "Player statistics",
                 data: [
                     playerData.goals ?? playerData.best_player_stats?.goals ?? 0,
                     playerData.assists ?? playerData.best_player_stats?.assists ?? 0,
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     } catch (err) {
         console.error("Erreur classement :", err);
-        rankingList.innerHTML = "<li>Impossible de récupérer le classement</li>";
+        rankingList.innerHTML = "<li>Unable to retrieve the ranking</li>";
     }
 
     document.querySelector(".ranking-card").addEventListener("click", () => {

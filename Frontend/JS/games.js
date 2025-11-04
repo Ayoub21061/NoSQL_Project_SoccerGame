@@ -3,12 +3,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   try {
     const response = await fetch("http://127.0.0.1:5001/games/");
-    if (!response.ok) throw new Error("Erreur réseau");
+    if (!response.ok) throw new Error("Error network");
 
     const games = await response.json();
 
     if (games.length === 0) {
-      container.innerHTML = "<p>Aucun mode de jeu trouvé.</p>";
+      container.innerHTML = "<p>No game modes found.</p>";
       return;
     }
 
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       card.innerHTML = `
         <img src="../images/${game.image.split("/").pop()}" alt="${game.name}" class="game-image" />
         <h3>${game.name}</h3>
-        <p>${game.description || "Aucune description"}</p>
+        <p>${game.description || "No description"}</p>
       `;
 
       // 🧭 Redirection au clic

@@ -5,17 +5,17 @@ document.addEventListener("DOMContentLoaded", async () => {
   const container = document.getElementById("packs-container");
 
   if (!username) {
-    container.innerHTML = "<p>Utilisateur non connecté.</p>";
+    container.innerHTML = "<p>User not connected.</p>";
     return;
   }
 
   try {
     const res = await fetch(`http://127.0.0.1:5001/users/${username}`);
-    if (!res.ok) throw new Error("Erreur serveur");
+    if (!res.ok) throw new Error("Server error");
     const user = await res.json();
 
     if (!user.packs_owned || user.packs_owned.length === 0) {
-      container.innerHTML = "<p>Tu n’as encore débloqué aucun pack 😅</p>";
+      container.innerHTML = "<p>You haven't unlocked any packs yet 😅</p>";
       return;
     }
 
@@ -43,14 +43,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   } catch (err) {
     console.error(err);
-    container.innerHTML = "<p>Erreur lors du chargement des packs.</p>";
+    container.innerHTML = "<p>Error loading packs.</p>";
   }
 });
 
 
 // --- Ouvrir un pack ---
 async function openPack(packName) {
-  const confirmOpen = confirm(`Souhaitez-vous ouvrir le ${packName} ?`);
+  const confirmOpen = confirm(`Do you wish to open the ${packName} ?`);
   if (!confirmOpen) return;
 
   // Animation d'ouverture
@@ -80,15 +80,15 @@ async function openPack(packName) {
 
     // Effet dramatique avant révélation 😄
     setTimeout(() => {
-      container.innerHTML = `<h2>🎉 Voici tes nouveaux joueurs !</h2><div id="player-cards"></div>`;
+      container.innerHTML = `<h2>🎉 Here are your new players !</h2><div id="player-cards"></div>`;
       const cardsContainer = document.getElementById("player-cards");
 
       selectedPlayers.forEach(async (player, index) => {
         const card = document.createElement("div");
         card.className = "skill-card";
 
-        const playerName = player.id || "Joueur inconnu";
-        const playerStyle = player.style || "Classique";
+        const playerName = player.id || "Unknown player";
+        const playerStyle = player.style || "Classic";
         const playerImage = player.image?.startsWith("images/") ? `../${player.image}` : `../images/${player.image || "default-player.png"}`;
         const playerPAC = player.pac ?? 0;
         const playerSHO = player.sho ?? 0;
@@ -127,14 +127,14 @@ async function openPack(packName) {
             body: JSON.stringify({ player_id: player.id })
           });
           const data = await res.json();
-          console.log("✅ Joueur ajouté :", data.message);
+          console.log("✅ Player added :", data.message);
         } catch (err) {
-          console.error("❌ Erreur ajout joueur :", err);
+          console.error("❌ Add player error :", err);
         }
       });
     }, 2000);
   } catch (err) {
     console.error(err);
-    container.innerHTML = "<p>Erreur lors de l'ouverture du pack.</p>";
+    container.innerHTML = "<p>Error opening the package.</p>";
   }
 }

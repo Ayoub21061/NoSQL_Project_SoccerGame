@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const username = localStorage.getItem("username");
   if (!username) {
-    alert("Vous devez vous connecter pour accéder au dashboard.");
+    alert("You must log in to access the dashboard.");
     window.location.href = "login.html";
     return;
   }
@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   try {
     const res = await fetch(`http://127.0.0.1:5001/users/${username}`);
-    if (!res.ok) throw new Error("Impossible de récupérer les données utilisateur");
+    if (!res.ok) throw new Error("Unable to retrieve user data");
 
     const data = await res.json();
 
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Crédits
     let currentCredits = data.credits ?? 0;
-    creditsElement.textContent = `💰 Crédits : ${currentCredits}`;
+    creditsElement.textContent = `💰 Credits : ${currentCredits}`;
 
     // Sauvegarder dans localStorage pour synchronisation avec skills.html
     localStorage.setItem("credits", currentCredits);
@@ -33,9 +33,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     new Chart(document.getElementById("statsChart"), {
       type: "bar",
       data: {
-        labels: ["Buts", "Passes", "Arrêts"],
+        labels: ["Goals", "Passes", "Stops"],
         datasets: [{
-          label: "Statistiques",
+          label: "Statistics",
           data: [data.goals ?? 0, data.assists ?? 0, data.saves ?? 0],
           backgroundColor: ["#00bfff", "#00ff88", "#ffaa00"]
         }]
@@ -46,14 +46,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Écoute des changements dans localStorage pour mise à jour automatique
     window.addEventListener("storage", (event) => {
       if (event.key === "credits") {
-        creditsElement.textContent = `💰 Crédits : ${event.newValue}`;
+        creditsElement.textContent = `💰 Credits : ${event.newValue}`;
       }
     });
 
   } catch (err) {
     console.error(err);
     // Ici, on peut juste afficher 0 crédits sans alerter
-    creditsElement.textContent = `💰 Crédits : 0`;
+    creditsElement.textContent = `💰 Credits : 0`;
   }
   
 });

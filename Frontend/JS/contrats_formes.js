@@ -1,13 +1,13 @@
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     const player = JSON.parse(localStorage.getItem("player"));
-    if (!player) throw new Error("Utilisateur non connecté.");
+    if (!player) throw new Error("User not connected.");
 
     const username = player.username;
     let currentCredits = player.credits ?? 0;
 
     const creditsSpan = document.getElementById("user-credits");
-    if (creditsSpan) creditsSpan.textContent = `💰 Crédits : ${currentCredits}`;
+    if (creditsSpan) creditsSpan.textContent = `💰 Credits : ${currentCredits}`;
 
     // --- Récupérer tous les contrats/formes ---
     const res = await fetch("http://127.0.0.1:5001/contracts_forms");
@@ -40,11 +40,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       `;
 
       const btn = document.createElement("button");
-      btn.textContent = alreadyBought ? "Déjà acheté" : "Acheter";
+      btn.textContent = alreadyBought ? "Already purchased": "Buy";
       btn.disabled = alreadyBought;
 
       btn.addEventListener("click", async () => {
-        if (currentCredits < item.cost) return alert("Crédits insuffisants !");
+        if (currentCredits < item.cost) return alert("Insufficient balance !");
         try {
           const res = await fetch(`http://127.0.0.1:5001/contracts_forms/${username}/buy`, {
             method: "POST",
@@ -52,22 +52,22 @@ document.addEventListener("DOMContentLoaded", async () => {
             body: JSON.stringify({ item_id: item._id, cost: item.cost })
           });
           const data = await res.json();
-          if (!res.ok) throw new Error(data.error || "Erreur achat");
+          if (!res.ok) throw new Error(data.error || "Purchase error");
 
           currentCredits = data.credits;
-          creditsSpan.textContent = `💰 Crédits : ${currentCredits}`;
+          creditsSpan.textContent = `💰 Credits : ${currentCredits}`;
           player.credits = currentCredits;
           localStorage.setItem("player", JSON.stringify(player));
 
           ownedIds.push(item._id.toString());
-          btn.textContent = "Déjà acheté";
+          btn.textContent = "Already purchased";
           btn.disabled = true;
 
-          alert(`${item.name} acheté !`);
+          alert(`${item.name} Bought !`);
           displayOwnedItems(items, ownedIds, myItemsDiv);
         } catch (err) {
           console.error(err);
-          alert("Erreur lors de l'achat.");
+          alert("Error during purchase.");
         }
       });
 
@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   } catch (err) {
     console.error(err);
-    alert("Erreur serveur.");
+    alert("Error server.");
   }
 });
 

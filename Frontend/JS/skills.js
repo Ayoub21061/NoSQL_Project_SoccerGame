@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     } else if (storedUsername) {
       username = storedUsername;
     } else {
-      throw new Error("Utilisateur non connecté.");
+      throw new Error("User not connected.");
     }
 
     let player = JSON.parse(localStorage.getItem("player")) || {};
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // --- MAJ affichage crédits ---
     const creditsSpan = document.getElementById("user-credits");
-    if (creditsSpan) creditsSpan.textContent = `💰 Crédits : ${currentCredits}`;
+    if (creditsSpan) creditsSpan.textContent = `💰 Credits : ${currentCredits}`;
 
     // --- ⚡ Utiliser la même route que equipe.js ---
     const userRes = await fetch(`http://127.0.0.1:5001/players/username/${username}`);
@@ -108,10 +108,10 @@ document.addEventListener("DOMContentLoaded", async () => {
             });
 
             const data = await res.json();
-            if (!res.ok) throw new Error(data.error || "Erreur achat");
+            if (!res.ok) throw new Error(data.error || "Purchase error");
 
             currentCredits = data.credits;
-            creditsSpan.textContent = `💰 Crédits : ${currentCredits}`;
+            creditsSpan.textContent = `💰 Credits : ${currentCredits}`;
 
             const newPlayer = {
               player_id: skill.id,
@@ -127,12 +127,12 @@ document.addEventListener("DOMContentLoaded", async () => {
             player.credits = currentCredits;
             localStorage.setItem("player", JSON.stringify(player));
 
-            buyButton.textContent = "Déjà obtenu";
+            buyButton.textContent = "Already obtained";
             buyButton.disabled = true;
-            alert(`${skill.name ?? skill.id} acheté !`);
+            alert(`${skill.name ?? skill.id} Bought !`);
           } catch (err) {
             console.error(err);
-            alert("Erreur serveur, veuillez réessayer.");
+            alert("Server error, please try again.");
           }
         });
 
@@ -170,6 +170,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   } catch (err) {
     console.error(err);
-    alert("Erreur serveur, veuillez réessayer plus tard.");
+    alert("Server error, please try again later.");
   }
 });

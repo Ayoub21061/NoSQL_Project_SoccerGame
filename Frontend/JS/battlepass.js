@@ -8,14 +8,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // --- Récupérer le joueur et son XP / récompenses ---
     const userRes = await fetch(`http://127.0.0.1:5001/users/${username}`);
-    if (!userRes.ok) throw new Error("Erreur serveur utilisateur");
+    if (!userRes.ok) throw new Error("Error server user");
     const userData = await userRes.json();
     const currentXP = userData.current_xp ?? 0;
     const claimedRewards = userData.claimed_rewards ?? [];
 
     // --- Récupérer le Battle Pass ---
     const res = await fetch("http://127.0.0.1:5001/achievements/battlepass");
-    if (!res.ok) throw new Error("Erreur serveur Battle Pass");
+    if (!res.ok) throw new Error("Error server user");
     const battlePass = await res.json();
 
     container.innerHTML = "";
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (unlocked && !claimed) {
         const claimBtn = document.createElement("button");
         claimBtn.className = "claim-btn";
-        claimBtn.textContent = "🎁 Récupérer vos récompenses";
+        claimBtn.textContent = "🎁 Recoverd your rewards";
 
         claimBtn.addEventListener("click", async () => {
           try {
@@ -63,14 +63,14 @@ document.addEventListener("DOMContentLoaded", async () => {
             const data = await claimRes.json();
 
             if (claimRes.ok) {
-              rewardSection.innerHTML = `<p class="claimed">✅ Récompense récupérée : +${data.earned_coins} coins</p>`;
+              rewardSection.innerHTML = `<p class="claimed">✅ Reward recovered : +${data.earned_coins} coins</p>`;
               claimedRewards.push(level.id); // mettre à jour localement
             } else {
-              alert(data.error || "Erreur lors de la récupération.");
+              alert(data.error || "Error while retrieving rewards");
             }
           } catch (err) {
             console.error(err);
-            alert("Erreur lors de la récupération de la récompense.");
+            alert("Error while retrieving rewards");
           }
         });
 

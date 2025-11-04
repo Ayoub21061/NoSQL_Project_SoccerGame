@@ -40,12 +40,12 @@ async function register() {
     const passwordConfirm = document.getElementById('register-password-confirm').value.trim();
 
     if (!username || !mail || !password || !passwordConfirm) {
-        alert("Veuillez remplir tous les champs.");
+        alert("Please fill in all fields.");
         return;
     }
 
     if (password !== passwordConfirm) {
-        alert("Les mots de passe ne correspondent pas !");
+        alert("The passwords don't match !");
         return;
     }
 
@@ -66,10 +66,10 @@ async function register() {
     const data = await response.json();
 
     if (response.ok) {
-        alert("Compte créé avec succès !");
+        alert("Account successfully created!");
         window.location.href = "dashboard.html";
     } else {
-        alert(data.error || "Erreur lors de l'inscription.");
+        alert(data.error || "Error during registration.");
     }
 }
 

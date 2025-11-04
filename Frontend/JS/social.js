@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- Recherche d'un joueur avec bouton ou touche Entrée ---
     searchBtn.addEventListener("click", async () => {
         const username = searchInput.value.trim();
-        if (!username) return alert("Veuillez entrer un nom d'utilisateur");
+        if (!username) return alert("Please enter a username");
         await loadPlayerProfile(username);
     });
 
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (event.key === "Enter") {
             event.preventDefault();
             const username = searchInput.value.trim();
-            if (!username) return alert("Veuillez entrer un nom d'utilisateur");
+            if (!username) return alert("Please enter a username");
             await loadPlayerProfile(username);
         }
     });
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     async function loadPlayerProfile(username) {
         try {
             const res = await fetch(`http://127.0.0.1:5001/social/search?username=${username}`);
-            if (!res.ok) throw new Error("Joueur introuvable");
+            if (!res.ok) throw new Error("Player not found");
             const data = await res.json();
             viewedPlayer = data;
 
@@ -48,8 +48,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- Envoyer une demande d'ami ---
     addFriendBtn.addEventListener("click", async () => {
-        if (!currentPlayer || !viewedPlayer) return alert("Impossible d'envoyer la demande");
-        if (currentPlayer.username === viewedPlayer.username) return alert("Vous ne pouvez pas vous ajouter vous-même");
+        if (!currentPlayer || !viewedPlayer) return alert("Unable to send the request");
+        if (currentPlayer.username === viewedPlayer.username) return alert("You cannot add yourself.");
 
         try {
             const res = await fetch("http://127.0.0.1:5001/social/friend_request", {
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!currentPlayer) return;
         try {
             const res = await fetch(`http://127.0.0.1:5001/social/friend_requests/${currentPlayer.username}`);
-            if (!res.ok) throw new Error("Impossible de récupérer les demandes");
+            if (!res.ok) throw new Error("Unable to retrieve requests.");
             const data = await res.json();
             const list = document.getElementById("friendRequestsList");
             list.innerHTML = "";
@@ -79,11 +79,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 const line = document.createElement("div");
                 line.textContent = req.sender + " ";
                 const acceptBtn = document.createElement("button");
-                acceptBtn.textContent = "Accepter";
+                acceptBtn.textContent = "Accept";
                 acceptBtn.className = "accept";
                 acceptBtn.onclick = () => respondFriend(req.sender, true);
                 const rejectBtn = document.createElement("button");
-                rejectBtn.textContent = "Refuser";
+                rejectBtn.textContent = "Reject";
                 rejectBtn.className = "reject";
                 rejectBtn.onclick = () => respondFriend(req.sender, false);
                 line.appendChild(acceptBtn);
@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!currentPlayer) return;
         try {
             const res = await fetch(`http://127.0.0.1:5001/players/username/${currentPlayer.username}`);
-            if (!res.ok) throw new Error("Impossible de récupérer la liste d'amis");
+            if (!res.ok) throw new Error("Unable to retrieve friends list");
             const player = await res.json();
             const list = document.getElementById("friendsList");
             list.innerHTML = "";
@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 // Bouton supprimer
                 const removeBtn = document.createElement("button");
-                removeBtn.textContent = "Supprimer";
+                removeBtn.textContent = "Reject";
                 removeBtn.className = "reject";
                 removeBtn.onclick = async () => {
                     try {

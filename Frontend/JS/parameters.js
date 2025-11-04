@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // On récupère l'objet player stocké (clée "player")
   const player = JSON.parse(localStorage.getItem("player"));
   if (!player) {
-    alert("Aucun joueur connecté !");
+    alert("No player connected !");
     window.location.href = "index.html";
     return;
   }
@@ -19,21 +19,21 @@ document.addEventListener("DOMContentLoaded", async () => {
     const fetchUrl = playerId ? `${API_URL}/${playerId}` : `${API_URL}/username/${encodeURIComponent(playerUsername)}`;
     const res = await fetch(fetchUrl);
     const data = await res.json();
-    if (!res.ok) throw new Error(data.error || "Erreur de chargement des données joueur.");
+    if (!res.ok) throw new Error(data.error || "Player data loading error.");
 
     // Remplissage des champs (attention aux clés renvoyées par ton backend)
     document.getElementById("username").value = data.username || "";
     // Certains backend utilisent `email`, d'autres `mail`. fallback sur les deux.
-    document.getElementById("user-email").textContent = data.email || data.mail || "non défini";
+    document.getElementById("user-email").textContent = data.email || data.mail || "undefined";
     // Même remarque pour la date de création
     document.getElementById("creation-date").textContent = data.creation_date || data.account_creation_date || "--/--/----";
-    document.getElementById("playtime").textContent = (data.total_playtime || 0) + " heures";
+    document.getElementById("playtime").textContent = (data.total_playtime || 0) + " hours";
 
     // --- Remplir le formulaire avec les infos ---
     document.getElementById("username").value = playerData.username || "";
-    document.getElementById("user-email").textContent = playerData.mail || "non défini";
-    document.getElementById("creation-date").textContent = playerData.account_creation_date || "non précisée";
-    document.getElementById("playtime").textContent = (playerData.total_playtime || 0) + " heures";
+    document.getElementById("user-email").textContent = playerData.mail || "undefined";
+    document.getElementById("creation-date").textContent = playerData.account_creation_date || "undefined";
+    document.getElementById("playtime").textContent = (playerData.total_playtime || 0) + " hours";
 
     if (playerData.avatar) {
       document.getElementById("avatar-preview").src = `../images/${playerData.avatar}`;
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     localStorage.setItem("player", JSON.stringify(updatedPlayer));
   } catch (err) {
     console.error(err);
-    alert("Impossible de charger les informations du joueur depuis la base de données.");
+    alert("Unable to load player information from the database.");
   }
 
   // --- Upload / changement d’avatar (fichier local) ---
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         // Doit utiliser l'id si possible
         const currentPlayer = JSON.parse(localStorage.getItem("player"));
         const id = currentPlayer._id || currentPlayer.id;
-        if (!id) throw new Error("Aucun id player disponible pour la mise à jour.");
+        if (!id) throw new Error("No player IDs are available for the update.");
 
         const response = await fetch(`${API_URL}/${id}/avatar`, {
           method: "PUT",
@@ -75,9 +75,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         currentPlayer.avatar = avatarData;
         localStorage.setItem("player", JSON.stringify(currentPlayer));
 
-        alert("✅ Avatar mis à jour !");
+        alert("✅ Avatar updated !");
       } catch (err) {
-        alert("Erreur lors de la mise à jour de l’avatar.");
+        alert("Error updating avatar.");
         console.error(err);
       }
     };
@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       try {
         const currentPlayer = JSON.parse(localStorage.getItem("player"));
         const id = currentPlayer._id || currentPlayer.id;
-        if (!id) throw new Error("Aucun id player disponible pour la mise à jour.");
+        if (!id) throw new Error("No player IDs available for the update.");
 
         const response = await fetch(`${API_URL}/${id}/avatar`, {
           method: "PUT",
@@ -109,9 +109,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         currentPlayer.avatar = avatarFileName;
         localStorage.setItem("player", JSON.stringify(currentPlayer));
 
-        alert("✅ Avatar changé avec succès !");
+        alert("✅ Avatar successfully changed !");
       } catch (err) {
-        alert("Erreur lors du changement d’avatar.");
+        alert("Error changing avatar.");
         console.error(err);
       }
     });
@@ -120,12 +120,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   // --- Mise à jour du pseudo ---
   document.getElementById("save-profile").addEventListener("click", async () => {
     const newUsername = document.getElementById("username").value.trim();
-    if (!newUsername) return alert("Le pseudo ne peut pas être vide.");
+    if (!newUsername) return alert("The username cannot be empty.");
 
     try {
       const currentPlayer = JSON.parse(localStorage.getItem("player"));
       const id = currentPlayer._id || currentPlayer.id;
-      if (!id) throw new Error("Aucun id player disponible pour la mise à jour.");
+      if (!id) throw new Error("No player IDs are available for the update..");
 
       const response = await fetch(`${API_URL}/${id}`, {
         method: "PUT",
@@ -139,9 +139,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       currentPlayer.username = newUsername;
       localStorage.setItem("player", JSON.stringify(currentPlayer));
 
-      alert("✅ Pseudo mis à jour !");
+      alert("✅ Pseudo updated !");
     } catch (err) {
-      alert("Erreur lors de la mise à jour du pseudo.");
+      alert("Error updating username.");
       console.error(err);
     }
   });
@@ -151,13 +151,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     const oldPwd = document.getElementById("old-password").value.trim();
     const newPwd = document.getElementById("new-password").value.trim();
 
-    if (!oldPwd || !newPwd) return alert("Veuillez remplir tous les champs !");
-    if (oldPwd === newPwd) return alert("Le nouveau mot de passe doit être différent de l'ancien.");
+    if (!oldPwd || !newPwd) return alert("Please fill in all fields !");
+    if (oldPwd === newPwd) return alert("The new password must be different from the old one.");
 
     try {
       const currentPlayer = JSON.parse(localStorage.getItem("player"));
       const id = currentPlayer._id || currentPlayer.id;
-      if (!id) throw new Error("Aucun id player disponible pour la mise à jour.");
+      if (!id) throw new Error("No player IDs are available for the update.");
 
       const response = await fetch(`${API_URL}/${id}/password`, {
         method: "PUT",
@@ -168,32 +168,32 @@ document.addEventListener("DOMContentLoaded", async () => {
       const result = await response.json();
       if (!response.ok) throw new Error(result.error);
 
-      alert("🔒 Mot de passe mis à jour avec succès !");
+      alert("🔒 Password successfully updated !");
     } catch (err) {
-      alert("Erreur lors de la mise à jour du mot de passe.");
+      alert("Error updating password.");
       console.error(err);
     }
   });
 
   // --- Suppression du compte ---
   document.getElementById("delete-account").addEventListener("click", async () => {
-    const confirmDelete = confirm("⚠️ Voulez-vous vraiment supprimer votre compte ?");
+    const confirmDelete = confirm("⚠️ Do you really want to delete your account ?");
     if (!confirmDelete) return;
 
     try {
       const currentPlayer = JSON.parse(localStorage.getItem("player"));
       const id = currentPlayer._id || currentPlayer.id;
-      if (!id) throw new Error("Aucun id player disponible pour la suppression.");
+      if (!id) throw new Error("No player ID available for deletion.");
 
       const response = await fetch(`${API_URL}/${id}`, { method: "DELETE" });
       const result = await response.json();
       if (!response.ok) throw new Error(result.error);
 
       localStorage.removeItem("player");
-      alert("🗑️ Compte supprimé avec succès !");
+      alert("🗑️ Account deleted successfully !");
       window.location.href = "index.html";
     } catch (err) {
-      alert("Erreur lors de la suppression du compte.");
+      alert("Error deleting account.");
       console.error(err);
     }
   });
