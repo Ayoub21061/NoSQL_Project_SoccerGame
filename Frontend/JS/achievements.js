@@ -51,8 +51,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       card.innerHTML = `
         <h3>${achievement.name}</h3>
-        <p><strong>Description :</strong> ${achievement.description || "Aucune description"}</p>
-        <p><strong>Récompenses :</strong> ${rewardText}</p>
+        <p><strong>Description :</strong> ${achievement.description || "No description"}</p>
+        <p><strong>Rewards :</strong> ${rewardText}</p>
       `;
       container.appendChild(card);
     });

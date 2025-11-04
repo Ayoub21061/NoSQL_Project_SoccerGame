@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           <div class="skill-style">${skill.style}</div>
           <div class="skill-stats">${statsHTML}</div>
           <div class="skill-extra">✨ Tech: ${skill.technical_moves ?? "-"} | 🦶 WF: ${skill.weak_foot ?? "-"}</div>
-          <div class="skill-credits">💰 Crédit requis : ${playerCredits}</div>
+          <div class="skill-credits">💰 Credit required : ${playerCredits}</div>
         `;
 
         // --- Bouton d'achat ---

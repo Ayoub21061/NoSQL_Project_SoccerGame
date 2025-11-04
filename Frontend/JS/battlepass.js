@@ -35,15 +35,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       lvlDiv.innerHTML = `
         <div class="level-header">${level.name}</div>
-        <div class="level-xp">XP Requis : ${level.xp_required}</div>
+        <div class="level-xp">Required XP : ${level.xp_required}</div>
         <div class="level-reward">
           <span>💰 ${level.reward.coins || 0}</span>
           ${level.reward.pack ? `<span>${level.reward.pack}</span>` : ""}
-          ${level.reward.exclusive_kit ? `<span>👕 Kit exclusif</span>` : ""}
-          ${level.reward.trophy ? `<span>🏆 Trophée</span>` : ""}
+          ${level.reward.exclusive_kit ? `<span>👕 Exclusive Kit</span>` : ""}
         </div>
         <button class="preview-btn" data-reward='${JSON.stringify(level.reward)}' data-title="${level.name}">
-          Voir aperçu des récompenses
+          View Reward Preview
         </button>
       `;
 
@@ -53,7 +52,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (unlocked && !claimed) {
         const claimBtn = document.createElement("button");
         claimBtn.className = "claim-btn";
-        claimBtn.textContent = "🎁 Récupérer vos récompenses";
+        claimBtn.textContent = "🎁 Claim your rewards";
 
         claimBtn.addEventListener("click", async () => {
           try {
@@ -76,9 +75,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         rewardSection.appendChild(claimBtn);
 
       } else if (claimed) {
-        rewardSection.innerHTML = `<p class="claimed">✅ Récompense déjà récupérée</p>`;
+        rewardSection.innerHTML = `<p class="claimed">✅ Reward claimed</p>`;
       } else {
-        rewardSection.innerHTML = `<p class="locked">🔒 Niveau verrouillé</p>`;
+        rewardSection.innerHTML = `<p class="locked">🔒 Level locked</p>`;
       }
 
       lvlDiv.appendChild(rewardSection);
@@ -208,12 +207,12 @@ function showRewardPreview(title, reward) {
 
     // ✅ Utilisation dynamique de l’image correspondant au niveau
     kitImg.src = `../images/${reward.exclusive_kit}`;
-    kitImg.alt = "Kit exclusif";
+    kitImg.alt = "Exclusive Kit";
     kitImg.className = "reward-img";
     kitDiv.appendChild(kitImg);
 
     const kitText = document.createElement("span");
-    kitText.textContent = "Kit exclusif";
+    kitText.textContent = "Exclusive Kit";
     kitText.style.display = "block";
     kitText.style.marginTop = "6px";
     kitText.style.fontWeight = "bold";

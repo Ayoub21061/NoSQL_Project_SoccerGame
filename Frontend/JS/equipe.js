@@ -365,7 +365,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const orange = links.filter((l) => l.style.backgroundColor === "orange").length;
     const total = links.length;
     const score = total === 0 ? 0 : ((green * 2 + orange) / (total * 2)) * 100;
-    chemistryDisplay.textContent = `Collectif: ${Math.round(score)}%`;
+    chemistryDisplay.textContent = `Chemistry: ${Math.round(score)}%`;
   }
 
   // --- AFFICHER LES MAILLOTS ---
@@ -382,7 +382,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         );
 
         if (kits.length === 0) {
-          kitsContainer.innerHTML = "<p>Aucun maillot obtenu pour le moment.</p>";
+          kitsContainer.innerHTML = "<p>No jersey obtained yet.</p>";
           return;
         }
 
@@ -463,7 +463,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       contractsFormsContainer.innerHTML = "";
 
       if (ownedItems.length === 0) {
-        contractsFormsContainer.innerHTML = "<p>Aucun contrat ou forme acheté.</p>";
+        contractsFormsContainer.innerHTML = "<p>No contract or form purchased.</p>";
       } else {
         ownedItems.forEach(item => {
           const card = document.createElement("div");

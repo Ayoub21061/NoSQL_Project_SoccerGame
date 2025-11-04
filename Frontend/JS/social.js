@@ -79,11 +79,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 const line = document.createElement("div");
                 line.textContent = req.sender + " ";
                 const acceptBtn = document.createElement("button");
-                acceptBtn.textContent = "Accepter";
+                acceptBtn.textContent = "Accept";
                 acceptBtn.className = "accept";
                 acceptBtn.onclick = () => respondFriend(req.sender, true);
                 const rejectBtn = document.createElement("button");
-                rejectBtn.textContent = "Refuser";
+                rejectBtn.textContent = "Reject";
                 rejectBtn.className = "reject";
                 rejectBtn.onclick = () => respondFriend(req.sender, false);
                 line.appendChild(acceptBtn);
@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 // Bouton supprimer
                 const removeBtn = document.createElement("button");
-                removeBtn.textContent = "Supprimer";
+                removeBtn.textContent = "Delete";
                 removeBtn.className = "reject";
                 removeBtn.onclick = async () => {
                     try {

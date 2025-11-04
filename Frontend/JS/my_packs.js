@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const user = await res.json();
 
     if (!user.packs_owned || user.packs_owned.length === 0) {
-      container.innerHTML = "<p>Tu n’as encore débloqué aucun pack 😅</p>";
+      container.innerHTML = "<p>You don't have packs yet 😅</p>";
       return;
     }
 

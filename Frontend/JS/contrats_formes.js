@@ -40,11 +40,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       `;
 
       const btn = document.createElement("button");
-      btn.textContent = alreadyBought ? "Déjà acheté" : "Acheter";
+      btn.textContent = alreadyBought ? "Already owned" : "Buy";
       btn.disabled = alreadyBought;
 
       btn.addEventListener("click", async () => {
-        if (currentCredits < item.cost) return alert("Crédits insuffisants !");
+        if (currentCredits < item.cost) return alert("Insufficient credits!");
         try {
           const res = await fetch(`http://127.0.0.1:5001/contracts_forms/${username}/buy`, {
             method: "POST",
@@ -60,14 +60,14 @@ document.addEventListener("DOMContentLoaded", async () => {
           localStorage.setItem("player", JSON.stringify(player));
 
           ownedIds.push(item._id.toString());
-          btn.textContent = "Déjà acheté";
+          btn.textContent = "Already owned";
           btn.disabled = true;
 
-          alert(`${item.name} acheté !`);
+          alert(`${item.name} purchased!`);
           displayOwnedItems(items, ownedIds, myItemsDiv);
         } catch (err) {
           console.error(err);
-          alert("Erreur lors de l'achat.");
+          alert("Error during purchase.");
         }
       });
 
@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   } catch (err) {
     console.error(err);
-    alert("Erreur serveur.");
+    alert("Server error.");
   }
 });
 
