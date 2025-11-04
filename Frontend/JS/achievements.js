@@ -7,22 +7,52 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const achievements = await response.json();
 
-    if (achievements.length === 0) {
-      container.innerHTML = "<p>Aucun achievement trouvé.</p>";
+    // ✅ Filtrer pour exclure les Battle Pass
+    const filteredAchievements = achievements.filter(achievement => {
+      const name = (achievement.name || "").toLowerCase();
+      return !name.includes("battle pass") && !name.includes("pass de combat");
+    });
+
+    if (filteredAchievements.length === 0) {
+      container.innerHTML = "<p>Aucun achievement trouvé (hors Battle Pass).</p>";
       return;
     }
 
-    achievements.forEach(achievement => {
+    filteredAchievements.forEach(achievement => {
       const card = document.createElement("div");
       card.className = "achievement-card";
+
+      // ✅ Formatage de la récompense
+      let rewards = [];
+
+      if (achievement.reward) {
+        for (const [key, value] of Object.entries(achievement.reward)) {
+          switch (key) {
+            case "coins":
+              rewards.push(`💰 ${value} crédits`);
+              break;
+            case "player_card":
+              rewards.push(value); // ✅ On affiche uniquement la valeur
+              break;
+            case "pack":
+              rewards.push(value); // ✅ On affiche uniquement la valeur
+              break;
+            case "exclusive_kit":
+              // ❌ On n'affiche pas les exclusive_kit
+              break;
+            default:
+              // Ignore toutes les autres clés
+              break;
+          }
+        }
+      }
+
+      const rewardText = rewards.length > 0 ? rewards.join(", ") : "N/A";
+
       card.innerHTML = `
         <h3>${achievement.name}</h3>
         <p><strong>Description :</strong> ${achievement.description || "Aucune description"}</p>
-        <p><strong>Récompenses :</strong> ${
-          achievement.reward
-            ? Object.values(achievement.reward).join(", ")
-            : "N/A"
-        }</p>
+        <p><strong>Récompenses :</strong> ${rewardText}</p>
       `;
       container.appendChild(card);
     });
