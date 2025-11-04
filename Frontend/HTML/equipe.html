@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <title>Mon Équipe</title>
@@ -9,15 +10,16 @@
 
 
 </head>
+
 <body>
   <header class="header">
-     <div class="left">
+    <div class="left">
       <span class="hamburger">&#9776;</span>
     </div>
     <div class="center">
       <h1>Mon Équipe</h1>
     </div>
-    
+
     <nav>
       <ul>
         <li><a href="skills.html">Retour aux joueurs</a></li>
@@ -25,20 +27,20 @@
     </nav>
 
     <div class="right user-info">
-        <a href="parameters.html" class="profil">
-            <img id="user-avatar" src="../images/default-avatar.png" alt="Avatar Joueur" class="avatar">
-            <div class="profile-text">
-            <span id="user-name">Joueur</span>
-            
-            </div>
-        </a>
-        <span id="user-credits">💰 Crédits : 0</span>
+      <a href="parameters.html" class="profil">
+        <img id="user-avatar" src="../images/default-avatar.png" alt="Avatar Joueur" class="avatar">
+        <div class="profile-text">
+          <span id="user-name">Joueur</span>
+
         </div>
-    
+      </a>
+      <span id="user-credits">💰 Crédits : 0</span>
+    </div>
+
   </header>
 
   <!-- Sidebar -->
-   <div id="mySidebar" class="sidebar">
+  <div id="mySidebar" class="sidebar">
     <span class="closebtn">&times;</span>
     <a href="dashboard.html">Dashboard</a>
     <a href="achievements.html">Achievements</a>
@@ -52,7 +54,7 @@
   </div>
 
   <div id="team-chemistry">Collectif: 0%</div>
-  
+
   <main>
     <section id="team-section">
       <label for="formation">Choisir une formation :</label>
@@ -73,10 +75,16 @@
       </div>
     </aside>
 
-    
+
 
     <h2 class="section-title">Contrats et Formes achetés</h2>
     <div id="contracts-forms-container" class="items-container"></div>
+    
+    <h2 class="section-title">Maillots obtenus</h2>
+    <div id="kits-container" class="items-container">
+      <!-- Maillots du Battle Pass -->
+    </div>
+
 
 
   </main>
@@ -85,4 +93,5 @@
   <script src="../js/menu.js"></script>
 
 </body>
+
 </html>
