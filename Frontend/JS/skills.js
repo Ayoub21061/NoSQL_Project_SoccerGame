@@ -95,11 +95,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         // --- Bouton d'achat ---
         const buyButton = document.createElement("button");
         const alreadyOwned = allOwnedPlayerIds.includes(skill.id);
-        buyButton.textContent = alreadyOwned ? "Déjà obtenu" : "Acheter";
+        buyButton.textContent = alreadyOwned ? "Already Owned" : "Buy";
         buyButton.disabled = alreadyOwned;
 
         buyButton.addEventListener("click", async () => {
-          if (currentCredits < playerCredits) return alert("Crédits insuffisants !");
+          if (currentCredits < playerCredits) return alert("Insufficient credits!");
           try {
             const res = await fetch(`http://127.0.0.1:5001/users/players/${username}/buy_player`, {
               method: "POST",
