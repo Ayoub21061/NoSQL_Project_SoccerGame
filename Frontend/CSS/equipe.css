@@ -111,6 +111,29 @@ main {
   border: 2px solid #00bfff;
 }
 
+.player-name {
+  font-weight: bold;
+  color: #00bfff;
+  margin-top: 5px;
+}
+
+.player-info {
+  margin-top: 5px;
+  font-size: 0.8rem;
+  color: #ddd;
+  text-align: left;
+  line-height: 1.2;
+}
+
+.player-info p {
+  margin: 2px 0;
+}
+
+.player-info span {
+  color: #00bfff;
+  font-weight: bold;
+}
+
 /* === FORMATION === */
 #team-section {
   display: flex;
@@ -190,6 +213,19 @@ main {
   box-shadow: 0 0 10px #00bfff;
 }
 
+.team-player-kit-logo {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  border-radius: 50%;
+  border: 2px solid gold;
+  background-color: #1b1b1b;
+  z-index: 3;
+  pointer-events: none;
+}
+
 /* === LIENS ENTRE JOUEURS === */
 .link-line {
   position: absolute;
@@ -201,17 +237,9 @@ main {
   opacity: 0.9;
 }
 
-.link-line.red {
-  background-color: red;
-}
-
-.link-line.orange {
-  background-color: orange;
-}
-
-.link-line.green {
-  background-color: limegreen;
-}
+.link-line.red { background-color: red; }
+.link-line.orange { background-color: orange; }
+.link-line.green { background-color: limegreen; }
 
 /* === COLLECTIF === */
 #team-chemistry {
@@ -364,39 +392,48 @@ main {
   to { opacity: 1; transform: scale(1); }
 }
 
-.player-name {
-  font-weight: bold;
+/* === DÉTAIL JOUEUR === */
+.player-detail-popup {
+  background: #222;
+  color: #f0f0f0;
+  border: 2px solid #00bfff;
+  width: 350px;
+  text-align: center;
+}
+
+.player-detail-popup h3 {
   color: #00bfff;
-  margin-top: 5px;
+  margin-bottom: 10px;
 }
 
-.player-info {
-  margin-top: 5px;
-  font-size: 0.8rem;
-  color: #ddd;
-  text-align: left;
-  line-height: 1.2;
-}
-
-.player-info p {
-  margin: 2px 0;
-}
-
-.player-info span {
-  color: #00bfff;
-  font-weight: bold;
-}
-
-.team-player-kit-logo {
-  width: 30px;          /* taille du logo */
-  height: 30px;
-  position: absolute;
-  top: -10px;
-  left: -10px;
+.player-detail-popup .skill-image {
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
-  border: 2px solid gold; /* optionnel pour mettre en valeur */
-  background-color: #1b1b1b;
-  z-index: 3;
-  pointer-events: none;   /* le clic passe à travers */
+  border: 2px solid #00bfff;
+  margin-bottom: 10px;
 }
 
+.player-detail-popup .skill-stats {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.player-detail-popup .skill-stat {
+  background: #333;
+  border-radius: 6px;
+  padding: 6px;
+  width: 60px;
+  font-size: 0.8rem;
+}
+
+.player-detail-popup .skill-meta {
+  background: #333;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 0.85rem;
+}
