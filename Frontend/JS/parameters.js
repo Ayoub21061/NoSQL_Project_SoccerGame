@@ -29,14 +29,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("creation-date").textContent = data.creation_date || data.account_creation_date || "--/--/----";
     document.getElementById("playtime").textContent = (data.total_playtime || 0) + " hours";
 
-    // --- Remplir le formulaire avec les infos ---
-    document.getElementById("username").value = playerData.username || "";
-    document.getElementById("user-email").textContent = playerData.mail || "undefined";
-    document.getElementById("creation-date").textContent = playerData.account_creation_date || "undefined";
-    document.getElementById("playtime").textContent = (playerData.total_playtime || 0) + " hours";
-
-    if (playerData.avatar) {
-      document.getElementById("avatar-preview").src = `../images/${playerData.avatar}`;
+    if (data.avatar) {
+      document.getElementById("avatar-preview").src = `../images/${data.avatar}`;
     }
 
     // On met à jour l'objet player local avec les données fraîches (notamment l'_id si manquant)

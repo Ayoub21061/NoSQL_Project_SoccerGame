@@ -7,21 +7,21 @@
 }
 
 body {
-  background-color: #1b1b1b;
-  color: #f0f0f0;
+  background-color: #0b1020; /* bleu nuit profond */
+  color: #e0e6f0;            /* texte clair */
   min-height: 100vh;
 }
 
 /* === HEADER === */
 header {
-  background-color: #111;
+  background-color: #0a0f1a; /* bleu très foncé */
   padding: 20px;
   text-align: center;
 }
 
 header h1 {
   font-size: 2rem;
-  color: #f9f9f9;
+  color: #4fc3ff; /* accent bleu clair */
 }
 
 nav ul {
@@ -35,13 +35,14 @@ nav ul li {
 }
 
 nav ul li a {
-  color: #00bfff;
+  color: #4fc3ff;
   text-decoration: none;
   font-weight: bold;
 }
 
 nav ul li a:hover {
   text-decoration: underline;
+  color: #7fd0ff;
 }
 
 /* === LAYOUT PRINCIPAL === */
@@ -56,7 +57,7 @@ main {
 /* === JOUEURS ACHETÉS === */
 #players-list {
   width: 100%;
-  background-color: #222;
+  background-color: #10182b; /* bleu nuit doux */
   padding: 15px;
   border-radius: 10px;
   overflow-x: auto;
@@ -65,7 +66,7 @@ main {
 #players-list h2 {
   text-align: center;
   margin-bottom: 10px;
-  color: #00bfff;
+  color: #4fc3ff;
 }
 
 .player-cards-container {
@@ -85,11 +86,11 @@ main {
 }
 
 .player-cards-container::-webkit-scrollbar-track {
-  background-color: #222;
+  background-color: #10182b;
 }
 
 .skill-card {
-  background-color: #333;
+  background-color: #14213d;
   padding: 10px;
   border-radius: 8px;
   text-align: center;
@@ -99,7 +100,7 @@ main {
 }
 
 .skill-card:hover {
-  background-color: #444;
+  background-color: #1b2a50;
   transform: translateY(-2px);
 }
 
@@ -108,7 +109,7 @@ main {
   height: 50px;
   border-radius: 50%;
   margin-bottom: 5px;
-  border: 2px solid #00bfff;
+  border: 2px solid #4fc3ff;
 }
 
 /* === FORMATION === */
@@ -124,8 +125,8 @@ main {
   font-size: 1rem;
   border-radius: 6px;
   border: none;
-  background-color: #333;
-  color: #fff;
+  background-color: #14213d;
+  color: #e0e6f0;
 }
 
 /* === TERRAIN === */
@@ -150,7 +151,7 @@ main {
 .team-slot {
   width: 90px;
   height: 90px;
-  background-color: #2a2a2a;
+  background-color: #10182b;
   border: 2px dashed #555;
   border-radius: 50%;
   display: flex;
@@ -161,7 +162,7 @@ main {
 }
 
 .team-slot:hover {
-  border-color: #00bfff;
+  border-color: #4fc3ff;
   transform: scale(1.05);
 }
 
@@ -169,7 +170,7 @@ main {
   position: absolute;
   top: -22px;
   font-size: 0.8rem;
-  color: #00bfff;
+  color: #4fc3ff;
   font-weight: bold;
   text-align: center;
   width: 100%;
@@ -179,7 +180,7 @@ main {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  border: 2px solid #00bfff;
+  border: 2px solid #4fc3ff;
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
   z-index: 2;
@@ -187,7 +188,7 @@ main {
 
 .team-player:hover {
   transform: scale(1.1);
-  box-shadow: 0 0 10px #00bfff;
+  box-shadow: 0 0 10px #4fc3ff;
 }
 
 /* === LIENS ENTRE JOUEURS === */
@@ -201,26 +202,26 @@ main {
   opacity: 0.9;
 }
 
-/* Couleurs de liens */
 .link-line.red {
-  background-color: red;
+  background-color: #f44336; /* rouge */
 }
 
 .link-line.orange {
-  background-color: orange;
+  background-color: #ff9800; /* orange */
 }
 
 .link-line.green {
-  background-color: limegreen;
+  background-color: #4caf50; /* vert */
 }
 
 /* === COLLECTIF === */
 #team-chemistry {
   font-size: 1.3rem;
   font-weight: bold;
-  color: #00bfff;
+  color: #4fc3ff;
   text-align: center;
   margin-top: 10px;
+  background-color: #14213d;
 }
 
 /* --- Overlay général --- */
@@ -230,7 +231,7 @@ main {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(27,27,27,0.8);
+  background: rgba(11,16,32,0.8);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -239,7 +240,7 @@ main {
 
 /* --- Fenêtre du popup --- */
 .popup-window {
-  background-color: #2a2a2a;
+  background-color: #14213d;
   border-radius: 12px;
   padding: 20px;
   width: 320px;
@@ -247,35 +248,32 @@ main {
   box-shadow: 0 6px 20px rgba(0,0,0,0.5);
   text-align: center;
   animation: fadeIn 0.25s ease-in-out;
-  color: #f0f0f0;
+  color: #e0e6f0;
 }
 
-/* --- Titre et texte --- */
 .popup-window h3 {
   margin-bottom: 10px;
   font-size: 1.2rem;
-  color: #00bfff;
+  color: #4fc3ff;
 }
 
 .popup-window p {
   font-size: 0.95rem;
-  color: #ccc;
+  color: #ccd3e0;
   margin-bottom: 10px;
 }
 
-/* --- Sélecteur --- */
 .popup-select {
   margin: 12px 0;
   padding: 6px 10px;
   width: 100%;
   border-radius: 6px;
   border: 1px solid #555;
-  background-color: #333;
-  color: #f0f0f0;
+  background-color: #10182b;
+  color: #e0e6f0;
   outline: none;
 }
 
-/* --- Boutons --- */
 .popup-buttons {
   margin-top: 15px;
   display: flex;
@@ -294,12 +292,12 @@ main {
 }
 
 .popup-btn.apply {
-  background-color: #00bfff;
-  color: #1b1b1b;
+  background-color: #4fc3ff;
+  color: #0b1020;
 }
 
 .popup-btn.apply:hover {
-  background-color: #0099e6;
+  background-color: #3aa6e6;
   transform: translateY(-2px);
 }
 
@@ -319,16 +317,17 @@ main {
   to { opacity: 1; transform: scale(1); }
 }
 
+/* --- PLAYER INFO --- */
 .player-name {
   font-weight: bold;
-  color: #00bfff;
+  color: #4fc3ff;
   margin-top: 5px;
 }
 
 .player-info {
   margin-top: 5px;
   font-size: 0.8rem;
-  color: #ddd;
+  color: #ccd3e0;
   text-align: left;
   line-height: 1.2;
 }
@@ -338,20 +337,20 @@ main {
 }
 
 .player-info span {
-  color: #00bfff;
+  color: #4fc3ff;
   font-weight: bold;
 }
 
 .player-detail-popup {
-  background: #222;
-  color: #f0f0f0;
-  border: 2px solid #00bfff;
+  background: #10182b;
+  color: #e0e6f0;
+  border: 2px solid #4fc3ff;
   width: 350px;
   text-align: center;
 }
 
 .player-detail-popup h3 {
-  color: #00bfff;
+  color: #4fc3ff;
   margin-bottom: 10px;
 }
 
@@ -359,7 +358,7 @@ main {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  border: 2px solid #00bfff;
+  border: 2px solid #4fc3ff;
   margin-bottom: 10px;
 }
 
@@ -372,7 +371,7 @@ main {
 }
 
 .player-detail-popup .skill-stat {
-  background: #333;
+  background: #14213d;
   border-radius: 6px;
   padding: 6px;
   width: 60px;
@@ -380,10 +379,10 @@ main {
 }
 
 .player-detail-popup .skill-meta {
-  background: #333;
+  background: #14213d;
   border-radius: 8px;
   padding: 10px;
   margin: 10px 0;
   font-size: 0.85rem;
 }
-
+  

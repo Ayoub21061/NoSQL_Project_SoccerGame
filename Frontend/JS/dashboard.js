@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             labels: ["Won", "Lost", "Null"],
             datasets: [{
                 data: [playerData.matches_won ?? 0, playerData.matches_lost ?? 0, playerData.matches_draw ?? 0],
-                backgroundColor: ["#30573eff", "#793c3cff", "#565655ff"]
+                backgroundColor: ["#30573eff", "#14213d", "#4fc3ff"]
             }]
         },
         options: { plugins: { legend: { position: "bottom" } } }

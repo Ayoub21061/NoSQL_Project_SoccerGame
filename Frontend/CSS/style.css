@@ -1,12 +1,13 @@
 body {
   font-family: Arial, sans-serif;
   margin: 0;
-  background-color: #f4f4f4;
+  background-color: #0b1020; /* bleu nuit profond */
+  color: #e0e6f0;
 }
 
 header {
-  background-color: #222;
-  color: white;
+  background-color: #0a0f1a; /* bleu très foncé */
+  color: #dfe9ff;
   padding: 1rem;
   text-align: center;
 }
@@ -21,12 +22,13 @@ nav ul {
 }
 
 nav a {
-  color: #fff;
+  color: #4fc3ff; /* accent bleu clair */
   text-decoration: none;
   font-weight: bold;
 }
 
 nav a:hover {
+  color: #7fd0ff;
   text-decoration: underline;
 }
 
@@ -38,10 +40,10 @@ nav a:hover {
 }
 
 .achievement-card {
-  background: white;
+  background: #10182b; /* bleu nuit doux */
   padding: 1rem;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   transition: transform 0.2s;
 }
 
@@ -51,11 +53,11 @@ nav a:hover {
 
 .achievement-card h3 {
   margin-top: 0;
-  color: #2c3e50;
+  color: #4fc3ff;
 }
 
 .achievement-card p {
-  color: #555;
+  color: #ccd3e0;
 }
 
 /* Container général */
@@ -64,16 +66,17 @@ nav a:hover {
   flex-wrap: wrap;
   gap: 16px;
   padding: 12px;
+  justify-content: center;
 }
 
 /* Carte de chaque mode */
 .game-card {
-  border: 1px solid #ccc;
+  border: 1px solid #22304d; /* bord bleu gris */
   border-radius: 8px;
   padding: 12px;
   width: 200px;
   text-align: center;
-  background-color: #f5f5f5;
+  background-color: #0f1a33;
   transition: transform 0.2s;
 }
 
@@ -91,19 +94,19 @@ nav a:hover {
 
 #game-detail-section {
   display: flex;
-  justify-content: center; /* centre horizontalement */
-  align-items: center;     /* centre verticalement si nécessaire */
-  width: 100%;             /* prend toute la largeur */
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   padding: 20px 0;
 }
 
 #game-image {
-  width: 200px;           /* adapte selon game.html */
+  width: 200px;
   height: 200px;
-  object-fit: cover;      /* crop si nécessaire */
-  border: 3px solid #333;
+  object-fit: cover;
+  border: 3px solid #1e90ff;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 
 /* Section principale du détail */
@@ -114,19 +117,20 @@ nav a:hover {
   text-align: center;
   padding: 20px;
   gap: 10px;
-  max-width: 600px;       /* largeur raisonnable */
-  margin: 40px auto;      /* centrage horizontal + espace avec le header */
+  max-width: 600px;
+  margin: 40px auto;
   
-  background-color: white;    /* fond blanc pour contraster */
-  border: 2px solid #ccc;     /* cadre gris léger */
-  border-radius: 10px;        /* coins arrondis */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);  /* petite ombre élégante */
+  background-color: #10182b;
+  border: 2px solid #22304d;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
 }
 
 #game-detail p,
 #game-detail div {
   text-align: center;
   max-width: 500px;
+  color: #ccd3e0;
 }
 
 .back-button-container {
@@ -136,42 +140,41 @@ nav a:hover {
 
 .back-button {
   display: inline-block;
-  background-color: #f5f5f5;
+  background-color: #14213d;
   padding: 10px 20px;
   border-radius: 8px;
   text-decoration: none;
-  color: #333;
+  color: #e0e6f0;
   font-weight: bold;
   transition: background-color 0.3s ease;
 }
 
 .back-button:hover {
-  background-color: #ddd;
+  background-color: #1b2a50;
 }
-
-
 
 /* === PAGE DE CONNEXION / INSCRIPTION === */
 
 .container {
   max-width: 400px;
   margin: 80px auto;
-  background-color: white;
+  background-color: #10182b;
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
   text-align: center;
+  color: #e0e6f0;
 }
 
 .container h1 {
   margin-bottom: 1.5rem;
-  color: #2c3e50;
+  color: #4fc3ff;
   font-size: 2rem;
 }
 
 .container h2 {
   margin-bottom: 1rem;
-  color: #333;
+  color: #dfe9ff;
   font-size: 1.2rem;
 }
 
@@ -180,22 +183,24 @@ input[type="password"] {
   width: 100%;
   padding: 10px 12px;
   margin: 8px 0;
-  border: 1px solid #ccc;
+  border: 1px solid #2a3f63;
   border-radius: 6px;
   font-size: 1rem;
+  background-color: #14213d;
+  color: #e0e6f0;
   transition: border-color 0.2s;
 }
 
 input[type="text"]:focus,
 input[type="password"]:focus {
   outline: none;
-  border-color: #2c3e50;
+  border-color: #4fc3ff;
 }
 
 button {
   width: 100%;
-  background-color: #2c3e50;
-  color: white;
+  background-color: #1e90ff;
+  color: #0b1020;
   border: none;
   padding: 10px;
   border-radius: 6px;
@@ -207,16 +212,16 @@ button {
 }
 
 button:hover {
-  background-color: #1a242f;
+  background-color: #4fc3ff;
 }
 
 p {
   margin-top: 1rem;
-  color: #555;
+  color: #b0b9c9;
 }
 
 p span {
-  color: #2c3e50;
+  color: #4fc3ff;
   font-weight: bold;
   cursor: pointer;
 }
@@ -246,5 +251,3 @@ p span:hover {
     font-size: 1.5rem;
   }
 }
-
-

@@ -52,7 +52,7 @@ header h1 {
 /* === CARDS === */
 .skill-card {
   width: 220px;
-  background: #1b1b1b;
+  background: #10182b;
   border-radius: 16px;
   padding: 18px 14px;
   text-align: center;
@@ -151,7 +151,7 @@ header h1 {
 footer {
   text-align: center;
   padding: 1rem;
-  background-color: #141414;
+  background-color: #0a0f1a;
   color: white;
   font-size: 0.9rem;
   margin-top: 40px;

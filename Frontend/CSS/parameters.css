@@ -1,7 +1,7 @@
 /* ======= Structure générale ======= */
 body {
-  background-color: #f5f5f5;
-  color: #222;
+  background-color: #0b1020; /* bleu nuit profond */
+  color: #e0e6f0; /* texte clair */
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
@@ -19,24 +19,25 @@ body {
 
 /* ======= Sections ======= */
 section {
-  background: #fff;
+  background: #10182b; /* bleu nuit doux */
   border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
   padding: 30px;
   flex: 1 1 400px;
   max-width: 480px;
-  transition: transform 0.2s;
+  transition: transform 0.2s, box-shadow 0.3s;
 }
 
 section:hover {
   transform: translateY(-5px);
+  box-shadow: 0 0 12px #4fc3ff; /* glow bleu */
 }
 
 section h2 {
-  color: #1a1a1a;
+  color: #4fc3ff; /* accent bleu clair */
   margin-bottom: 20px;
   font-size: 1.4rem;
-  border-bottom: 2px solid #eee;
+  border-bottom: 2px solid #22304d; /* bleu foncé pour le séparateur */
   padding-bottom: 10px;
 }
 
@@ -52,7 +53,7 @@ section h2 {
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  border: 3px solid #1a73e8;
+  border: 3px solid #facc15; /* accent doré */
   margin-bottom: 10px;
   object-fit: cover;
 }
@@ -67,25 +68,28 @@ section h2 {
 .info-group label {
   font-weight: bold;
   margin-bottom: 5px;
+  color: #ccd3e0; /* texte clair */
 }
 
 .info-group input {
   padding: 10px;
   border-radius: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid #22304d; /* bleu foncé */
   font-size: 0.95rem;
+  background-color: #14213d; /* bleu nuit intermédiaire */
+  color: #e0e6f0;
 }
 
 .info-group input:focus {
   outline: none;
-  border-color: #1a73e8;
-  box-shadow: 0 0 5px rgba(26,115,232,0.3);
+  border-color: #4fc3ff; /* accent bleu clair */
+  box-shadow: 0 0 5px rgba(79,195,255,0.3);
 }
 
 /* Infos non modifiables */
 .info-static p {
   margin: 8px 0;
-  color: #555;
+  color: #a0aec0; /* gris clair pour info */
 }
 
 /* ======= Boutons ======= */
@@ -102,27 +106,28 @@ section h2 {
 }
 
 .btn.primary {
-  background-color: #0a3a78;
-  color: white;
+  background-color: #1e40af; /* bleu profond */
+  color: #e0e6f0;
 }
 
 .btn.primary:hover {
-  background-color: #0a3a78;
+  background-color: #4fc3ff; /* bleu clair */
+  color: #0b1020;
 }
 
 .btn.danger {
-  background-color: #8b2220;
-  color: white;
+  background-color: #8b2220; /* rouge foncé */
+  color: #e0e6f0;
 }
 
 .btn.danger:hover {
-  background-color: #c62828;
+  background-color: #c62828; /* rouge vif */
 }
 
 /* ======= Séparateur ======= */
 hr {
   border: none;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #22304d; /* bleu foncé */
   margin: 25px 0;
 }
 
@@ -132,20 +137,20 @@ hr {
   bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #444;
-  color: white;
+  background-color: #444; /* gris foncé */
+  color: #e0e6f0;
   padding: 12px 28px;
   border-radius: 10px;
   text-decoration: none;
   font-weight: bold;
   font-size: 1rem;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
   transition: all 0.2s ease;
 }
 
 .btn_deconn:hover {
-  background-color: #0a3a78;
-  box-shadow: 0 6px 14px rgba(26,115,232,0.3);
+  background-color: #1e40af; /* bleu profond */
+  box-shadow: 0 6px 14px rgba(79,195,255,0.3); /* glow bleu */
 }
 
 /* ======= Responsive ======= */
@@ -167,14 +172,14 @@ hr {
 #avatar-preview,
 .user-info .avatar,
 .preset-avatar {
-    width: 80px;         /* taille fixe */
-    height: 80px;        /* idem pour garder un carré */
-    border-radius: 50%;  /* pour rendre rond */
-    object-fit: cover;   /* découpe automatiquement l’image si trop grande */
-    border: 2px solid #fff; /* optionnel, joli contour */
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #facc15; /* doré */
 }
 
-/* Si tu veux des avatars prédéfinis plus petits */
+/* Avatars prédéfinis plus petits */
 .avatar-selection .preset-avatar {
     width: 50px;
     height: 50px;
@@ -186,4 +191,3 @@ hr {
 .avatar-selection .preset-avatar:hover {
     transform: scale(1.1); /* léger effet au survol */
 }
-

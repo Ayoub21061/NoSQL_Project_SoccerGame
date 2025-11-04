@@ -5,14 +5,21 @@
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+/* ===== Body & Main ===== */
 body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background: #f9f9f9;
-    color: #222;
+    background-color: #0b1020; /* bleu nuit profond */
+    color: #e0e6f0; /* texte clair */
 }
 
+main {
+    padding: 20px 50px;
+    flex: 1;
+    background-color: #0b1020; /* fond uniforme */
+}
 
 /* ===== Header ===== */
 .header {
@@ -20,18 +27,23 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 20px 50px;
-    background: #fff;
-    color: #222;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    background-color: #0a0f1a; /* bleu très foncé */
+    color: #dfe9ff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
 }
 .header h1 {
     font-size: 1.8rem;
     flex: 1;
     text-align: center;
+    color: #4fc3ff;
 }
 .hamburger {
     font-size: 28px;
     cursor: pointer;
+    color: #e0e6f0;
+}
+.hamburger:hover {
+    color: #7fd0ff;
 }
 .user-info {
     display: flex;
@@ -43,6 +55,7 @@ body {
     height: 40px;
     border-radius: 50%;
     object-fit: cover;
+    border: 2px solid #facc15; /* accent doré */
 }
 
 /* ===== Sidebar ===== */
@@ -52,7 +65,7 @@ body {
     left: -250px;
     width: 250px;
     height: 100%;
-    background: #2c2c2c;
+    background-color: #0a0f1a;
     padding-top: 60px;
     transition: 0.3s;
     z-index: 1000;
@@ -64,11 +77,12 @@ body {
     display: block;
     padding: 12px 20px;
     text-decoration: none;
-    color: #fff;
+    color: #e0e6f0;
     font-weight: bold;
+    transition: background 0.3s;
 }
 .sidebar a:hover {
-    background: #444;
+    background-color: #14213d;
 }
 
 /* ===== Dropdown profil ===== */
@@ -84,84 +98,77 @@ body {
     position: absolute;
     right: 0;
     top: 100%;
-    background-color: #333;
+    background-color: #10182b; 
     min-width: 150px;
     border-radius: 8px;
     overflow: hidden;
     z-index: 1001;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.7);
 }
 .dropdown-content a {
     display: block;
     padding: 10px 15px;
-    color: #fff;
+    color: #e0e6f0;
     text-decoration: none;
 }
 .dropdown-content a:hover {
-    background-color: #444;
+    background-color: #1e2c50;
 }
 
-/* ===== Main ===== */
-main {
-    padding: 20px 50px;
-    flex: 1;
-}
-
-/* Dashboard container */
+/* ===== Dashboard / Stats / Cards ===== */
 .dashboard-container {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-/* Classement full width */
-.full-width {
-    width: 100%;
-}
-
-/* Stats grid inside ranking */
 .stats-card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     gap: 15px;
 }
 .stats-card-item {
-    background: #f3f4f6;
+    background-color: #10182b;
     padding: 15px;
     border-radius: 10px;
     text-align: center;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    transition: transform 0.2s;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    transition: transform 0.2s, box-shadow 0.3s, background 0.3s;
 }
 .stats-card-item:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    background-color: #14213d;
+    box-shadow: 0 0 12px #4fc3ff;
 }
 .stats-card-item h3 {
-    color: #444;
+    color: #4fc3ff;
     margin-bottom: 8px;
     font-weight: 600;
 }
 .stats-card-item p {
     font-size: 16px;
-    color: #111;
+    color: #ccd3e0;
     font-weight: bold;
 }
 
-/* Cards */
+/* General Cards */
 .card {
-    background: #fff;
+    background-color: #10182b;
     padding: 20px;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    transition: transform 0.2s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    transition: transform 0.2s, box-shadow 0.3s, border 0.3s;
     cursor: default;
+    border: 1px solid #1e2c50;
 }
 .card:hover {
     transform: translateY(-3px);
+    box-shadow: 0 0 15px #4fc3ff;
 }
 .card h2 {
     margin-bottom: 15px;
     font-size: 1.2rem;
-    color: #333;
+    color: #4fc3ff;
 }
 
 /* Graphs side by side */
@@ -185,9 +192,9 @@ main {
     opacity: 0;
     transition: max-height 0.4s ease, opacity 0.3s ease;
     margin-top: 10px;
-    background: #f9f9f9;
+    background-color: #10182b;
     border-radius: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #1e2c50;
     padding: 0 15px;
 }
 .ranking-card.active .ranking-details {
@@ -202,27 +209,20 @@ main {
 }
 .ranking-details li {
     padding: 6px 0;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #1e2c50;
     display: flex;
     justify-content: space-between;
-    color: #444;
+    color: #ccd3e0;
     font-size: 0.95rem;
 }
 .ranking-details li.current-player {
-    background-color: #e3f2fd;
+    background-color: #1e2c50;
     border-radius: 6px;
     font-weight: bold;
-    color: #1a73e8;
+    color: #4fc3ff;
 }
 
-/* ===== Responsive ===== */
-@media (max-width: 900px) {
-    .dashboard-graphs {
-        flex-direction: column;
-    }
-}
-
-
+/* ===== Profil dans le header ===== */
 .profile-link {
     display: flex;
     align-items: center;
@@ -231,15 +231,20 @@ main {
     gap: 10px;
     cursor: pointer;
 }
-
 .profile-link img.avatar {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid #fff; /* optionnel */
+    border: 2px solid #facc15;
 }
-
 .profile-link span {
     font-weight: 600;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+    .dashboard-graphs {
+        flex-direction: column;
+    }
 }
