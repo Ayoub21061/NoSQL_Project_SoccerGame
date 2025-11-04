@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Paramètres du compte - Soccer Game</title>
+  <title>Account's settings - Soccer Game</title>
   <link rel="stylesheet" href="../css/menu.css">
   <link rel="stylesheet" href="../css/parameters.css">
 </head>
@@ -16,8 +16,8 @@
     <a href="achievements.html">Achievements</a>
     <a href="games.html">Games</a>
     <a href="equipe.html">Team</a>
-    <a href="skills.html">Skills</a>
-    <a href="contrats_formes.html">Contracts and Stamina</a>
+    <a href="skills.html">Player's Shop</a>
+    <a href="contrats_formes.html">Item's Shop</a>
     <a href="my_packs.html">My Packs</a>
     <a href="battlepass.html">Battle Pass</a>
     <a href="social.html">Amis</a>
@@ -29,7 +29,7 @@
       <div class="hamburger">&#9776;</div>
     </div>
     <div class="center">
-      <h1>Paramètres du compte</h1>
+      <h1>Account's settings</h1>
     </div>
     <div class="right"></div>
   </header>
@@ -39,18 +39,18 @@
     
     <!-- Section gauche : profil -->
     <section class="profile-section">
-      <h2>Profil du joueur</h2>
+      <h2>User's profil</h2>
 
       <!-- Avatar -->
       <div class="avatar-container">
         <img id="avatar-preview" src="../images/default-avatar.png" alt="Avatar joueur">
-        <label for="avatar-upload" class="btn">Changer d’avatar</label>
+        <label for="avatar-upload" class="btn">Change avatar</label>
         <input type="file" id="avatar-upload" accept="image/*" hidden>
       </div>
 
       <!-- Sélection d'avatars prédéfinis -->
       <div class="avatar-selection">
-        <h3>Ou choisir un avatar prédéfini</h3>
+        <h3>Or choose a predefined avatar</h3>
         <div class="avatar-grid">
           <img src="../images/Luffay.png" class="preset-avatar" alt="avatar1">
           <img src="../images/mahrez.png" class="preset-avatar" alt="avatar2">
@@ -71,35 +71,35 @@
 
       <div class="info-static">
         <p><strong>Email :</strong> <span id="user-email"> </span></p>
-        <p><strong>Date de création :</strong> <span id="creation-date">--/--/----</span></p>
-        <p><strong>Temps de jeu :</strong> <span id="playtime">--/--/----</span></p>
+        <p><strong>Creation date :</strong> <span id="creation-date">--/--/----</span></p>
+        <p><strong>Total playtime :</strong> <span id="playtime">--/--/----</span></p>
       </div>
 
-      <button class="btn primary" id="save-profile">Enregistrer</button>
+      <button class="btn primary" id="save-profile">Save</button>
     </section>
 
     <!-- Section droite : sécurité -->
     <section class="security-section">
-      <h2>Sécurité</h2>
+      <h2>Security</h2>
 
       <div class="info-group">
-        <label for="old-password">Ancien mot de passe :</label>
+        <label for="old-password">Old password :</label>
         <input type="password" id="old-password" placeholder="••••••••">
       </div>
 
       <div class="info-group">
-        <label for="new-password">Nouveau mot de passe :</label>
+        <label for="new-password">New password :</label>
         <input type="password" id="new-password" placeholder="••••••••">
       </div>
 
-      <button class="btn primary" id="update-password">Mettre à jour le mot de passe</button>
+      <button class="btn primary" id="update-password">Update password</button>
 
       <hr>
 
-      <button class="btn danger" id="delete-account">Supprimer le compte</button>
+      <button class="btn danger" id="delete-account">Delete account</button>
     </section>
 
-    <a class="btn_deconn" href="index.html">Déconnexion</a>
+    <a class="btn_deconn" href="index.html">Disconnect</a>
   </main>
 
   <script src="../js/menu.js"></script>

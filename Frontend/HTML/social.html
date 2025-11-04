@@ -15,14 +15,14 @@
     </div>
 
     <div class="center">
-      <h1>Amis</h1>
+      <h1>Friends</h1>
     </div>
 
     <div class="right user-info">
         <a href="parameters.html" class="profil">
             <img id="user-avatar" src="../images/default-avatar.png" alt="Avatar Joueur" class="avatar">
             <div class="profile-text">
-            <span id="user-name">Joueur</span>
+            <span id="user-name">Player</span>
             
             </div>
         </a>
@@ -38,8 +38,8 @@
     <a href="achievements.html">Achievements</a>
     <a href="games.html">Games</a>
     <a href="equipe.html">Team</a>
-    <a href="skills.html">Skills</a>
-    <a href="contrats_formes.html">Contracts and Stamina</a>
+    <a href="skills.html">Player's Shop</a>
+    <a href="contrats_formes.html">Item's Shop</a>
     <a href="my_packs.html">My Packs</a>
     <a href="battlepass.html">Battle Pass</a>
     <a href="social.html">Amis</a>
@@ -52,39 +52,39 @@
 
             <!-- Recherche joueur -->
             <div class="card full-width">
-                <h2>Rechercher un joueur</h2>
+                <h2>Find player</h2>
                 <div class="search-container">
                     <input type="text" id="searchUsername" placeholder="Nom du joueur">
-                    <button id="searchBtn">Rechercher</button>
+                    <button id="searchBtn">Research</button>
                 </div>
             </div>
 
             <!-- Profil du joueur recherché -->
             <div class="card full-width" id="playerProfile" style="display:none;">
-                <h2>Profil du joueur</h2>
+                <h2>User's profil</h2>
                 <div class="profile-header">
                     <img id="profileAvatar" src="../images/default-avatar.png" alt="Avatar" class="avatar">
                     <h3 id="profileUsername">—</h3>
                 </div>
-                <button id="addFriendBtn">Envoyer une demande d'ami</button>
+                <button id="addFriendBtn">Send a friend request</button>
                 <div class="stats-card-grid">
-                    <div class="stats-card-item"><h3>Score global</h3><p id="profileScore">—</p></div>
-                    <div class="stats-card-item"><h3>Rang</h3><p id="profileRank">—</p></div>
-                    <div class="stats-card-item"><h3>Matchs gagnés</h3><p id="profileWins">—</p></div>
-                    <div class="stats-card-item"><h3>Matchs perdus</h3><p id="profileLosses">—</p></div>
-                    <div class="stats-card-item"><h3>Matchs nuls</h3><p id="profileDraws">—</p></div>
+                    <div class="stats-card-item"><h3>Global score</h3><p id="profileScore">—</p></div>
+                    <div class="stats-card-item"><h3>Ranking</h3><p id="profileRank">—</p></div>
+                    <div class="stats-card-item"><h3>Wins</h3><p id="profileWins">—</p></div>
+                    <div class="stats-card-item"><h3>Losses</h3><p id="profileLosses">—</p></div>
+                    <div class="stats-card-item"><h3>Ties</h3><p id="profileDraws">—</p></div>
                 </div>
             </div>
 
             <!-- Demandes d'amis en attente -->
             <div class="card full-width">
-                <h2>Demandes d'amis en attente</h2>
+                <h2>Friend request pending</h2>
                 <ul id="friendRequestsList"></ul>
             </div>
 
             <!-- Liste des amis -->
             <div class="card full-width">
-                <h2>Mes amis</h2>
+                <h2>My friends</h2>
                 <ul id="friendsList"></ul>
             </div>
 
