@@ -52,7 +52,7 @@ async function openPack(packName) {
   const container = document.getElementById("packs-container");
   container.innerHTML = `
     <div class="opening-animation">
-      <h2>Ouverture du ${packName}...</h2>
+      <h2>Opening ${packName}...</h2>
       <div class="pack-opening"></div>
     </div>
   `;
@@ -68,7 +68,12 @@ async function openPack(packName) {
     let numPlayers = 1;
     const lowerPack = packName.toLowerCase();
     if (lowerPack.includes("gold")) numPlayers = 2;
-    if (lowerPack.includes("diamond")) numPlayers = 3;
+    if (lowerPack.includes("platinum")) numPlayers = 3;
+    if (lowerPack.includes("elite")) numPlayers = 3;
+    if (lowerPack.includes("mythical")) numPlayers = 4;
+    if (lowerPack.includes("diamond")) numPlayers = 4;
+    if (lowerPack.includes("ultimate")) numPlayers = 5;
+    if (lowerPack.includes("legendary")) numPlayers = 5;
 
     let availablePlayers = allPlayers.filter(p => !owned.includes(p.id));
     if (availablePlayers.length === 0) {
@@ -86,7 +91,7 @@ async function openPack(packName) {
     }
 
     setTimeout(async () => {
-      container.innerHTML = `<h2>🎉 Voici tes nouveaux joueurs !</h2><div id="player-cards"></div>`;
+      container.innerHTML = `<h2>🎉 Your players !</h2><div id="player-cards"></div>`;
       const cardsContainer = document.getElementById("player-cards");
 
       for (let index = 0; index < selectedPlayers.length; index++) {
@@ -94,12 +99,12 @@ async function openPack(packName) {
         const card = document.createElement("div");
         card.className = "skill-card";
 
-        const playerName = player.id || "Joueur inconnu";
-        const playerStyle = player.style || "Classique";
+        const playerName = player.id || "Unknown Player";
+        const playerStyle = player.style || "Classic";
         const playerImage = player.image?.startsWith("images/") ? `../${player.image}` : `../images/${player.image || "default-player.png"}`;
 
         // ✅ Vérification correcte pour gardien
-        const isGK = player.style?.toLowerCase() === "gardien";
+        const isGK = player.style?.toLowerCase() === "goalkeeper";
 
         let statsHtml = "";
         if (isGK) {

@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             });
             const data = await claimRes.json();
             if (claimRes.ok) {
-              rewardSection.innerHTML = `<p class="claimed">✅ Récompense récupérée : +${data.earned_coins} coins</p>`;
+              rewardSection.innerHTML = `<p class="claimed">✅ Rewards claimed : +${data.earned_coins} coins</p>`;
               claimedRewards.push(level.id);
             } else {
               alert(data.error || "Erreur lors de la récupération.");

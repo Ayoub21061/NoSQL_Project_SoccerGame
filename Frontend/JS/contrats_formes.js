@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         <div class="skill-header">${item.name}</div>
         <div class="skill-style">${item.type}</div>
         <div class="skill-extra">${item.bonus}</div>
-        <div class="skill-credits">💰 Prix : ${item.cost}</div>
+        <div class="skill-credits">💰 Price : ${item.cost}</div>
       `;
 
       const btn = document.createElement("button");
