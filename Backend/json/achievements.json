@@ -86,7 +86,7 @@
     "description": "Atteindre 1000 XP dans le Battle Pass",
     "type": "Battle Pass",
     "xp_required": 1000,
-    "reward": { "coins": 1000, "pack": "Pack Gold", "exclusive_kit": true },
+    "reward": { "coins": 1000, "pack": "Pack Gold", "exclusive_kit": "exclusive_kit.png" },
     "is_unlocked": false
   },
   {
@@ -95,7 +95,7 @@
     "description": "Atteindre 1500 XP dans le Battle Pass",
     "type": "Battle Pass",
     "xp_required": 1500,
-    "reward": { "coins": 1500, "pack": "Pack Platinum", "exclusive_kit": true, "trophy": true },
+    "reward": { "coins": 1500, "pack": "Pack Platinum", "exclusive_kit": "exclusive_kit2.png", "trophy": true },
     "is_unlocked": false
   },
   {
@@ -104,7 +104,7 @@
     "description": "Atteindre 2000 XP dans le Battle Pass",
     "type": "Battle Pass",
     "xp_required": 2000,
-    "reward": { "coins": 2000, "pack": "Pack Diamond", "exclusive_kit": true, "trophy": true },
+    "reward": { "coins": 2000, "pack": "Pack Diamond", "exclusive_kit": "exclusive_kit3.png", "trophy": true },
     "is_unlocked": false
   },
   {
@@ -113,7 +113,7 @@
     "description": "Atteindre 3000 XP dans le Battle Pass",
     "type": "Battle Pass",
     "xp_required": 3000,
-    "reward": { "coins": 3000, "pack": "Pack Elite", "exclusive_kit": true, "trophy": true },
+    "reward": { "coins": 3000, "pack": "Pack Elite", "exclusive_kit": "exclusive_kit4.png", "trophy": true },
     "is_unlocked": false
   },
   {
@@ -122,7 +122,7 @@
     "description": "Atteindre 4000 XP dans le Battle Pass",
     "type": "Battle Pass",
     "xp_required": 4000,
-    "reward": { "coins": 4000, "pack": "Pack Mythique", "exclusive_kit": true, "trophy": true },
+    "reward": { "coins": 4000, "pack": "Pack Mythique", "exclusive_kit": "exclusive_kit5.png", "trophy": true },
     "is_unlocked": false
   },
   {
@@ -131,7 +131,7 @@
     "description": "Atteindre 5000 XP dans le Battle Pass",
     "type": "Battle Pass",
     "xp_required": 5000,
-    "reward": { "coins": 5000, "pack": "Pack Légendaire", "exclusive_kit": true, "trophy": true },
+    "reward": { "coins": 5000, "pack": "Pack Légendaire", "exclusive_kit": "exclusive_kit6.png", "trophy": true },
     "is_unlocked": false
   },
   {
@@ -140,7 +140,7 @@
     "description": "Atteindre 6000 XP dans le Battle Pass",
     "type": "Battle Pass",
     "xp_required": 6000,
-    "reward": { "coins": 6000, "pack": "Pack Ultime", "exclusive_kit": true, "trophy": true },
+    "reward": { "coins": 6000, "pack": "Pack Ultime", "exclusive_kit": "exclusive_kit8.png", "trophy": true },
     "is_unlocked": false
   },
   {
@@ -197,31 +197,4 @@
     "reward": { "coins": 2000, "pack": "Pack Uruguay" },
     "is_unlocked": false
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ]
