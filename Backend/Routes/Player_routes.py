@@ -258,6 +258,11 @@ def update_user_items(username):
     except Exception as e:
         return jsonify({"error": str(e)}), 400
 
+
+from bson import ObjectId
+
+from bson import ObjectId
+
 @player_bp.route("/username/<username>/removeItem/<item_id>", methods=["DELETE"])
 def remove_item_from_user(username, item_id):
     try:
