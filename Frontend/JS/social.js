@@ -7,14 +7,14 @@ document.addEventListener("DOMContentLoaded", () => {
     let viewedPlayer = null;
     let expandedFriend = null;
 
-    // --- Recherche d'un joueur avec bouton ou touche Entrée ---
+    
     searchBtn.addEventListener("click", async () => {
         const username = searchInput.value.trim();
         if (!username) return alert("Please enter a username");
         await loadPlayerProfile(username);
     });
 
-    // ✅ Permet d'appuyer sur "Entrée" pour lancer la recherche d'un joueur
+    
     searchInput.addEventListener("keydown", async (event) => {
         if (event.key === "Enter") {
             event.preventDefault();
@@ -33,11 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
             viewedPlayer = data;
 
             document.getElementById("profileUsername").textContent = data.username;
-            document.getElementById("profileScore").textContent = data.score_global;
-            document.getElementById("profileRank").textContent = data.rank;
-            document.getElementById("profileWins").textContent = data.matches_won;
-            document.getElementById("profileLosses").textContent = data.matches_lost;
-            document.getElementById("profileDraws").textContent = data.matches_draw;
             document.getElementById("profileAvatar").src = `../images/${data.avatar || "default-avatar.png"}`;
             document.getElementById("playerProfile").style.display = "block";
         } catch (err) {

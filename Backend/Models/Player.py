@@ -32,20 +32,10 @@ class Player(BaseModel):
     credits : int = 150000
     rank : int = 1
     players_owned: List[str] = []
+    packs_owned : List[str] = []
+    claimed_rewards : List[str] = []
     mail : str
     score_global : int = 0 
     contrats_formes : List[str]
     friends : List[str] = []       
     friend_requests: List[FriendRequest] = []  
-
-
-# On va utiliser les infos sur le nombres de matchs gagnés, perdus ou nuls et calculés les points en fonction de ça. 
-# Je pense qu'il faudrait créér une autre classe pour le détail des matchs : buts encaissés, marqués, penaltys
-
-# On va juste garder victoire ou défaite, 3 points pour la victoire, 1 point pour le match nul, 0 pour la défaite. 
-
-# Si je suis motivée, je peux essayer de rendre ça plus complexe. 
-
-# Le score global est mis à jour en fonction des matchs. Mais pour pouvoir faire le classement, il faut avoir accès aux points dans la DB et sur base de ça, on pourra faire le classement. 
-
-# 

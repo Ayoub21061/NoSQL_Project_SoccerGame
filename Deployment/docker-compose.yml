@@ -28,5 +28,17 @@ services:
       - ../Backend:/app/Backend      # Monte le backend pour Flask
       - ../Frontend:/app/Frontend    # Monte le frontend pour servir HTML/CSS/JS
 
+  populate:
+      build:
+        context: ..
+        dockerfile: Deployment/Dockerfile
+      container_name: SoccerGame_populate
+      depends_on:
+        - mongo
+      environment:
+        - MONGO_URI=mongodb://mongo:27017/Soccer_Game_DB
+      command: ["python", "Deployment/Create_db.py"]
+
+
 volumes:
   mongo_data:

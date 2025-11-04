@@ -43,27 +43,6 @@ def add_player():
     except Exception as e:
         return jsonify({"error": str(e)}), 400
 
-
-### LOGIN ### : Ancienne fonction avec chiffrement
-# @player_bp.route("/login", methods=["POST"])
-# def login_player():
-#     try:
-#         data = request.get_json()
-#         username = data.get("username")
-#         password = data.get("password")
-
-#         player = players_collection.find_one({"username": username})
-#         if not player:
-#             return jsonify({"error": "Utilisateur introuvable"}), 404
-
-#         # Comparaison simple (en clair)
-#         if player.get("password") == password:
-#             return jsonify({"message": "Connexion réussie"}), 200
-#         else:
-#             return jsonify({"error": "Mot de passe incorrect"}), 401
-#     except Exception as e:
-#         return jsonify({"error": str(e)}), 400
-
 @player_bp.route("/login", methods=["POST"])
 def login_player():
     try:
