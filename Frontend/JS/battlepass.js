@@ -120,13 +120,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     const leftArrow = document.createElement("div");
     leftArrow.className = "arrow arrow-left";
     leftArrow.textContent = "❮";
-    leftArrow.onclick = () => { if(currentIndex > 0){ currentIndex--; updateClasses(); }};
+    leftArrow.onclick = () => { if (currentIndex > 0) { currentIndex--; updateClasses(); } };
     container.parentElement.appendChild(leftArrow);
 
     const rightArrow = document.createElement("div");
     rightArrow.className = "arrow arrow-right";
     rightArrow.textContent = "❯";
-    rightArrow.onclick = () => { if(currentIndex < levels.length - 1){ currentIndex++; updateClasses(); }};
+    rightArrow.onclick = () => { if (currentIndex < levels.length - 1) { currentIndex++; updateClasses(); } };
     container.parentElement.appendChild(rightArrow);
 
     updateClasses();
@@ -181,7 +181,8 @@ function showRewardPreview(title, reward) {
     if (packName.includes("platinum")) packImg.src = "../images/pack_platinum.png";
     else if (packName.includes("gold")) packImg.src = "../images/pack_gold.png";
     else if (packName.includes("silver")) packImg.src = "../images/pack_silver.png";
-    else packImg.src = "../images/pack_bronze.png";
+    else if (packName.includes("bronze")) packImg.src = "../images/pack_bronze.png";
+    else packImg.src = "../images/pack_ultime.png";
 
     packImg.alt = reward.pack;
     packImg.className = "reward-img";
@@ -204,7 +205,9 @@ function showRewardPreview(title, reward) {
     kitDiv.style.textAlign = "center";
 
     const kitImg = document.createElement("img");
-    kitImg.src = "../images/exclusive_kit.png";
+
+    // ✅ Utilisation dynamique de l’image correspondant au niveau
+    kitImg.src = `../images/${reward.exclusive_kit}`;
     kitImg.alt = "Kit exclusif";
     kitImg.className = "reward-img";
     kitDiv.appendChild(kitImg);
@@ -220,27 +223,6 @@ function showRewardPreview(title, reward) {
     imagesContainer.appendChild(kitDiv);
   }
 
-  // --- Trophée ---
-  if (reward.trophy) {
-    const trophyDiv = document.createElement("div");
-    trophyDiv.style.textAlign = "center";
-
-    const trophyImg = document.createElement("img");
-    trophyImg.src = "../images/trophy.png";
-    trophyImg.alt = "Trophée";
-    trophyImg.className = "reward-img";
-    trophyDiv.appendChild(trophyImg);
-
-    const trophyText = document.createElement("span");
-    trophyText.textContent = "Trophée";
-    trophyText.style.display = "block";
-    trophyText.style.marginTop = "6px";
-    trophyText.style.fontWeight = "bold";
-    trophyText.style.color = "#ffd700";
-    trophyDiv.appendChild(trophyText);
-
-    imagesContainer.appendChild(trophyDiv);
-  }
 
   modal.classList.add("active");
   modal.classList.remove("hidden");
