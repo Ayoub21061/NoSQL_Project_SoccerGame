@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 // Bouton supprimer
                 const removeBtn = document.createElement("button");
-                removeBtn.textContent = "Reject";
+                removeBtn.textContent = "Delete";
                 removeBtn.className = "reject";
                 removeBtn.onclick = async () => {
                     try {

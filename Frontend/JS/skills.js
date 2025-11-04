@@ -89,17 +89,17 @@ document.addEventListener("DOMContentLoaded", async () => {
           <div class="skill-style">${skill.style}</div>
           <div class="skill-stats">${statsHTML}</div>
           <div class="skill-extra">✨ Tech: ${skill.technical_moves ?? "-"} | 🦶 WF: ${skill.weak_foot ?? "-"}</div>
-          <div class="skill-credits">💰 Crédit requis : ${playerCredits}</div>
+          <div class="skill-credits">💰 Credit required : ${playerCredits}</div>
         `;
 
         // --- Bouton d'achat ---
         const buyButton = document.createElement("button");
         const alreadyOwned = allOwnedPlayerIds.includes(skill.id);
-        buyButton.textContent = alreadyOwned ? "Déjà obtenu" : "Acheter";
+        buyButton.textContent = alreadyOwned ? "Already Owned" : "Buy";
         buyButton.disabled = alreadyOwned;
 
         buyButton.addEventListener("click", async () => {
-          if (currentCredits < playerCredits) return alert("Crédits insuffisants !");
+          if (currentCredits < playerCredits) return alert("Insufficient credits!");
           try {
             const res = await fetch(`http://127.0.0.1:5001/users/players/${username}/buy_player`, {
               method: "POST",

@@ -1,4 +1,4 @@
-# Soccer Game
+# Soccer Game Management
 
 Une application de gestion et simulation de joueurs de foot, avec classement, récompenses et modes de jeu variés. Chaque utilisateur peut créer un compte, acheter des joueurs, composer son équipe, participer à des matchs et suivre ses performances.
 

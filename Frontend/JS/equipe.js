@@ -3,36 +3,70 @@ document.addEventListener("DOMContentLoaded", async () => {
   const formationSelect = document.getElementById("formation");
   const cardsContainer = document.querySelector(".player-cards-container");
   const chemistryDisplay = document.getElementById("team-chemistry");
+  const kitsContainer = document.getElementById("kits-container");
 
   if (!teamContainer || !formationSelect || !cardsContainer) {
     console.error("Certains éléments du DOM sont manquants !");
     return;
   }
 
-  // --- FORMATION 4-4-2 PERSONNALISÉE ---
+  // --- FORMATIONS PERSONNALISÉES ---
   const formations = {
     "4-4-2": [
-      "GK",         // Ligne 1
-      "DD", "DCD", "DCG", "DG", // Ligne 2
-      "MD", "MCD", "MCG", "MG", // Ligne 3
-      "BUD", "BUG"              // Ligne 4
+      "GK", "DD", "DCD", "DCG", "DG",
+      "MD", "MCD", "MCG", "MG",
+      "BUD", "BUG"
+    ],
+    "4-3-3": [
+      "GK", "DD", "DCD", "DCG", "DG",
+      "MCD", "MC", "MCG",
+      "AD", "AC", "AG"
     ],
   };
 
-  let myTeam = [];
+  const formationLines = {
+    "4-4-2": [
+      ["GK"],
+      ["DD", "DCD", "DCG", "DG"],
+      ["MD", "MCD", "MCG", "MG"],
+      ["BUD", "BUG"]
+    ],
+    "4-3-3": [
+      ["GK"],
+      ["DD", "DCD", "DCG", "DG"],
+      ["MCD", "MC", "MCG"],
+      ["AD", "AC", "AG"]
+    ]
+  };
 
-  // --- RÉCUP UTILISATEUR ---
-  const username = localStorage.getItem("username");
+  let myTeam = [];
+  let username = localStorage.getItem("username");
   if (!username) {
     alert("Utilisateur non connecté !");
     return;
   }
 
   try {
+    // --- Récupération du joueur ---
     const userRes = await fetch(`http://127.0.0.1:5001/players/username/${username}`);
     const userData = await userRes.json();
-    const playerIds = userData.players_owned || [];
 
+    // --- Ajouter automatiquement les maillots du Battle Pass ---
+    if (!userData.claimed_rewards) userData.claimed_rewards = [];
+    const newKits = userData.achievements.filter(a =>
+      a.reward?.exclusive_kit && !userData.claimed_rewards.some(r => r.id === a.id)
+    );
+
+    for (const kit of newKits) {
+      userData.claimed_rewards.push(kit);
+      await fetch(`http://127.0.0.1:5001/players/add_claimed_reward/${username}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ reward: kit })
+      });
+    }
+
+    const playerIds = userData.players_owned || [];
     const skillsRes = await fetch("http://127.0.0.1:5001/skills");
     const skills = await skillsRes.json();
 
@@ -53,6 +87,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     localStorage.setItem("myTeam", JSON.stringify(myTeam));
 
     renderPlayers();
+    renderKits(userData);
     renderTeam(formationSelect.value || "4-4-2");
 
     formationSelect.addEventListener("change", () =>
@@ -63,7 +98,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     alert("Impossible de récupérer ton équipe.");
   }
 
-  // --- ÉCOUTER LE STORAGE ---
   window.addEventListener("storage", (event) => {
     if (event.key === "myTeam") {
       myTeam = JSON.parse(event.newValue) || [];
@@ -75,13 +109,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   // --- AFFICHER LES JOUEURS DISPONIBLES ---
   function renderPlayers() {
     cardsContainer.innerHTML = "";
-
     const availablePlayers = myTeam.filter((p) => !p.assignedPositionLine);
     if (availablePlayers.length === 0) {
       cardsContainer.innerHTML = "<p>Aucun joueur disponible.</p>";
       return;
     }
-
     availablePlayers.forEach((player) => {
       const card = document.createElement("div");
       card.className = "skill-card";
@@ -101,10 +133,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         e.dataTransfer.setData("text/plain", player.player_id);
         e.dataTransfer.setData("from-list", "true");
       });
-
-      card.addEventListener("click", async () => {
-        // on ouvre le détail en chargeant d'abord les données complètes depuis la DB
-        await showPlayerDetails(player);
+      
+      card.addEventListener("click", () => {
+        showPlayerDetails(player);
       });
 
       cardsContainer.appendChild(card);
@@ -113,36 +144,38 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   async function updateUserTeam() {
     localStorage.setItem("myTeam", JSON.stringify(myTeam));
-    const username = localStorage.getItem("username");
     if (!username) return;
 
     await fetch(`http://127.0.0.1:5001/players/updateTeam/${username}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ myTeam }),
-    }).catch(() => {});
+    }).catch(() => { });
   }
 
   // --- AFFICHER LA FORMATION ---
-
-  // --- Affichage de la formation ---
   function renderTeam(formation) {
     teamContainer.innerHTML = "";
+    const structure = formationLines[formation];
+    const selectedKitId = localStorage.getItem("selectedKit");
 
-    const positions = formations[formation];
-    const structure = {
-      line1: ["GK"],
-      line2: ["DD", "DCD", "DCG", "DG"],
-      line3: ["MD", "MCD", "MCG", "MG"],
-      line4: ["BUD", "BUG"],
-    };
+    // Récupérer l'image du kit sélectionné
+    let selectedKitImage = null;
+    if (selectedKitId) {
+      const kits = document.querySelectorAll(".kit-card");
+      const selectedDiv = Array.from(kits).find(k => k.dataset.kitId === selectedKitId);
+      if (selectedDiv) {
+        const img = selectedDiv.querySelector("img");
+        if (img) selectedKitImage = img.src;
+      }
+    }
 
-    Object.entries(structure).forEach(([lineKey, posArray], lineIndex) => {
+    structure.forEach((lineArray, lineIndex) => {
       const lineDiv = document.createElement("div");
       lineDiv.className = "team-line";
       lineDiv.dataset.lineIndex = lineIndex;
 
-      posArray.forEach((pos, index) => {
+      lineArray.forEach((pos, index) => {
         const slot = document.createElement("div");
         slot.className = "team-slot";
         slot.dataset.position = pos;
@@ -157,7 +190,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         const assignedPlayer = myTeam.find(
           (p) => p.assignedPositionLine === `${lineIndex}-${index}`
         );
+
         if (assignedPlayer) {
+          // --- Image du joueur ---
           const img = document.createElement("img");
           img.src = `../images/${assignedPlayer.image.split("/").pop()}`;
           img.alt = assignedPlayer.id;
@@ -178,8 +213,20 @@ document.addEventListener("DOMContentLoaded", async () => {
           });
 
           slot.appendChild(img);
+
+          // --- Logo du kit ---
+          const kitLogo = document.createElement("img");
+          kitLogo.className = "team-player-kit-logo";
+          if (selectedKitImage) {
+            kitLogo.src = selectedKitImage;
+            kitLogo.style.display = "block";
+          } else {
+            kitLogo.style.display = "none";
+          }
+          slot.appendChild(kitLogo);
         }
 
+        // --- Drag & Drop ---
         slot.addEventListener("dragover", (e) => e.preventDefault());
         slot.addEventListener("drop", async (e) => {
           e.preventDefault();
@@ -193,10 +240,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           );
 
           if (fromList) {
-            if (existingPlayer) {
-              alert("Ce poste est déjà occupé !");
-              return;
-            }
+            if (existingPlayer) { alert("Ce poste est déjà occupé !"); return; }
             player.assignedPositionLine = `${lineIndex}-${index}`;
           } else {
             if (existingPlayer) {
@@ -220,100 +264,94 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     setTimeout(() => {
-      renderLinks();
+      renderLinks(formation);
       calculateTeamChemistry();
     }, 150);
   }
 
-  // --- DÉFINITION DES LIENS (4-4-2 PERSONNALISÉ) ---
-  const linksMap = {
-    GK: ["DCD", "DCG"],
-    DCD: ["GK", "MCD", "DCG", "DD"],
-    DCG: ["GK", "MCG", "DCD", "DG"],
-    DD: ["DCD", "MD"],
-    DG: ["DCG", "MG"],
-    MD: ["DD", "MCD", "BUD"],
-    MG: ["DG", "MCG", "BUG"],
-    MCD: ["DCD", "MD", "MCG", "BUD"],
-    MCG: ["DCG", "MG", "MCD", "BUG"],
-    BUD: ["MD", "MCD", "BUG"],
-    BUG: ["MG", "MCG", "BUD"],
+
+  const linksByFormation = {
+    "4-4-2": {
+      GK: ["DCD", "DCG"], DCD: ["GK", "MCD", "DCG", "DD"], DCG: ["GK", "MCG", "DCD", "DG"],
+      DD: ["DCD", "MD"], DG: ["DCG", "MG"], MD: ["DD", "MCD", "BUD"], MG: ["DG", "MCG", "BUG"],
+      MCD: ["DCD", "MD", "MCG", "BUD"], MCG: ["DCG", "MG", "MCD", "BUG"], BUD: ["MD", "MCD", "BUG"],
+      BUG: ["MG", "MCG", "BUD"],
+    },
+    "4-3-3": {
+      GK: ["DCD", "DCG"], DCD: ["GK", "MC", "DCG", "DD"], DCG: ["GK", "DCD", "DG", "MC"],
+      DD: ["DCD", "MCD"], DG: ["DCG", "MCG"], MC: ["DCD", "DCG", "AC", "MCD", "MCG"],
+      MCD: ["DD", "MC", "AD"], MCG: ["MC", "DG", "AG"], AD: ["MCD", "AC"], AC: ["AD", "MC", "AG"], AG: ["MCG", "AC"],
+    }
   };
 
-  // --- AFFICHER LES LIENS ---
-  function renderLinks() {
-  document.querySelectorAll(".link-line").forEach((l) => l.remove());
-  const slots = Array.from(document.querySelectorAll(".team-slot"));
+  function renderLinks(formation) {
+    document.querySelectorAll(".link-line").forEach((l) => l.remove());
+    const slots = Array.from(document.querySelectorAll(".team-slot"));
+    const linksMap = linksByFormation[formation];
 
-  slots.forEach((slot) => {
-    const pos = slot.dataset.position;
-    const related = linksMap[pos] || [];
+    slots.forEach((slot) => {
+      const pos = slot.dataset.position;
+      const related = linksMap[pos] || [];
 
-    related.forEach((targetPos) => {
-      const targetSlot = slots.find((s) => s.dataset.position === targetPos);
-      if (!targetSlot) return;
+      related.forEach((targetPos) => {
+        const targetSlot = slots.find((s) => s.dataset.position === targetPos);
+        if (!targetSlot) return;
 
-      const key = [pos, targetPos].sort().join("-");
-      if (teamContainer.querySelector(`[data-link-key='${key}']`)) return;
+        const key = [pos, targetPos].sort().join("-");
+        if (teamContainer.querySelector(`[data-link-key='${key}']`)) return;
 
-      const startRect = slot.getBoundingClientRect();
-      const endRect = targetSlot.getBoundingClientRect();
-      const parent = teamContainer.getBoundingClientRect();
+        const startRect = slot.getBoundingClientRect();
+        const endRect = targetSlot.getBoundingClientRect();
+        const parent = teamContainer.getBoundingClientRect();
 
-      // Centres exacts des bulles
-      const x1 = startRect.left + startRect.width / 2 - parent.left;
-      const y1 = startRect.top + startRect.height / 2 - parent.top;
-      const x2 = endRect.left + endRect.width / 2 - parent.left;
-      const y2 = endRect.top + endRect.height / 2 - parent.top;
+        const x1 = startRect.left + startRect.width / 2 - parent.left;
+        const y1 = startRect.top + startRect.height / 2 - parent.top;
+        const x2 = endRect.left + endRect.width / 2 - parent.left;
+        const y2 = endRect.top + endRect.height / 2 - parent.top;
 
-      const dx = x2 - x1;
-      const dy = y2 - y1;
-      const distance = Math.sqrt(dx * dx + dy * dy);
-      const angle = Math.atan2(dy, dx) * (180 / Math.PI);
+        const dx = x2 - x1;
+        const dy = y2 - y1;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        const angle = Math.atan2(dy, dx) * (180 / Math.PI);
 
-      const player1 = myTeam.find(
-        (p) => p.assignedPositionLine === `${slot.dataset.lineIndex}-${slot.dataset.index}`
-      );
-      const player2 = myTeam.find(
-        (p) => p.assignedPositionLine === `${targetSlot.dataset.lineIndex}-${targetSlot.dataset.index}`
-      );
-      if (!player1 || !player2) return;
+        const player1 = myTeam.find(
+          (p) => p.assignedPositionLine === `${slot.dataset.lineIndex}-${slot.dataset.index}`
+        );
+        const player2 = myTeam.find(
+          (p) => p.assignedPositionLine === `${targetSlot.dataset.lineIndex}-${targetSlot.dataset.index}`
+        );
+        if (!player1 || !player2) return;
 
-      // Décalage pour que la ligne touche juste le bord du cercle
-      const radiusStart = startRect.width / 2;
-      const radiusEnd = endRect.width / 2;
-      const cosA = dx / distance;
-      const sinA = dy / distance;
+        const radiusStart = startRect.width / 2;
+        const radiusEnd = endRect.width / 2;
+        const cosA = dx / distance;
+        const sinA = dy / distance;
 
-      const startX = x1 + cosA * radiusStart;
-      const startY = y1 + sinA * radiusStart;
-      const endX = x2 - cosA * radiusEnd;
-      const endY = y2 - sinA * radiusEnd;
+        const startX = x1 + cosA * radiusStart;
+        const startY = y1 + sinA * radiusStart;
+        const endX = x2 - cosA * radiusEnd;
+        const endY = y2 - sinA * radiusEnd;
 
-      const adjustedDistance = Math.sqrt((endX - startX) ** 2 + (endY - startY) ** 2);
+        const adjustedDistance = Math.sqrt((endX - startX) ** 2 + (endY - startY) ** 2);
 
-      const link = document.createElement("div");
-      link.className = "link-line";
-      link.dataset.linkKey = key;
+        const link = document.createElement("div");
+        link.className = "link-line";
+        link.dataset.linkKey = key;
+        link.style.width = `${adjustedDistance}px`;
+        link.style.left = `${startX + (endX - startX) / 2 - adjustedDistance / 2}px`;
+        link.style.top = `${startY + (endY - startY) / 2 - 2}px`;
+        link.style.transform = `rotate(${angle}deg)`;
+        link.style.backgroundColor = getLinkColor(player1, player2);
+        link.style.height = "4px";
+        link.style.borderRadius = "2px";
+        link.style.position = "absolute";
+        link.style.zIndex = "0";
 
-      link.style.width = `${adjustedDistance}px`;
-      link.style.left = `${startX + (endX - startX) / 2 - adjustedDistance / 2}px`;
-      link.style.top = `${startY + (endY - startY) / 2 - 2}px`;
-      link.style.transform = `rotate(${angle}deg)`;
-      link.style.backgroundColor = getLinkColor(player1, player2);
-      link.style.height = "4px";
-      link.style.borderRadius = "2px";
-      link.style.position = "absolute";
-      link.style.zIndex = "0";
-
-      teamContainer.appendChild(link);
+        teamContainer.appendChild(link);
+      });
     });
-  });
-}
+  }
 
-
-
-  // --- COULEUR DES LIENS ---
   function getLinkColor(p1, p2) {
     if (!p1 || !p2) return "#555";
     if (p1.club === p2.club && p1.country === p2.country) return "limegreen";
@@ -321,15 +359,91 @@ document.addEventListener("DOMContentLoaded", async () => {
     return "red";
   }
 
-  // --- CALCUL DU COLLECTIF ---
   function calculateTeamChemistry() {
     const links = Array.from(document.querySelectorAll(".link-line"));
     const green = links.filter((l) => l.style.backgroundColor === "limegreen").length;
     const orange = links.filter((l) => l.style.backgroundColor === "orange").length;
     const total = links.length;
-
     const score = total === 0 ? 0 : ((green * 2 + orange) / (total * 2)) * 100;
-    chemistryDisplay.textContent = `Collectif: ${Math.round(score)}%`;
+    chemistryDisplay.textContent = `Chemistry: ${Math.round(score)}%`;
+  }
+
+  // --- AFFICHER LES MAILLOTS ---
+  function renderKits(userData) {
+    if (!kitsContainer) return;
+    kitsContainer.innerHTML = "";
+
+    fetch("http://127.0.0.1:5001/achievements")
+      .then(res => res.json())
+      .then(allAchievements => {
+        const kits = allAchievements.filter(a =>
+          userData.claimed_rewards.includes(a.id) &&
+          a.reward?.exclusive_kit
+        );
+
+        if (kits.length === 0) {
+          kitsContainer.innerHTML = "<p>No jersey obtained yet.</p>";
+          return;
+        }
+
+        kits.forEach(kit => {
+          const imageName = kit.reward.exclusive_kit; // ex: "kit_diamond.png"
+          const imagePath = `../images/${imageName}`; // ✅ bon dossier
+
+          const kitDiv = document.createElement("div");
+          kitDiv.className = "kit-card";
+          kitDiv.dataset.kitId = kit.id;
+          kitDiv.innerHTML = `
+            <img src="${imagePath}" alt="${kit.name}" class="kit-img" 
+                 onerror="this.src='../images/default-kit.png'">
+          `;
+
+          kitDiv.addEventListener("click", () => {
+            localStorage.setItem("selectedKit", kit.id);
+            document.querySelectorAll(".kit-card").forEach(k => k.classList.remove("selected-kit"));
+            kitDiv.classList.add("selected-kit");
+            applyKitToTeam(kit);
+          });
+
+          kitsContainer.appendChild(kitDiv);
+        });
+
+        const selectedKitId = localStorage.getItem("selectedKit");
+        if (selectedKitId) {
+          const selectedDiv = kitsContainer.querySelector(`[data-kit-id='${selectedKitId}']`);
+          if (selectedDiv) selectedDiv.classList.add("selected-kit");
+        }
+      })
+      .catch(err => {
+        console.error("Erreur lors du chargement des maillots :", err);
+        kitsContainer.innerHTML = "<p>Erreur lors du chargement des maillots.</p>";
+      });
+  }
+
+  function applyKitToTeam(kit) {
+    const slots = document.querySelectorAll(".team-slot");
+    slots.forEach(slot => {
+      const playerImg = slot.querySelector(".team-player");
+      const kitLogo = slot.querySelector(".team-player-kit-logo");
+      if (playerImg && kitLogo) {
+        kitLogo.src = `../images/${kit.reward.exclusive_kit}`;
+        kitLogo.style.display = "block";
+      }
+    });
+  }
+  // --- Mise à jour côté serveur et localStorage ---
+  async function updateUserTeam() {
+    try {
+      await fetch(`http://127.0.0.1:5001/players/${username}/updatePlayers`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ players_owned: myTeam.map(p => p.player_id) })
+      });
+
+      localStorage.setItem("myTeam", JSON.stringify(myTeam));
+    } catch (err) {
+      console.error("Erreur mise à jour équipe :", err);
+    }
   }
 
   // --- Affichage des contrats et formes ---
@@ -349,7 +463,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       contractsFormsContainer.innerHTML = "";
 
       if (ownedItems.length === 0) {
-        contractsFormsContainer.innerHTML = "<p>Aucun contrat ou forme acheté.</p>";
+        contractsFormsContainer.innerHTML = "<p>No contract or form purchased.</p>";
       } else {
         ownedItems.forEach(item => {
           const card = document.createElement("div");
@@ -378,15 +492,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }
 
-   
-function createPopup(item) {
-  const overlay = document.createElement("div");
-  overlay.className = "popup-overlay";
 
-  const popup = document.createElement("div");
-  popup.className = "popup-window";
+  function createPopup(item) {
+    const overlay = document.createElement("div");
+    overlay.className = "popup-overlay";
 
-  popup.innerHTML = `
+    const popup = document.createElement("div");
+    popup.className = "popup-window";
+
+    popup.innerHTML = `
     <h3>Appliquer ${item.name}</h3>
     <p>Choisis un joueur à qui l’appliquer :</p>
     <select id="player-select" class="popup-select">
@@ -398,115 +512,115 @@ function createPopup(item) {
     </div>
   `;
 
-  overlay.appendChild(popup);
-  document.body.appendChild(overlay);
+    overlay.appendChild(popup);
+    document.body.appendChild(overlay);
 
-  
-  document.getElementById("cancel-popup").addEventListener("click", () => {
-    document.body.removeChild(overlay);
-  });
 
-  document.getElementById("apply-item").addEventListener("click", async () => {
-    const selectedPlayerName = document.getElementById("player-select").value;
-    const player = myTeam.find(p => p.id === selectedPlayerName);
-
-    if (!player || !player._id) {
-      alert("Joueur introuvable dans la base de données");
-      return;
-    }
-
-    try {
-      //Mettre à jour le joueur 
-      let updatedData = {};
-      if (item.type === "contrat") {
-        updatedData.contracts = (player.contracts || 0) + item.bonus;
-      } else if (item.type === "forme") {
-        updatedData.energy = (player.energy || 0) + item.bonus;
-      }
-
-      const res = await fetch(`http://127.0.0.1:5001/skills/updatePlayerStats/${player._id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updatedData)
-      });
-
-      if (!res.ok) throw new Error("Erreur mise à jour joueur");
-
-      // Supprimer le contrat/forme côté serveur 
-      const deleteRes = await fetch(
-        `http://127.0.0.1:5001/players/username/${username}/removeItem/${item._id}`,
-        { method: "DELETE" }
-      );
-      if (!deleteRes.ok) throw new Error("Erreur suppression item");
-
-      // Supprimer la carte du DOM 
-      const card = [...contractsFormsContainer.children].find(
-        c => c.querySelector(".skill-header")?.textContent === item.name
-      );
-      if (card) contractsFormsContainer.removeChild(card);
-
-      // Fermer le popup 
+    document.getElementById("cancel-popup").addEventListener("click", () => {
       document.body.removeChild(overlay);
+    });
 
-      alert(`${item.name} appliqué avec succès à ${player.id} !`);
+    document.getElementById("apply-item").addEventListener("click", async () => {
+      const selectedPlayerName = document.getElementById("player-select").value;
+      const player = myTeam.find(p => p.id === selectedPlayerName);
 
-    } catch (err) {
-      console.error(err);
-      alert("Erreur lors de l’application du bonus");
-    }
-  });
-}
-
-async function showPlayerDetails(player) {
-  // essayer de récupérer la version complète côté serveur via skills/<_id>
-  let fullPlayer = null;
-  try {
-    // player._id doit exister dans myTeam 
-    if (player._id) {
-      const res = await fetch(`http://127.0.0.1:5001/skills/${player._id}`);
-      if (res.ok) {
-        fullPlayer = await res.json();
-        // si le backend renvoie _id en ObjectId transformé, il faut le convertir en string
-        if (fullPlayer._id) fullPlayer._id = String(fullPlayer._id);
-      } else {
-        console.warn("Impossible de charger les détails depuis le serveur, status:", res.status);
+      if (!player || !player._id) {
+        alert("Joueur introuvable dans la base de données");
+        return;
       }
-    } else {
-      console.warn("player._id introuvable, utilisation des données locales");
-    }
-  } catch (err) {
-    console.warn("Erreur fetch détail joueur :", err);
+
+      try {
+        //Mettre à jour le joueur 
+        let updatedData = {};
+        if (item.type === "contrat") {
+          updatedData.contracts = (player.contracts || 0) + item.bonus;
+        } else if (item.type === "forme") {
+          updatedData.energy = (player.energy || 0) + item.bonus;
+        }
+
+        const res = await fetch(`http://127.0.0.1:5001/skills/updatePlayerStats/${player._id}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(updatedData)
+        });
+
+        if (!res.ok) throw new Error("Erreur mise à jour joueur");
+
+        // Supprimer le contrat/forme côté serveur 
+        const deleteRes = await fetch(
+          `http://127.0.0.1:5001/players/username/${username}/removeItem/${item._id}`,
+          { method: "DELETE" }
+        );
+        if (!deleteRes.ok) throw new Error("Erreur suppression item");
+
+        // Supprimer la carte du DOM 
+        const card = [...contractsFormsContainer.children].find(
+          c => c.querySelector(".skill-header")?.textContent === item.name
+        );
+        if (card) contractsFormsContainer.removeChild(card);
+
+        // Fermer le popup 
+        document.body.removeChild(overlay);
+
+        alert(`${item.name} appliqué avec succès à ${player.id} !`);
+
+      } catch (err) {
+        console.error(err);
+        alert("Erreur lors de l’application du bonus");
+      }
+    });
   }
 
-  
-  const p = fullPlayer || player;
+  async function showPlayerDetails(player) {
+    // essayer de récupérer la version complète côté serveur via skills/<_id>
+    let fullPlayer = null;
+    try {
+      // player._id doit exister dans myTeam 
+      if (player._id) {
+        const res = await fetch(`http://127.0.0.1:5001/skills/${player._id}`);
+        if (res.ok) {
+          fullPlayer = await res.json();
+          // si le backend renvoie _id en ObjectId transformé, il faut le convertir en string
+          if (fullPlayer._id) fullPlayer._id = String(fullPlayer._id);
+        } else {
+          console.warn("Impossible de charger les détails depuis le serveur, status:", res.status);
+        }
+      } else {
+        console.warn("player._id introuvable, utilisation des données locales");
+      }
+    } catch (err) {
+      console.warn("Erreur fetch détail joueur :", err);
+    }
 
 
-  const isGoalkeeper = (p.style || "").toLowerCase() === "gardien";
-  const statsHTML = isGoalkeeper
-    ? `<div class="skill-stat"><strong>${p.div ?? "-"}</strong><br>DIV</div>
+    const p = fullPlayer || player;
+
+
+    const isGoalkeeper = (p.style || "").toLowerCase() === "gardien";
+    const statsHTML = isGoalkeeper
+      ? `<div class="skill-stat"><strong>${p.div ?? "-"}</strong><br>DIV</div>
        <div class="skill-stat"><strong>${p.han ?? "-"}</strong><br>HAN</div>
        <div class="skill-stat"><strong>${p.kic ?? "-"}</strong><br>KIC</div>
        <div class="skill-stat"><strong>${p.ref ?? "-"}</strong><br>REF</div>
        <div class="skill-stat"><strong>${p.spd ?? "-"}</strong><br>SPD</div>
        <div class="skill-stat"><strong>${p.pos ?? "-"}</strong><br>POS</div>`
-    : `<div class="skill-stat"><strong>${p.pac ?? "-"}</strong><br>PAC</div>
+      : `<div class="skill-stat"><strong>${p.pac ?? "-"}</strong><br>PAC</div>
        <div class="skill-stat"><strong>${p.sho ?? "-"}</strong><br>SHO</div>
        <div class="skill-stat"><strong>${p.pas ?? "-"}</strong><br>PAS</div>
        <div class="skill-stat"><strong>${p.dri ?? "-"}</strong><br>DRI</div>
        <div class="skill-stat"><strong>${p.def ?? "-"}</strong><br>DEF</div>
        <div class="skill-stat"><strong>${p.phy ?? "-"}</strong><br>PHY</div>`;
 
-  const imageSrc = p.image ? `../images/${p.image.split("/").pop()}` : "../images/default.png";
+    const imageSrc = p.image ? `../images/${p.image.split("/").pop()}` : "../images/default.png";
 
-  
-  const overlay = document.createElement("div");
-  overlay.className = "popup-overlay";
 
-  const popup = document.createElement("div");
-  popup.className = "popup-window player-detail-popup";
+    const overlay = document.createElement("div");
+    overlay.className = "popup-overlay";
 
-  popup.innerHTML = `
+    const popup = document.createElement("div");
+    popup.className = "popup-window player-detail-popup";
+
+    popup.innerHTML = `
     <h3>${p.name ?? p.id}</h3>
     <div class="skill-image-container">
       <img src="${imageSrc}" alt="${p.id}" class="skill-image" />
@@ -521,13 +635,12 @@ async function showPlayerDetails(player) {
     <button id="close-player-popup" class="popup-btn cancel">Fermer</button>
   `;
 
-  overlay.appendChild(popup);
-  document.body.appendChild(overlay);
+    overlay.appendChild(popup);
+    document.body.appendChild(overlay);
 
-  document.getElementById("close-player-popup").addEventListener("click", () => {
-    document.body.removeChild(overlay);
-  });
-}
-
+    document.getElementById("close-player-popup").addEventListener("click", () => {
+      document.body.removeChild(overlay);
+    });
+  }
 
 });

@@ -1,64 +1,64 @@
 [
   {
-    "name": "Contrat Bronze",
+    "name": "Bronze Contract",
     "type": "contrat",
-    "bonus": "+5 matchs",
+    "bonus": "+5 games",
     "cost": 500,
     "image": "contrat_bronze.png"
   },
   {
-    "name": "Contrat Argent",
+    "name": "Silver Contract",
     "type": "contrat",
-    "bonus": "+10 matchs",
+    "bonus": "+10 games",
     "cost": 1000,
     "image": "contrat_argent.png"
   },
   {
-    "name": "Contrat Or",
+    "name": "Gold Contract",
     "type": "contrat",
-    "bonus": "+20 matchs",
+    "bonus": "+20 games",
     "cost": 2000,
     "image": "contrat_or.png"
   },
   {
-    "name": "Forme légère",
+    "name": "Light Form",
     "type": "forme",
     "bonus": "+10 endurance",
     "cost": 300,
     "image": "forme_10.png"
   },
   {
-    "name": "Forme moyenne",
+    "name": "Medium Form",
     "type": "forme",
     "bonus": "+20 endurance",
     "cost": 600,
     "image": "forme_20.png"
   },
   {
-    "name": "Forme maximale",
+    "name": "Max Form",
     "type": "forme",
     "bonus": "+30 endurance",
     "cost": 1200,
     "image": "forme_30.png"
   },
   {
-    "name": "Booster vitesse",
+    "name": "Speed Booster",
     "type": "forme",
-    "bonus": "+5 vitesse",
+    "bonus": "+5 speed",
     "cost": 800,
     "image": "booster_vitesse.png"
   },
   {
-    "name": "Booster puissance",
+    "name": "Power Booster",
     "type": "forme",
-    "bonus": "+5 force",
+    "bonus": "+5 power",
     "cost": 800,
     "image": "booster_puissance.png"
   },
   {
-    "name": "Contrat Pro",
+    "name": "Pro Contract",
     "type": "contrat",
-    "bonus": "+50 matchs",
+    "bonus": "+50 games",
     "cost": 5000,
     "image": "contrat_pro.png"
   }

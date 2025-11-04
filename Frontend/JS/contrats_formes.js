@@ -36,15 +36,15 @@ document.addEventListener("DOMContentLoaded", async () => {
         <div class="skill-header">${item.name}</div>
         <div class="skill-style">${item.type}</div>
         <div class="skill-extra">${item.bonus}</div>
-        <div class="skill-credits">💰 Prix : ${item.cost}</div>
+        <div class="skill-credits">💰 Price : ${item.cost}</div>
       `;
 
       const btn = document.createElement("button");
-      btn.textContent = alreadyBought ? "Already purchased": "Buy";
+      btn.textContent = alreadyBought ? "Already owned" : "Buy";
       btn.disabled = alreadyBought;
 
       btn.addEventListener("click", async () => {
-        if (currentCredits < item.cost) return alert("Insufficient balance !");
+        if (currentCredits < item.cost) return alert("Insufficient credits!");
         try {
           const res = await fetch(`http://127.0.0.1:5001/contracts_forms/${username}/buy`, {
             method: "POST",
@@ -60,10 +60,10 @@ document.addEventListener("DOMContentLoaded", async () => {
           localStorage.setItem("player", JSON.stringify(player));
 
           ownedIds.push(item._id.toString());
-          btn.textContent = "Already purchased";
+          btn.textContent = "Already owned";
           btn.disabled = true;
 
-          alert(`${item.name} Bought !`);
+          alert(`${item.name} purchased!`);
           displayOwnedItems(items, ownedIds, myItemsDiv);
         } catch (err) {
           console.error(err);
@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   } catch (err) {
     console.error(err);
-    alert("Error server.");
+    alert("Server error.");
   }
 });
 
