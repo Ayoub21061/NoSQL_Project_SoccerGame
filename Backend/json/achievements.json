@@ -50,7 +50,7 @@
     "description": "Win 100 matches",
     "type": "Reward",
     "xp_required": 1000,
-    "reward": { "coins": 1000, "player_card": "Gold 85+", "exclusive_kit": true, "trophy": true},
+    "reward": { "coins": 1000, "player_card": "Gold 85+", "exclusive_kit": true, "trophy": true },
     "is_unlocked": false
   },
   {
@@ -59,7 +59,7 @@
     "description": "Reach 100 XP in the Battle Pass",
     "type": "Battle Pass",
     "xp_required": 100,
-    "reward": { "coins": 100, "pack": "Starter Pack"},
+    "reward": { "coins": 100, "pack": "Starter Pack" },
     "is_unlocked": false
   },
   {
@@ -68,7 +68,7 @@
     "description": "Reach 300 XP in the Battle Pass",
     "type": "Battle Pass",
     "xp_required": 300,
-    "reward": { "coins": 300, "pack": "Bronze Pack"},
+    "reward": { "coins": 300, "pack": "Bronze Pack" },
     "is_unlocked": false
   },
   {
@@ -77,7 +77,7 @@
     "description": "Reach 600 XP in the Battle Pass",
     "type": "Battle Pass",
     "xp_required": 600,
-    "reward": { "coins": 600, "pack": "Silver Pack"},
+    "reward": { "coins": 600, "pack": "Silver Pack" },
     "is_unlocked": false
   },
   {
@@ -86,7 +86,7 @@
     "description": "Reach 1000 XP in the Battle Pass",
     "type": "Battle Pass",
     "xp_required": 1000,
-    "reward": { "coins": 1000, "pack": "Gold Pack", "exclusive_kit": true },
+    "reward": { "coins": 1000, "pack": "Gold Pack", "exclusive_kit": "exclusive_kit.png" },
     "is_unlocked": false
   },
   {
@@ -95,7 +95,7 @@
     "description": "Reach 1500 XP in the Battle Pass",
     "type": "Battle Pass",
     "xp_required": 1500,
-    "reward": { "coins": 1500, "pack": "Platinum Pack", "exclusive_kit": true, "trophy": true },
+    "reward": { "coins": 1500, "pack": "Platinum Pack", "exclusive_kit": "exclusive_kit2.png", "trophy": true },
     "is_unlocked": false
   },
   {
@@ -104,43 +104,43 @@
     "description": "Reach 2000 XP in the Battle Pass",
     "type": "Battle Pass",
     "xp_required": 2000,
-    "reward": { "coins": 2000, "pack": "Diamond Pack", "exclusive_kit": true, "trophy": true },
+    "reward": { "coins": 2000, "pack": "Diamond Pack", "exclusive_kit": "exclusive_kit3.png", "trophy": true },
     "is_unlocked": false
   },
   {
     "id": 13,
-    "name" : "Battle Pass Level 7",
+    "name": "Battle Pass Level 7",
     "description": "Reach 3000 XP in the Battle Pass",
     "type": "Battle Pass",
     "xp_required": 3000,
-    "reward": { "coins": 3000, "pack": "Elite Pack", "exclusive_kit": true, "trophy": true },
+    "reward": { "coins": 3000, "pack": "Elite Pack", "exclusive_kit": "exclusive_kit4.png", "trophy": true },
     "is_unlocked": false
   },
   {
     "id": 14,
-    "name" : "Battle Pass Level 8",
+    "name": "Battle Pass Level 8",
     "description": "Reach 4000 XP in the Battle Pass",
     "type": "Battle Pass",
     "xp_required": 4000,
-    "reward": { "coins": 4000, "pack": "Mythical Pack", "exclusive_kit": true, "trophy": true },
+    "reward": { "coins": 4000, "pack": "Mythical Pack", "exclusive_kit": "exclusive_kit5.png", "trophy": true },
     "is_unlocked": false
   },
   {
     "id": 15,
-    "name" : "Battle Pass Level 9",
+    "name": "Battle Pass Level 9",
     "description": "Reach 5000 XP in the Battle Pass",
     "type": "Battle Pass",
     "xp_required": 5000,
-    "reward": { "coins": 5000, "pack": "Legendary Pack", "exclusive_kit": true, "trophy": true },
+    "reward": { "coins": 5000, "pack": "Legendary Pack", "exclusive_kit": "exclusive_kit6.png", "trophy": true },
     "is_unlocked": false
   },
   {
     "id": 16,
-    "name" : "Battle Pass Level 10",
+    "name": "Battle Pass Level 10",
     "description": "Reach 6000 XP in the Battle Pass",
     "type": "Battle Pass",
     "xp_required": 6000,
-    "reward": { "coins": 6000, "pack": "Ultimate Pack", "exclusive_kit": true, "trophy": true },
+    "reward": { "coins": 6000, "pack": "Ultimate Pack", "exclusive_kit": "exclusive_kit8.png", "trophy": true },
     "is_unlocked": false
   },
   {
@@ -158,7 +158,7 @@
     "description": "Win 10 matches in all game modes",
     "type": "Live Events",
     "xp_required": 300,
-    "reward": { "coins": 1000, "pack": "Elite pack" },
+    "reward": { "coins": 1000, "pack": "Elite Pack" },
     "is_unlocked": false
   },
   {
@@ -167,7 +167,7 @@
     "description": "Play and win 10 matches with a 100% Portuguese team without conceding a single goal",
     "type": "Live Events",
     "xp_required": 200,
-    "reward": { "coins": 2000, "pack": "Advanced pack" },
+    "reward": { "coins": 2000, "pack": "Advanced Pack" },
     "is_unlocked": false
   },
   { 
@@ -185,7 +185,7 @@
     "description": "Play 50 matches with Cristiano Ronaldo in your starting lineup",
     "type": "Live Events",
     "xp_required": 200,
-    "reward": { "coins": 2000, "pack": "Portugal pack" },
+    "reward": { "coins": 2000, "pack": "Portugal Pack" },
     "is_unlocked": false
   },
   {
@@ -197,31 +197,4 @@
     "reward": { "coins": 2000, "pack": "Uruguay Pack" },
     "is_unlocked": false
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ]
