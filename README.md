@@ -46,8 +46,10 @@ Le projet utilise principalement **une structure NoSQL** avec MongoDB. Les entit
 
 1. Cloner le dépôt :
 
-```git clone <https://github.com/Ayoub21061/NoSQL_Project_SoccerGame.git>```
-```cd <rcd NoSQL_Project_SoccerGamet>```
+
+```git clone https://github.com/Ayoub21061/NoSQL_Project_SoccerGame.git```
+
+```cd NoSQL_Project_SoccerGame```
 
 2. Lancer les conteneurs Docker : 
 
@@ -66,25 +68,25 @@ http://localhost:5001
 
 ## Structure globale du projet 
 
-Backend/
-│ ├─ db/                    # Base de données MongoDB utilisée
-│ ├─ json/                  # Fichiers JSON pour remplir la base
-│ ├─ Models/                # Modèles pour les entités MongoDB
-│ ├─ Routes/                # Routes API
-│ ├─ main.py                # Point d'entrée Flask
+**Backend/**
+- `db/` — Base de données MongoDB utilisée  
+- `json/` — Fichiers JSON pour remplir la base  
+- `Models/` — Modèles pour les entités MongoDB  
+- `Routes/` — Routes API  
+- `main.py` — Point d’entrée Flask  
 
-Deployment/                 # Ensemble des fichiers nécessaires au déploiement du projet
-│ ├─ Create_db.py
-│ ├─ docker-compose.yml
-│ ├─ Dockerfile
-│ └─ requirements.txt
+**Deployment/**
+- `Create_db.py`  
+- `docker-compose.yml`  
+- `Dockerfile`  
+- `requirements.txt`  
 
-Frontend/                   # Ensemble des fichiers liés au frontend
-│ ├─ CSS/
-│ ├─ HTML/
-│ ├─images/
-│ ├─js/
-│ └─ images/
+**Frontend/**
+- `CSS/`  
+- `HTML/`  
+- `images/`  
+- `js/`
+
 
 
 
