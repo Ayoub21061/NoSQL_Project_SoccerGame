@@ -6,14 +6,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     const username = localStorage.getItem("username");
     if (!username) throw new Error("Utilisateur non connecté.");
 
-    // --- Récupérer le joueur et son XP / récompenses ---
+    // Récupérer le joueur et son XP / récompenses
     const userRes = await fetch(`http://127.0.0.1:5001/users/${username}`);
     if (!userRes.ok) throw new Error("Error server user");
     const userData = await userRes.json();
     const currentXP = userData.current_xp ?? 0;
     const claimedRewards = userData.claimed_rewards ?? [];
 
-    // --- Récupérer le Battle Pass ---
+    // Récupérer le Battle Pass 
     const res = await fetch("http://127.0.0.1:5001/achievements/battlepass");
     if (!res.ok) throw new Error("Error server user");
     const battlePass = await res.json();

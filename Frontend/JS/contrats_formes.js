@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const creditsSpan = document.getElementById("user-credits");
     if (creditsSpan) creditsSpan.textContent = `💰 Credits : ${currentCredits}`;
 
-    // Récupérer tous les contrats/formes 
+    // Récupérer tous les contrats/formes. 
     const res = await fetch("http://127.0.0.1:5001/contracts_forms");
     const items = await res.json();
 
