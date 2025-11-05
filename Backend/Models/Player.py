@@ -36,6 +36,6 @@ class Player(BaseModel):
     claimed_rewards : List[str] = []
     mail : str
     score_global : int = 0 
-    contrats_formes : List[str]
+    contrats_formes : List[str] = []
     friends : List[str] = []       
     friend_requests: List[FriendRequest] = []  

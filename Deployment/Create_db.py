@@ -9,11 +9,11 @@ db = client.get_default_database()  # prend la DB indiquée dans l'URI
 
 # Liste des fichiers JSON et des collections correspondantes
 collections_files = {
-    "achievements": "../json/achievements.json",
-    "contracts_forms": "../json/contrats_formes.json",
-    "gamesmode": "../json/gamesmode.json",
-    "players": "../json/players.json",
-    "skills": "../json/skills.json",
+    "achievements": "/app/Backend/json/achievements.json",
+    "contracts_forms": "/app/Backend/json/contrats_formes.json",
+    "gamesmode": "/app/Backend/json/gamesmode.json",
+    "players": "/app/Backend/json/players.json",
+    "skills": "/app/Backend/json/skills.json",
 }
 
 for collection_name, filepath in collections_files.items():
