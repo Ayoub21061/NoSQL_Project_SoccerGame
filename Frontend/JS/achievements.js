@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const achievements = await response.json();
 
-    // Filtrer pour exclure les Battle Pass
+    // Filtrer pour exclure les Battle Pass.
     const filteredAchievements = achievements.filter(achievement => {
       const name = (achievement.name || "").toLowerCase();
       return !name.includes("battle pass") && !name.includes("pass de combat");
