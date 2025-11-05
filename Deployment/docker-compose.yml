@@ -13,7 +13,7 @@ services:
 
   api:
     build:
-      context: ..               t
+      context: ..               
       dockerfile: Deployment/Dockerfile
     container_name: SoccerGame_api
     restart: unless-stopped
