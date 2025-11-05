@@ -66,24 +66,24 @@ http://localhost:5001
 
 ## Structure globale du projet 
 
-📂 **Backend/**
-- 📁 `db/` — Base de données MongoDB utilisée  
-- 📁 `json/` — Fichiers JSON pour remplir la base  
-- 📁 `Models/` — Modèles pour les entités MongoDB  
-- 📁 `Routes/` — Routes API  
-- 📄 `main.py` — Point d’entrée Flask  
+**Backend/**
+- `db/` — Base de données MongoDB utilisée  
+- `json/` — Fichiers JSON pour remplir la base  
+- `Models/` — Modèles pour les entités MongoDB  
+- `Routes/` — Routes API  
+- `main.py` — Point d’entrée Flask  
 
-📂 **Deployment/**
-- 📄 `Create_db.py`  
-- 📄 `docker-compose.yml`  
-- 📄 `Dockerfile`  
-- 📄 `requirements.txt`  
+**Deployment/**
+- `Create_db.py`  
+- `docker-compose.yml`  
+- `Dockerfile`  
+- `requirements.txt`  
 
-📂 **Frontend/**
-- 📁 `CSS/`  
-- 📁 `HTML/`  
-- 📁 `images/`  
-- 📁 `js/`
+**Frontend/**
+- `CSS/`  
+- `HTML/`  
+- `images/`  
+- `js/`
 
 
 
