@@ -46,8 +46,10 @@ Le projet utilise principalement **une structure NoSQL** avec MongoDB. Les entit
 
 1. Cloner le dépôt :
 
+```bash
 ```git clone <https://github.com/Ayoub21061/NoSQL_Project_SoccerGame.git>```
-```cd <rcd NoSQL_Project_SoccerGamet>```
+```cd <rcd NoSQL_Project_SoccerGame>``
+```
 
 2. Lancer les conteneurs Docker : 
 
