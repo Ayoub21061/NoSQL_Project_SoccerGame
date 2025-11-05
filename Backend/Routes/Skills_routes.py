@@ -5,7 +5,7 @@ from bson import ObjectId  # Pour gérer les ObjectId MongoDB
 skills_bp = Blueprint("skills_bp", __name__)
 skills_collection = db["skills"]
 
-# CREATE
+# Ajouter un skill
 @skills_bp.route("/", methods=["POST"])
 def add_skill():
     try:
@@ -15,7 +15,7 @@ def add_skill():
     except Exception as e:
         return jsonify({"error": str(e)}), 400
 
-# READ one
+# Récupérer un skill 
 @skills_bp.route("/<skill_id>", methods=["GET"])
 def get_skill(skill_id):
     try:
@@ -27,7 +27,7 @@ def get_skill(skill_id):
     except Exception as e:
         return jsonify({"error": str(e)}), 400
 
-# READ all
+# Récupérer tous les skills
 @skills_bp.route("/", methods=["GET"])
 def get_all_skills():
     try:
@@ -38,7 +38,7 @@ def get_all_skills():
     except Exception as e:
         return jsonify({"error": str(e)}), 400
 
-# UPDATE
+# Mettre à jour un skill
 @skills_bp.route("/<skill_id>", methods=["PUT"])
 def update_skill(skill_id):
     try:
@@ -53,7 +53,7 @@ def update_skill(skill_id):
     except Exception as e:
         return jsonify({"error": str(e)}), 400
 
-# DELETE
+# Supprimer un skill 
 @skills_bp.route("/<skill_id>", methods=["DELETE"])
 def delete_skill(skill_id):
     try:
@@ -64,11 +64,10 @@ def delete_skill(skill_id):
     except Exception as e:
         return jsonify({"error": str(e)}), 400
 
+# Mettre à jour les stats d'un joueur (carte) : energy, contracts, etc.
 @skills_bp.route("/updatePlayerStats/<player_id>", methods=["PUT"])
 def update_player_stats(player_id):
-    """
-    Met à jour les stats d'un joueur (carte) : energy, contracts, etc.
-    """
+   
     try:
         data = request.get_json()
         updates = {}

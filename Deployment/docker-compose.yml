@@ -13,7 +13,7 @@ services:
 
   api:
     build:
-      context: ..                  # le contexte inclut la racine du projet
+      context: ..               t
       dockerfile: Deployment/Dockerfile
     container_name: SoccerGame_api
     restart: unless-stopped
@@ -28,6 +28,7 @@ services:
       - ../Backend:/app/Backend      # Monte le backend pour Flask
       - ../Frontend:/app/Frontend    # Monte le frontend pour servir HTML/CSS/JS
 
+  # Créer et compléter les collections de la DB
   populate:
       build:
         context: ..

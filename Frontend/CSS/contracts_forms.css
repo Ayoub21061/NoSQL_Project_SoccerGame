@@ -1,4 +1,4 @@
-/* === GLOBAL === */
+/* GLOBAL */
 body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
@@ -28,7 +28,7 @@ header h1 {
   border-radius: 8px;
 }
 
-/* === SECTION TITLES === */
+/* SECTION TITLES */
 .section-title {
   text-align: center;
   font-size: 1.4rem;
@@ -40,7 +40,7 @@ header h1 {
   letter-spacing: 1px;
 }
 
-/* === CONTAINER === */
+/* CONTAINER */
 .items-container {
   display: flex;
   flex-wrap: wrap;
@@ -49,7 +49,7 @@ header h1 {
   padding: 10px 20px 40px 20px;
 }
 
-/* === CARDS === */
+/* CARDS */
 .skill-card {
   width: 220px;
   background: #10182b;
@@ -62,7 +62,7 @@ header h1 {
   overflow: hidden;
 }
 
-/* === Contrats et Formes - Couleurs distinctes === */
+/* Contrats et Formes - Couleurs distinctes */
 .skill-card.contrat {
   border-color: #f5c518;
   box-shadow: 0 0 10px rgba(245, 197, 24, 0.2);
@@ -73,13 +73,13 @@ header h1 {
   box-shadow: 0 0 10px rgba(30, 144, 255, 0.2);
 }
 
-/* === Hover Glow === */
+/* Hover Glow */
 .skill-card:hover {
   transform: translateY(-6px) scale(1.02);
   box-shadow: 0 0 25px rgba(245, 197, 24, 0.3);
 }
 
-/* === HEADER TEXT === */
+/* HEADER TEXT */
 .skill-header {
   font-size: 1.1rem;
   font-weight: 600;
@@ -87,7 +87,7 @@ header h1 {
   text-transform: capitalize;
 }
 
-/* === TYPE TAG === */
+/* TYPE TAG */
 .skill-style {
   font-size: 0.9rem;
   text-transform: uppercase;
@@ -101,7 +101,7 @@ header h1 {
   color: #1e90ff;
 }
 
-/* === BONUS TEXT === */
+/* BONUS TEXT */
 .skill-extra {
   font-size: 0.85rem;
   color: #ccc;
@@ -109,7 +109,7 @@ header h1 {
   min-height: 35px;
 }
 
-/* === PRICE === */
+/* PRICE */
 .skill-credits {
   font-weight: bold;
   color: #fff;
@@ -117,7 +117,7 @@ header h1 {
   font-size: 0.95rem;
 }
 
-/* === BUTTON === */
+/* BUTTON */
 .skill-card button {
   background: linear-gradient(135deg, #f5c518, #ffd633);
   color: #000;
@@ -147,7 +147,7 @@ header h1 {
   cursor: not-allowed;
 }
 
-/* === FOOTER === */
+/* FOOTER */
 footer {
   text-align: center;
   padding: 1rem;

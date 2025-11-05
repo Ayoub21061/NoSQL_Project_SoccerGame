@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         <p>${game.description || "No description"}</p>
       `;
 
-      // 🧭 Redirection au clic
+      // Redirection au clic
       card.addEventListener("click", () => {
         window.location.href = `game_detail.html?id=${game._id}`;
       });

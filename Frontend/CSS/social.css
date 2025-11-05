@@ -1,8 +1,8 @@
-/* ===== Reset et base ===== */
+/* Reset et base */
 * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
 body { display:flex; flex-direction:column; min-height:100vh; background:#0b1020; color:#e0e6f0; }
 
-/* ===== Header ===== */
+/* Header */
 .header {
   display:flex;
   justify-content:space-between;
@@ -15,7 +15,7 @@ body { display:flex; flex-direction:column; min-height:100vh; background:#0b1020
 .hamburger { font-size:28px; cursor:pointer; color:#e0e6f0; transition: color 0.3s; }
 .hamburger:hover { color:#7fd0ff; }
 
-/* ===== Sidebar ===== */
+/* Sidebar */
 .sidebar {
   position:fixed;
   top:0;
@@ -140,7 +140,7 @@ li button:hover { opacity:0.8; }
 li button.accept { background:#4fc3ff; color:#0b1020; }
 li button.reject { background:#c62828; color:#e0e6f0; }
 
-/* --- Détails ami --- */
+/* Détails ami */
 .friend-details {
   background: #10182b;
   margin-top: 10px;

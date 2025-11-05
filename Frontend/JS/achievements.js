@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const achievements = await response.json();
 
-    // ✅ Filtrer pour exclure les Battle Pass
+    // Filtrer pour exclure les Battle Pass
     const filteredAchievements = achievements.filter(achievement => {
       const name = (achievement.name || "").toLowerCase();
       return !name.includes("battle pass") && !name.includes("pass de combat");
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const card = document.createElement("div");
       card.className = "achievement-card";
 
-      // ✅ Formatage de la récompense
+      // Formatage de la récompense
       let rewards = [];
 
       if (achievement.reward) {
@@ -32,13 +32,13 @@ document.addEventListener("DOMContentLoaded", async () => {
               rewards.push(`💰 ${value} crédits`);
               break;
             case "player_card":
-              rewards.push(value); // ✅ On affiche uniquement la valeur
+              rewards.push(value); // On affiche uniquement la valeur
               break;
             case "pack":
-              rewards.push(value); // ✅ On affiche uniquement la valeur
+              rewards.push(value); // On affiche uniquement la valeur
               break;
             case "exclusive_kit":
-              // ❌ On n'affiche pas les exclusive_kit
+              // On n'affiche pas les exclusive_kit
               break;
             default:
               // Ignore toutes les autres clés

@@ -1,4 +1,4 @@
-/* === GLOBAL === */
+/* GLOBAL */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -6,7 +6,7 @@ body {
   color: #e0e6f0;
 }
 
-/* === HEADER === */
+/* HEADER */
 header {
   background-color: #0a0f1a; /* bleu très foncé */
   color: #dfe9ff;
@@ -20,7 +20,7 @@ header {
   color: #7fd0ff;
 }
 
-/* === SEARCH BAR === */
+/* SEARCH BAR */
 .search-bar {
   display: flex;
   justify-content: center;
@@ -49,7 +49,7 @@ header {
   outline: none;
 }
 
-/* === FILTERS === */
+/* FILTERS */
 .filters {
   display: flex;
   justify-content: center;
@@ -90,7 +90,7 @@ header {
   background-color: #10182b;
 }
 
-/* === SKILLS CONTAINER === */
+/* SKILLS CONTAINER */
 #skills-container {
   display: flex;
   flex-wrap: wrap;
@@ -99,7 +99,7 @@ header {
   padding: 20px;
 }
 
-/* === SKILL CARD === */
+/* SKILL CARD */
 .skill-card {
   width: 180px;
   background-color: #10182b;
@@ -170,7 +170,7 @@ header {
   color: #94a3c9;
 }
 
-/* === FOOTER === */
+/* FOOTER */
 footer {
   text-align: center;
   padding: 1rem;
@@ -188,7 +188,7 @@ footer a:hover {
   color: #7fd0ff;
 }
 
-/* === RESPONSIVE === */
+/* RESPONSIVE */
 @media (max-width: 600px) {
   .filters {
     flex-direction: column;

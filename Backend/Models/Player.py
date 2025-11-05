@@ -1,6 +1,8 @@
 # Informations à retrouver chez le joueur : Nom d'utilisateur, avatar, date de création du compte, match remportés / perdus / nuls, stat de performances, parlamères / historique / classement, temps total de jeu 
 
-# Remarque : BaseModel est une classe  de Pydantic utilisée pour créer des modèles de données qui permet de faire des validations automatiques des données. Donc quand on envoie un json, si la structure est pas respectée, ça passe pas. 
+# Remarque : BaseModel est une classe  de Pydantic utilisée pour créer des modèles de données qui permet de faire des validations automatiques des données. 
+# Donc quand on envoie un json, si la structure est pas respectée, ça passe pas. 
+# ça permet de faciliter l'ajout d'un user lors de la création d'un compte. 
 
 from pydantic import BaseModel
 from typing import List, Optional

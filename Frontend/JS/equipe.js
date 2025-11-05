@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     return;
   }
 
-  // --- FORMATIONS PERSONNALISÉES ---
+  // FORMATIONS PERSONNALISÉES 
   const formations = {
     "4-4-2": [
       "GK", "DD", "DCD", "DCG", "DG",
@@ -47,11 +47,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   try {
-    // --- Récupération du joueur ---
+    // Récupération du joueur 
     const userRes = await fetch(`http://127.0.0.1:5001/players/username/${username}`);
     const userData = await userRes.json();
 
-    // --- Ajouter automatiquement les maillots du Battle Pass ---
+    // Ajouter automatiquement les maillots du Battle Pass 
     if (!userData.claimed_rewards) userData.claimed_rewards = [];
     const newKits = userData.achievements.filter(a =>
       a.reward?.exclusive_kit && !userData.claimed_rewards.some(r => r.id === a.id)
@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 
-  // --- AFFICHER LES JOUEURS DISPONIBLES ---
+  // AFFICHER LES JOUEURS DISPONIBLES 
   function renderPlayers() {
     cardsContainer.innerHTML = "";
     const availablePlayers = myTeam.filter((p) => !p.assignedPositionLine);
@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }).catch(() => { });
   }
 
-  // --- AFFICHER LA FORMATION ---
+  // AFFICHER LA FORMATION 
   function renderTeam(formation) {
     teamContainer.innerHTML = "";
     const structure = formationLines[formation];
@@ -192,7 +192,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         );
 
         if (assignedPlayer) {
-          // --- Image du joueur ---
+          // Image du joueur 
           const img = document.createElement("img");
           img.src = `../images/${assignedPlayer.image.split("/").pop()}`;
           img.alt = assignedPlayer.id;
@@ -214,7 +214,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
           slot.appendChild(img);
 
-          // --- Logo du kit ---
+          // Logo du kit 
           const kitLogo = document.createElement("img");
           kitLogo.className = "team-player-kit-logo";
           if (selectedKitImage) {
@@ -226,7 +226,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           slot.appendChild(kitLogo);
         }
 
-        // --- Drag & Drop ---
+        // Drag & Drop 
         slot.addEventListener("dragover", (e) => e.preventDefault());
         slot.addEventListener("drop", async (e) => {
           e.preventDefault();
@@ -368,7 +368,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     chemistryDisplay.textContent = `Chemistry: ${Math.round(score)}%`;
   }
 
-  // --- AFFICHER LES MAILLOTS ---
+  // AFFICHER LES MAILLOTS 
   function renderKits(userData) {
     if (!kitsContainer) return;
     kitsContainer.innerHTML = "";
@@ -387,8 +387,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
         kits.forEach(kit => {
-          const imageName = kit.reward.exclusive_kit; // ex: "kit_diamond.png"
-          const imagePath = `../images/${imageName}`; // ✅ bon dossier
+          const imageName = kit.reward.exclusive_kit; 
+          const imagePath = `../images/${imageName}`; 
 
           const kitDiv = document.createElement("div");
           kitDiv.className = "kit-card";
@@ -431,7 +431,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     });
   }
-  // --- Mise à jour côté serveur et localStorage ---
+  // Mise à jour côté serveur et localStorage 
   async function updateUserTeam() {
     try {
       await fetch(`http://127.0.0.1:5001/players/${username}/updatePlayers`, {
@@ -446,7 +446,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }
 
-  // --- Affichage des contrats et formes ---
+  // Affichage des contrats et formes 
   const contractsFormsContainer = document.getElementById("contracts-forms-container");
   if (contractsFormsContainer) {
     try {

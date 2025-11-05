@@ -5,7 +5,7 @@ games_bp = Blueprint("games_bp", __name__)
 games_collection = db["gamesmode"]
 
 
-### CREATE (POST) ###
+# Ajouter un mode de jeu
 @games_bp.route("/", methods=["POST"])
 def add_game():
     try:
@@ -19,7 +19,7 @@ def add_game():
         return jsonify({"error": str(e)}), 400
 
 
-### READ (GET one) ###
+# Récupérer un mode de jeu
 @games_bp.route("/<game_id>", methods=["GET"])
 def get_game(game_id):
     try:
@@ -33,7 +33,7 @@ def get_game(game_id):
         return jsonify({"error": str(e)}), 400
 
 
-### READ (GET all) ###
+# Récupérer tous les modes de jeux
 @games_bp.route("/", methods=["GET"])
 def get_all_games():
     try:
@@ -45,7 +45,7 @@ def get_all_games():
         return jsonify({"error": str(e)}), 400
 
 
-### UPDATE (PUT) ###
+# Mettre à jour tous les modes en jeu
 @games_bp.route("/<game_id>", methods=["PUT"])
 def update_game(game_id):
     try:
@@ -58,7 +58,7 @@ def update_game(game_id):
         return jsonify({"error": str(e)}), 400
 
 
-### DELETE ###
+# Supprimer un mode de jeu
 @games_bp.route("/<game_id>", methods=["DELETE"])
 def delete_game(game_id):
     try:

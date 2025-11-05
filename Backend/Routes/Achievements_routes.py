@@ -7,7 +7,7 @@ achievements_bp = Blueprint("achievements_bp", __name__) #-> Permet de regrouper
 # Collection MongoDB
 achievements_collection = db["achievements"]
 
-### CREATE (POST) ###
+# Ajouter un achievement
 @achievements_bp.route("/", methods=["POST"])
 def add_achievement():
     try:
@@ -17,7 +17,7 @@ def add_achievement():
     except Exception as e:
         return jsonify({"error": str(e)}), 400
     
-### READ (GET one) ###
+# Récupérer un achievement
 @achievements_bp.route("/<achievement_id>", methods=["GET"])
 def get_achievement(achievement_id):
     try:
@@ -29,7 +29,7 @@ def get_achievement(achievement_id):
     except Exception as e:
         return jsonify({"error": str(e)}), 400
 
-### READ (GET all) ###
+# Récupérer tous les achievements 
 @achievements_bp.route("/", methods=["GET"])
 def get_all_achievements():
     try:
@@ -40,7 +40,7 @@ def get_all_achievements():
     except Exception as e:
         return jsonify({"error": str(e)}), 400
     
-### UPDATE (PUT) ###
+# Modifier un achievement
 @achievements_bp.route("/<achievement_id>", methods=["PUT"])
 def update_achievement(achievement_id):
     try:
@@ -52,7 +52,7 @@ def update_achievement(achievement_id):
     except Exception as e:
         return jsonify({"error": str(e)}), 400
     
-### DELETE (DELETE) ###
+# Supprimer un achievement
 @achievements_bp.route("/<achievement_id>", methods=["DELETE"])
 def delete_achievement(achievement_id):
     try:
@@ -63,7 +63,7 @@ def delete_achievement(achievement_id):
     except Exception as e:
         return jsonify({"error": str(e)}), 400
     
-# User_routes ou Achievements_routes
+# Récupérer uniquement battle pass
 @achievements_bp.route("/battlepass", methods=["GET"])
 def get_battle_pass():
     try:

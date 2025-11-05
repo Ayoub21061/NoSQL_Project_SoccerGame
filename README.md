@@ -11,8 +11,8 @@ Une application de gestion et simulation de joueurs de foot, avec classement, r�
 - **Amis** : envoyer des demandes d’amis, accepter ou refuser des demandes, voir la liste des amis ainsi que leurs statistiques.
 - **Récompenses** : afficher les achievements à débloquer selon les défis réalisés.
 - **Modes de jeu** : consulter différents modes de jeu avec règles, et accéder au détail de chaque mode.
-- **Gestion des joueurs** : acheter des joueurs de foot
-- **Gestion des items** : achetr des contrats et des boosters
+- **Gestion des joueurs** : acheter des joueurs de foot.
+- **Gestion des items** : acheter des contrats et des boosters.
 - **Composition d’équipe** : créer son équipe, visualiser le collectif entre joueurs, choisir le maillot de l'équipe, appliquer les contrats et les boosters pour augmenter les performances.
 - **Packs** : recevoir des packs contenant des joueurs ou autres objets virtuels.
 - **Battle Pass** : débloquer des récompenses selon le niveau du joueur. 

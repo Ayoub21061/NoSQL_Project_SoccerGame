@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", async () => {
   try {
-    // --- Récupération cohérente de l'utilisateur ---
+    // Récupération cohérente de l'utilisateur
     let username;
     const playerData = localStorage.getItem("player");
     const storedUsername = localStorage.getItem("username");
@@ -17,29 +17,29 @@ document.addEventListener("DOMContentLoaded", async () => {
     let player = JSON.parse(localStorage.getItem("player")) || {};
     let currentCredits = player.credits ?? 0;
 
-    // --- MAJ affichage crédits ---
+    // MAJ affichage crédits 
     const creditsSpan = document.getElementById("user-credits");
     if (creditsSpan) creditsSpan.textContent = `💰 Credits : ${currentCredits}`;
 
-    // --- ⚡ Utiliser la même route que equipe.js ---
+    // Utiliser la même route que equipe.js 
     const userRes = await fetch(`http://127.0.0.1:5001/players/username/${username}`);
     const userData = await userRes.json();
 
-    // ✅ Combine les joueurs obtenus (shop + packs)
+    // Combine les joueurs obtenus (shop + packs)
     const ownedFromShop = userData.players_owned ?? [];
     const ownedFromPacks = userData.packs_owned?.flatMap(p => p.players || []) ?? [];
     const allOwnedPlayerIds = [...new Set([...ownedFromShop, ...ownedFromPacks])];
 
-    // --- Charger tous les skills disponibles ---
+    // Charger tous les skills disponibles 
     const skillsRes = await fetch("http://127.0.0.1:5001/skills");
     const skills = await skillsRes.json();
 
-    // --- DOM ---
+    // DOM
     const container = document.getElementById("skills-container");
     const searchInput = document.getElementById("search-input");
     const sortSelect = document.getElementById("sort-select");
 
-    // --- myTeam (synchronisé avec equipe.html) ---
+    // myTeam (synchronisé avec equipe.html)
     let myTeam = skills
       .filter(skill => allOwnedPlayerIds.includes(skill.id))
       .map(skill => ({
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     localStorage.setItem("myTeam", JSON.stringify(myTeam));
 
-    // --- Affichage des cartes ---
+    // Affichage des cartes
     function renderSkills(skillsToDisplay) {
       container.innerHTML = "";
 
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           <div class="skill-credits">💰 Credit required : ${playerCredits}</div>
         `;
 
-        // --- Bouton d'achat ---
+        // Bouton d'achat
         const buyButton = document.createElement("button");
         const alreadyOwned = allOwnedPlayerIds.includes(skill.id);
         buyButton.textContent = alreadyOwned ? "Already Owned" : "Buy";
@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
     }
 
-    // --- Recherche + tri ---
+    // Recherche + tri 
     function updateDisplay() {
       const query = searchInput?.value?.toLowerCase().trim() ?? "";
       const sortValue = sortSelect?.value ?? "none";
@@ -165,7 +165,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (searchInput) searchInput.addEventListener("input", updateDisplay);
     if (sortSelect) sortSelect.addEventListener("change", updateDisplay);
 
-    // --- Premier affichage ---
+    // Premier affichage
     renderSkills(skills);
 
   } catch (err) {

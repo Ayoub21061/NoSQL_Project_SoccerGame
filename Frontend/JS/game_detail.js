@@ -17,10 +17,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Met à jour le DOM
     document.getElementById("game-title").textContent = game.name;
 
-    // 🖼️ Chemin correct pour l'image
-
-    //document.getElementById("game-image").src = game.image;
-    //document.getElementById("game-image").src = `../images/${game.image.split("/").pop()}`;
     document.getElementById("game-image").src = `../images/${game.image.split("/").pop()}`;
 
 

@@ -6,7 +6,7 @@ contracts_forms_bp = Blueprint("contracts_forms_bp", __name__)
 contracts_forms_collection = db["contracts_forms"]
 users_collection = db["players"]
 
-# --- CREATE ---
+# Ajouter un contrat ou forme
 @contracts_forms_bp.route("/", methods=["POST"])
 def add_contract_form():
     try:
@@ -16,7 +16,7 @@ def add_contract_form():
     except Exception as e:
         return jsonify({"error": str(e)}), 400
 
-# --- READ ALL ---
+# Obtenir tous les contrats et formes
 @contracts_forms_bp.route("/", methods=["GET"])
 def get_all_contracts_forms():
     try:
@@ -27,7 +27,7 @@ def get_all_contracts_forms():
     except Exception as e:
         return jsonify({"error": str(e)}), 400
 
-# --- Acheter un contrat ou une forme ---
+# Acheter des contrats et formes, donc plus dispo après achat
 @contracts_forms_bp.route("/<string:username>/buy", methods=["POST"])
 def buy_contract_or_form(username):
     try:

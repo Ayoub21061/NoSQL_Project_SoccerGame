@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // --- Gestion du menu hamburger / sidebar ---
+  // Gestion du menu hamburger / sidebar 
   const sidebar = document.getElementById("mySidebar");
   const openBtn = document.querySelector(".hamburger");
   const closeBtn = document.querySelector(".closebtn");
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // --- Gestion du menu profil ---
+  // Gestion du menu profil 
   const profil = document.querySelector(".profil");
   const dropdownContent = document.querySelector(".dropdown-content");
 
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- Remplissage de l'avatar, nom et crédits ---
+  // Remplissage de l'avatar, nom et crédits 
   const player = JSON.parse(localStorage.getItem("player"));
   if (player) {
     const avatarElem = document.getElementById("user-avatar");
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (creditsElem) creditsElem.textContent = `💰 Crédits : ${player.credits ?? 0}`;
   }
 
-  // --- Déconnexion ---
+  // Déconnexion 
   const logoutBtn = document.getElementById("logout-btn");
   if (logoutBtn) {
     logoutBtn.addEventListener("click", () => {

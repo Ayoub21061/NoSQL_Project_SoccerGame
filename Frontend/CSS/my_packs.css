@@ -38,7 +38,7 @@ header {
   border-radius: 8px;
 }
 
-/* === Animation d'ouverture de pack === */
+/* Animation d'ouverture de pack */
 .opening-animation {
   text-align: center;
   margin-top: 100px;
@@ -62,7 +62,7 @@ header {
   100% { transform: scale(1); opacity: 1; }
 }
 
-/* === Carte de joueur style FUT === */
+/* Carte de joueur style FUT */
 .skill-card {
   width: 220px;
   height: 340px;

@@ -18,12 +18,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (!res.ok) throw new Error("Error server user");
     const battlePass = await res.json();
 
-    // ✅ Tri du Battle Pass par XP requis croissant
+    // Tri du Battle Pass par XP requis croissant
     battlePass.sort((a, b) => a.xp_required - b.xp_required);
 
     container.innerHTML = "";
 
-    // --- Construire le Battle Pass dynamique ---
+    // Construire le Battle Pass dynamique 
     battlePass.forEach(level => {
       const lvlDiv = document.createElement("div");
       lvlDiv.className = "battlepass-level";
@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       container.appendChild(lvlDiv);
     });
 
-    // --- Gestion du clic sur les boutons d’aperçu ---
+    // Gestion du clic sur les boutons d’aperçu 
     document.querySelectorAll(".preview-btn").forEach(btn => {
       btn.addEventListener("click", e => {
         const reward = JSON.parse(e.target.getAttribute("data-reward"));
@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
     });
 
-    // --- Slider 3 cartes ---
+    // Slider 3 cartes 
     const levels = Array.from(container.children);
     let currentIndex = 0;
 
@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
     }
 
-    // --- Ajouter flèches directionnelles ---
+    // Ajouter flèches directionnelles 
     const leftArrow = document.createElement("div");
     leftArrow.className = "arrow arrow-left";
     leftArrow.textContent = "❮";
@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-// --- Fonction d’affichage des récompenses (inchangée) ---
+// Fonction d’affichage des récompenses (inchangée)
 function showRewardPreview(title, reward) {
   let modal = document.getElementById("reward-preview");
   if (!modal) return;
@@ -147,7 +147,7 @@ function showRewardPreview(title, reward) {
   titleEl.textContent = title;
   imagesContainer.innerHTML = "";
 
-  // --- Coins ---
+  // Coins
   if (reward.coins) {
     const coinDiv = document.createElement("div");
     coinDiv.style.textAlign = "center";
@@ -169,7 +169,7 @@ function showRewardPreview(title, reward) {
     imagesContainer.appendChild(coinDiv);
   }
 
-  // --- Packs ---
+  // Packs
   if (reward.pack) {
     const packDiv = document.createElement("div");
     packDiv.style.textAlign = "center";
@@ -198,14 +198,14 @@ function showRewardPreview(title, reward) {
     imagesContainer.appendChild(packDiv);
   }
 
-  // --- Kit exclusif ---
+  // Kit exclusif 
   if (reward.exclusive_kit) {
     const kitDiv = document.createElement("div");
     kitDiv.style.textAlign = "center";
 
     const kitImg = document.createElement("img");
 
-    // ✅ Utilisation dynamique de l’image correspondant au niveau
+    // Utilisation dynamique de l’image correspondant au niveau
     kitImg.src = `../images/${reward.exclusive_kit}`;
     kitImg.alt = "Exclusive Kit";
     kitImg.className = "reward-img";

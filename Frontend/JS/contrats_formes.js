@@ -9,11 +9,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     const creditsSpan = document.getElementById("user-credits");
     if (creditsSpan) creditsSpan.textContent = `💰 Credits : ${currentCredits}`;
 
-    // --- Récupérer tous les contrats/formes ---
+    // Récupérer tous les contrats/formes 
     const res = await fetch("http://127.0.0.1:5001/contracts_forms");
     const items = await res.json();
 
-    // --- Récupérer items déjà achetés ---
+    // Récupérer items déjà achetés 
     const userRes = await fetch(`http://127.0.0.1:5001/players/username/${username}`);
     const userData = await userRes.json();
     const ownedIds = (userData.contrats_formes || []).map(id => id.toString());
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     boostersSection.innerHTML = "";
     myItemsDiv.innerHTML = "";
 
-    // --- Créer une carte ---
+    // Créer une carte 
     function createCard(item, alreadyBought) {
       const card = document.createElement("div");
       card.className = `skill-card ${item.type}`;
@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       return card;
     }
 
-    // --- Remplir les sections ---
+    // Remplir les sections
     items.forEach(item => {
       const alreadyBought = ownedIds.includes(item._id?.toString());
       
@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       else if (item.type === "forme") boostersSection.appendChild(createCard(item, false));
     });
 
-    // --- Section items achetés ---
+    // Section items achetés 
     displayOwnedItems(items, ownedIds, myItemsDiv);
 
   } catch (err) {
@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-// --- Fonction pour afficher les items possédés ---
+// Fonction pour afficher les items possédés 
 function displayOwnedItems(allItems, ownedIds, targetDiv) {
   targetDiv.innerHTML = "";
   const owned = allItems.filter(i => ownedIds.includes(i._id?.toString()));

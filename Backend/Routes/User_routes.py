@@ -5,7 +5,7 @@ from db.connection import db
 user_bp = Blueprint("user_bp", __name__)
 users_collection = db["players"]
 
-# --- Acheter un joueur ---
+# Acheter un joueur
 @user_bp.route("/players/<string:username>/buy_player", methods=["POST"])
 def buy_player(username):
     try:
@@ -94,11 +94,11 @@ def claim_rewards(username):
             xp_required = level.get("xp_required", 0)
             reward = level.get("reward", {})
             if current_xp >= xp_required and not level.get("reward_claimed", False):
-                # --- Ajout des coins ---
+                # Ajout des coins
                 coins = reward.get("coins", 0)
                 earned_coins += coins
 
-                # --- Enregistrement du pack s’il existe ---
+                # Enregistrement du pack s’il existe
                 pack_name = reward.get("pack")
                 if pack_name:
                     earned_packs.append(pack_name)
@@ -111,7 +111,7 @@ def claim_rewards(username):
                     {"$set": {"reward_claimed": True}}
                 )
 
-        # --- Mise à jour des crédits et des packs du joueur ---
+        # Mise à jour des crédits et des packs du joueur
         new_credits = user.get("credits", 0) + earned_coins
         users_collection.update_one(
             {"username": username},
@@ -135,7 +135,7 @@ def claim_single_reward(username, level_id):
         if not user:
             return jsonify({"error": "Utilisateur non trouvé"}), 404
 
-        # --- Créer la liste des récompenses réclamées si elle n'existe pas ---
+        # Créer la liste des récompenses réclamées si elle n'existe pas 
         if "claimed_rewards" not in user:
             user["claimed_rewards"] = []
 

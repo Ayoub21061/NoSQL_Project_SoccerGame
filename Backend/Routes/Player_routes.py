@@ -4,16 +4,14 @@ from Models.Player import Player  # ton modèle Pydantic
 from datetime import date 
 from bson import ObjectId
 
-
 # Création du Blueprint
 player_bp = Blueprint("player_bp", __name__)
-
 
 # Collection MongoDB
 players_collection = db["players"]
 
 
-### CREATE (POST) ###
+# Ajouter un nouveau joueur dans la db
 @player_bp.route("/", methods=["POST"])
 def add_player():
     try:
@@ -43,6 +41,8 @@ def add_player():
     except Exception as e:
         return jsonify({"error": str(e)}), 400
 
+# Fonction qui permet de se connecter. Elle compare le mot de passe écrit avec celui de la DB. 
+# POST est préféré à GET pour des questions de sécurité. 
 @player_bp.route("/login", methods=["POST"])
 def login_player():
     try:
@@ -68,7 +68,7 @@ def login_player():
         return jsonify({"error": str(e)}), 400
 
 
-### READ (GET one) ###
+#Récupérer un user. 
 @player_bp.route("/<player_id>", methods=["GET"])
 def get_player(player_id):
     try:
@@ -81,7 +81,7 @@ def get_player(player_id):
         return jsonify({"error": str(e)}), 400
 
 
-### READ (GET all) ###
+# Récupérer tous les users
 @player_bp.route("/", methods=["GET"])
 def get_all_players():
     try:
@@ -93,30 +93,25 @@ def get_all_players():
         return jsonify({"error": str(e)}), 400
 
 
-### UPDATE (PUT) ###
+# Mettre à jour les stats d'un user
 @player_bp.route("/<player_id>", methods=["PUT"])
 def update_player(player_id):
     try:
         update_data = request.get_json()
 
-        # 🔍 Récupérer le joueur existant
         player = players_collection.find_one({"_id": ObjectId(player_id)})
         if not player:
             return jsonify({"error": "Joueur introuvable"}), 404
 
-        # 🧩 Fusionner les données (le joueur existant + les modifs)
         merged_player = {**player, **update_data}
 
-        # ✅ Recalculer le score global à partir des valeurs finales
         matches_won = int(merged_player.get("matches_won", 0))
         matches_draw = int(merged_player.get("matches_draw", 0))
         score_global = (matches_won * 3) + matches_draw
 
-        # 🧾 Préparer les champs à mettre à jour
         merged_player["score_global"] = score_global
         del merged_player["_id"]  # jamais modifier _id
 
-        # ⚡️ Mettre à jour en base
         result = players_collection.update_one(
             {"_id": ObjectId(player_id)},
             {"$set": merged_player}
@@ -131,7 +126,7 @@ def update_player(player_id):
         print("Erreur update_player:", e)
         return jsonify({"error": str(e)}), 400
 
-### DELETE ###
+### Supprimer un user (ex : supprimer son compte)
 @player_bp.route("/<player_id>", methods=["DELETE"])
 def delete_player(player_id):
     try:
@@ -142,7 +137,7 @@ def delete_player(player_id):
     except Exception as e:
         return jsonify({"error": str(e)}), 400
 
-
+# Mettre à jour le mot de passe 
 @player_bp.route("/<player_id>/password", methods=["PUT"])
 def update_password(player_id):
     try:
@@ -165,7 +160,7 @@ def update_password(player_id):
     except Exception as e:
         return jsonify({"error": str(e)}), 400
 
-
+# Mettre à jour l'avatar d'un joueur
 @player_bp.route("/<player_id>/avatar", methods=["PUT"])
 def update_avatar(player_id):
     try:
@@ -186,6 +181,7 @@ def update_avatar(player_id):
         return jsonify({"error": str(e)}), 400
 
 
+# Rechercher un joueur par son username
 @player_bp.route("/username/<string:username>", methods=["GET"])
 def get_player_by_username(username):
     try:
@@ -199,6 +195,7 @@ def get_player_by_username(username):
         return jsonify({"error": str(e)}), 400
 
 
+# Récupérer le score des joueurs afin de les classer
 @player_bp.route("/ranking/<username>", methods=["GET"])
 def get_ranking_around(username):
     try:
@@ -225,6 +222,7 @@ def get_ranking_around(username):
         return jsonify({"error": str(e)}), 400
     
 
+# Mettre à jour la liste des contrats et formes achetés par les joueurs 
 @player_bp.route("/username/<username>/updateItems", methods=["POST"])
 def update_user_items(username):
     try:
@@ -237,11 +235,7 @@ def update_user_items(username):
     except Exception as e:
         return jsonify({"error": str(e)}), 400
 
-
-from bson import ObjectId
-
-from bson import ObjectId
-
+# Retirer un objet de la liste des contrats et formes une fois appliqué
 @player_bp.route("/username/<username>/removeItem/<item_id>", methods=["DELETE"])
 def remove_item_from_user(username, item_id):
     try:

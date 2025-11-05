@@ -1,7 +1,7 @@
 const API_URL = "http://localhost:5001/players";
 
 document.addEventListener("DOMContentLoaded", async () => {
-  // --- 1️⃣ Récupérer le joueur depuis le localStorage ---
+  // Récupérer le joueur depuis le localStorage 
   const player = JSON.parse(localStorage.getItem("player"));
   if (!player) {
     alert("No player connected !");
@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const playerId = player._id || player.id || null;
   const playerUsername = player.username || player.name || null;
 
-  // --- 2️⃣ Charger les infos depuis la DB ---
+  // Charger les infos depuis la DB
   try {
     const fetchUrl = playerId
       ? `${API_URL}/${playerId}`
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const data = await res.json();
     if (!res.ok) throw new Error(data.error || "Player data loading error.");
 
-    // --- 3️⃣ Remplir les champs du DOM ---
+    // Remplir les champs du DOM 
     document.getElementById("username").value = data.username || "";
 
     // Certains backend utilisent `email`, d'autres `mail`. fallback sur les deux.
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       document.getElementById("avatar-preview").src = `../images/${data.avatar}`;
     }
 
-    // --- 4️⃣ Mettre à jour le localStorage ---
+    // Mettre à jour le localStorage 
     const updatedPlayer = { ...player, ...data };
     localStorage.setItem("player", JSON.stringify(updatedPlayer));
   } catch (err) {
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     alert("Unable to load player information from the database.");
   }
 
-  // --- 5️⃣ Changement d’avatar (fichier local) ---
+  // Changement d’avatar (fichier local) 
   document.getElementById("avatar-upload").addEventListener("change", async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     reader.readAsDataURL(file);
   });
 
-  // --- 6️⃣ Sélection d’avatars prédéfinis ---
+  // Sélection d’avatars prédéfinis 
   document.querySelectorAll(".preset-avatar").forEach(img => {
     img.addEventListener("click", async () => {
       const avatarFileName = img.src.split("/").pop();
@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   });
 
-  // --- 7️⃣ Mise à jour du pseudo ---
+  // Mise à jour du pseudo 
   document.getElementById("save-profile").addEventListener("click", async () => {
     const newUsername = document.getElementById("username").value.trim();
     if (!newUsername) return alert("The username cannot be empty.");
@@ -138,7 +138,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 
-  // --- 8️⃣ Mise à jour du mot de passe ---
+  // Mise à jour du mot de passe 
   document.getElementById("update-password").addEventListener("click", async () => {
     const oldPwd = document.getElementById("old-password").value.trim();
     const newPwd = document.getElementById("new-password").value.trim();
@@ -167,7 +167,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 
-  // --- 9️⃣ Suppression du compte ---
+  // Suppression du compte 
   document.getElementById("delete-account").addEventListener("click", async () => {
     const confirmDelete = confirm("⚠️ Do you really want to delete your account ?");
     if (!confirmDelete) return;

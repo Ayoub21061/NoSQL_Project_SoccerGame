@@ -13,9 +13,8 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-# -------------------------------
-# Blueprints pour ton API MongoDB
-# -------------------------------
+
+# Blueprints API MongoDB
 app.register_blueprint(player_bp, url_prefix="/players")
 app.register_blueprint(games_bp, url_prefix="/games")
 app.register_blueprint(achievements_bp, url_prefix="/achievements")
@@ -24,14 +23,12 @@ app.register_blueprint(user_bp, url_prefix="/users")
 app.register_blueprint(contracts_forms_bp, url_prefix="/contracts_forms")
 app.register_blueprint(social_bp, url_prefix="/social")
 
-# -------------------------------
+
 # Chemin du dossier Frontend
-# -------------------------------
 FRONTEND_FOLDER = "/app/Frontend"
 
-# -------------------------------
-# Routes pour servir le Frontend
-# -------------------------------
+
+# Routes pour le Frontend
 
 # Route par défaut pour la page d'accueil
 @app.route("/", strict_slashes=False)
@@ -43,8 +40,6 @@ def home():
 def frontend_files(filename):
     return send_from_directory(FRONTEND_FOLDER, filename)
 
-# -------------------------------
 # Lancer le serveur Flask
-# -------------------------------
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5001)

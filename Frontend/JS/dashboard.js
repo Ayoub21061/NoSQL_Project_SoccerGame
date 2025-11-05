@@ -62,9 +62,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const rankingList = document.getElementById("rankingList");
 
-    // -----------------------
     // Classement autour du joueur
-    // -----------------------
+  
     try {
         const res = await fetch(`http://127.0.0.1:5001/players/ranking/${playerData.username}`);
         if (!res.ok) throw new Error("Impossible de récupérer le classement");

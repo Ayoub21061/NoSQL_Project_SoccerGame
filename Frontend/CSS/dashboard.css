@@ -1,4 +1,4 @@
-/* ===== Reset ===== */
+/* Reset */
 * {
     margin: 0;
     padding: 0;
@@ -6,7 +6,7 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* ===== Body & Main ===== */
+/* Body & Main */
 body {
     display: flex;
     flex-direction: column;
@@ -21,7 +21,7 @@ main {
     background-color: #0b1020; /* fond uniforme */
 }
 
-/* ===== Header ===== */
+/* Header */
 .header {
     display: flex;
     justify-content: space-between;
@@ -58,7 +58,7 @@ main {
     border: 2px solid #facc15; /* accent doré */
 }
 
-/* ===== Sidebar ===== */
+/* Sidebar */
 .sidebar {
     position: fixed;
     top: 0;
@@ -85,7 +85,7 @@ main {
     background-color: #14213d;
 }
 
-/* ===== Dropdown profil ===== */
+/* Dropdown profil */
 .dropdown {
     position: relative;
     cursor: pointer;
@@ -115,7 +115,7 @@ main {
     background-color: #1e2c50;
 }
 
-/* ===== Dashboard / Stats / Cards ===== */
+/* Dashboard / Stats / Cards */
 .dashboard-container {
     display: flex;
     flex-direction: column;
@@ -222,7 +222,7 @@ main {
     color: #4fc3ff;
 }
 
-/* ===== Profil dans le header ===== */
+/* Profil dans le header */
 .profile-link {
     display: flex;
     align-items: center;
@@ -242,7 +242,7 @@ main {
     font-weight: 600;
 }
 
-/* ===== Responsive ===== */
+/* Responsive */
 @media (max-width: 900px) {
     .dashboard-graphs {
         flex-direction: column;

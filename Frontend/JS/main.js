@@ -1,4 +1,4 @@
-// --- Changement d'affichage entre login et inscription ---
+// Changement d'affichage entre login et inscription 
 function showRegister() {
     document.getElementById('login-form').style.display = 'none';
     document.getElementById('register-form').style.display = 'block';
@@ -9,7 +9,7 @@ function showLogin() {
     document.getElementById('login-form').style.display = 'block';
 }
 
-// --- Connexion ---
+// Connexion 
 async function login() {
     const username = document.getElementById('login-username').value.trim();
     const password = document.getElementById('login-password').value.trim();
@@ -43,7 +43,7 @@ async function login() {
     }
 }
 
-// --- Inscription ---
+// Inscription 
 async function register() {
     const username = document.getElementById('register-username').value.trim();
     const mail = document.getElementById('register-email').value.trim();
@@ -118,7 +118,7 @@ async function register() {
     }
 }
 
-// --- Permet d'appuyer sur "Entrée" pour se connecter ou s'inscrire ---
+// Permet d'appuyer sur "Entrée" pour se connecter ou s'inscrire 
 document.addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
         event.preventDefault(); // Empêche le rechargement

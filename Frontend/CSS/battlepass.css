@@ -1,4 +1,4 @@
-/* ---------- GLOBAL ---------- */
+/* GLOBAL */
 body {
   font-family: "Poppins", sans-serif;
   background: radial-gradient(circle at top, #0c0c0f, #050505);
@@ -9,10 +9,10 @@ body {
   height: 100vh; /* pour que le wrapper prenne toute la hauteur */
 }
 
-/* ---------- BATTLE PASS WRAPPER ---------- */
+/* BATTLE PASS WRAPPER */
 #battlepass-wrapper {
-  width: 100vw;        /* prend toute la largeur de la page */
-  height: 100vh;       /* prend toute la hauteur de la page */
+  width: 100vw;        
+  height: 100vh;       
   display: flex;
   justify-content: center;
   align-items: center;
@@ -46,7 +46,7 @@ body {
   right: 10px;
 }
 
-/* ---------- BATTLE PASS PROGRESS ---------- */
+/* BATTLE PASS PROGRESS */
 #battlepass-progress {
   display: flex;
   align-items: center;
@@ -58,7 +58,7 @@ body {
   perspective: 1200px; /* pour l'effet 3D sur rotation */
 }
 
-/* ---------- BATTLE PASS LEVEL CARD ---------- */
+/* BATTLE PASS LEVEL CARD */
 .battlepass-level {
   background: linear-gradient(160deg, #1a1a1a, #101010);
   border-radius: 14px;
@@ -109,7 +109,7 @@ body {
   box-shadow: 0 0 25px rgba(255, 215, 0, 0.35);
 }
 
-/* ---------- TEXT INSIDE CARDS ---------- */
+/* TEXT INSIDE CARDS */
 .level-header {
   font-weight: 600;
   margin-bottom: 5px;
@@ -134,7 +134,7 @@ body {
   margin-top: 3px;
 }
 
-/* ---------- BUTTON ---------- */
+/* BUTTON */
 .preview-btn {
   background: linear-gradient(90deg, #ffd700, #ffae00);
   border: none;
@@ -151,7 +151,7 @@ body {
   box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
 }
 
-/* ---------- MODAL (REWARD PREVIEW) ---------- */
+/* MODAL (REWARD PREVIEW) */
 #reward-preview {
   position: fixed;
   inset: 0;
@@ -197,7 +197,7 @@ body {
   text-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
 }
 
-/* ---------- REWARD IMAGES GRID ---------- */
+/* REWARD IMAGES GRID */
 #reward-images {
   display: flex;
   justify-content: center;
@@ -220,7 +220,7 @@ body {
   box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
 }
 
-/* ---------- CLOSE BUTTON ---------- */
+/* CLOSE BUTTON */
 #close-preview {
   margin-top: 25px;
   padding: 10px 20px;

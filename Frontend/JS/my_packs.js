@@ -1,4 +1,4 @@
-let username; // ✅ variable globale accessible partout
+let username; // variable globale accessible partout
 
 document.addEventListener("DOMContentLoaded", async () => {
   username = localStorage.getItem("username");
@@ -103,7 +103,7 @@ async function openPack(packName) {
         const playerStyle = player.style || "Classic";
         const playerImage = player.image?.startsWith("images/") ? `../${player.image}` : `../images/${player.image || "default-player.png"}`;
 
-        // ✅ Vérification correcte pour gardien
+        // Vérification correcte pour gardien
         const isGK = player.style?.toLowerCase() === "goalkeeper";
 
         let statsHtml = "";
@@ -152,7 +152,7 @@ async function openPack(packName) {
         }
       }
 
-      // --- Ajouter le kit si le pack contient exclusive_kit ---
+      // Ajouter le kit si le pack contient exclusive_kit 
       const achievement = user.achievements?.find(a => a.name.toLowerCase() === packName.toLowerCase());
       if (achievement?.reward?.exclusive_kit) {
         try {

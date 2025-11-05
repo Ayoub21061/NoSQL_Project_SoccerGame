@@ -2,6 +2,8 @@ import json
 from pymongo import MongoClient
 import os
 
+# Objectif : petit script python qui permet de compléter les collections de la DB avec les données du json via une commande
+
 # Récupère l'URI MongoDB depuis l'environnement
 MONGO_URI = os.environ.get("MONGO_URI", "mongodb://localhost:27017/Soccer_Game_DB")
 client = MongoClient(MONGO_URI)

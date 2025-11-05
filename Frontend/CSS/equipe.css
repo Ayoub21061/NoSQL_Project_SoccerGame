@@ -1,4 +1,4 @@
-/* === RESET & BASE === */
+/* RESET & BASE */
 * {
   margin: 0;
   padding: 0;
@@ -12,7 +12,7 @@ body {
   min-height: 100vh;
 }
 
-/* === HEADER === */
+/* HEADER */
 header {
   background-color: #0a0f1a; /* bleu très foncé */
   padding: 20px;
@@ -45,7 +45,7 @@ nav ul li a:hover {
   color: #7fd0ff;
 }
 
-/* === LAYOUT PRINCIPAL === */
+/* LAYOUT PRINCIPAL */
 main {
   display: flex;
   flex-direction: column;
@@ -54,7 +54,7 @@ main {
   padding: 20px;
 }
 
-/* === JOUEURS ACHETÉS === */
+/* JOUEURS ACHETÉS */
 #players-list {
   width: 100%;
   background-color: #10182b; /* bleu nuit doux */
@@ -135,7 +135,7 @@ main {
   font-weight: bold;
 }
 
-/* === FORMATION === */
+/* FORMATION */
 #team-section {
   display: flex;
   flex-direction: column;
@@ -152,7 +152,7 @@ main {
   color: #e0e6f0;
 }
 
-/* === TERRAIN === */
+/* TERRAIN */
 #team-container {
   display: flex;
   flex-direction: column;
@@ -162,7 +162,7 @@ main {
   max-width: 900px;
 }
 
-/* === LIGNES DE JOUEURS === */
+/* LIGNES DE JOUEURS */
 .team-line {
   display: flex;
   justify-content: center;
@@ -170,7 +170,7 @@ main {
   gap: 30px;
 }
 
-/* === SLOT DE JOUEUR === */
+/* SLOT DE JOUEUR */
 .team-slot {
   width: 90px;
   height: 90px;
@@ -227,7 +227,7 @@ main {
   pointer-events: none;
 }
 
-/* === LIENS ENTRE JOUEURS === */
+/* LIENS ENTRE JOUEURS */
 .link-line {
   position: absolute;
   height: 6px;
@@ -242,7 +242,7 @@ main {
 .link-line.orange { background-color: orange; }
 .link-line.green { background-color: limegreen; }
 
-/* === COLLECTIF === */
+/* COLLECTIF */
 #team-chemistry {
   font-size: 1.3rem;
   font-weight: bold;
@@ -252,7 +252,7 @@ main {
   background-color: #14213d;
 }
 
-/* === MAILLOTS / KITS === */
+/* MAILLOTS / KITS */
 #kits-container {
   display: flex;
   flex-wrap: wrap;
@@ -303,7 +303,7 @@ main {
   font-weight: 600;
 }
 
-/* === POPUPS === */
+/* POPUPS */
 .popup-overlay {
   position: fixed;
   top: 0;
